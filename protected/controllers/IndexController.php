@@ -33,6 +33,8 @@ class IndexController extends Controller
     public function actionIndex()
     {
 
-        $this->render('index');
+        echo "<h1>欢迎进入优时</h1><br>";
+
+       // $this->render('index');
     }
 }

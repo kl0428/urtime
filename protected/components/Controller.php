@@ -29,4 +29,19 @@ class Controller extends CController
 
 		return $redis;
 	}
+
+	public function _get($name,$default = ''){
+		return trim(Yii::app()->request->getParam($name,$default));
+	}
+
+	public function _post($name,$default = ''){
+		return trim(Yii::app()->request->getPost($name,$default));
+	}
+
+	public function _isAjaxRequest(){
+		return Yii::app()->request->isAjaxRequest;
+	}
+	public function _isPost(){
+		return Yii::app()->request->isPostRequest;
+	}
 }

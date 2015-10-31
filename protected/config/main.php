@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'测试',
+	'name'=>'urtime',
 	'language' =>'zh_cn',
 	'charset' => 'utf-8',
 	'defaultController' =>'index',
