@@ -18,6 +18,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.services.v0.*',
 	),
 
 	'modules'=>array(
@@ -139,5 +140,9 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'app'	=>array(
+			'MobileApiKey'=>'1234567',
+			'MobileApiValidtime'=>10*60,
+		),
 	),
 );

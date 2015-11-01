@@ -21,6 +21,22 @@ class Controller extends CController
 	 */
 	public $breadcrumbs=array();
 
+	//接口错误信息数组
+	protected $API_ERRORS = array(
+		0 => '成功',
+		301 => '缺少参数',
+		302 => '签名错误',
+		303 => '错误的APP_KEY',
+		304 => '请求已过期',
+		305 => '请求的接口不存在',
+		306 => '请求数据获取失败',
+		307 => '请求数据获取失败',
+		308 => '请求数据错误',
+		309 => '参数格式错误',
+		310 => '非法用户',
+		312 => '暂无数据'
+	);
+
 	protected  function cache()
 	{
 		$redis = new Redis();
@@ -43,5 +59,41 @@ class Controller extends CController
 	}
 	public function _isPost(){
 		return Yii::app()->request->isPostRequest;
+	}
+
+	//验证
+	protected function verify(){
+		if($this->verifyKey()){
+			if($this->verifyTime()){
+				//if($this->verifyModule()){
+				return true;
+				//}
+			}
+		}
+		return false;
+	}
+
+	//验证签名
+	private function verifyKey(){
+		$md5_sign = md5($this->app_key.$this->method.$this->timestamp.$this->app_secret);
+		//判断签名
+		if($md5_sign==$this->app_sign){
+			return true;
+		}else{
+			//签名错误
+			$this->notice('ERR',302,$this->API_ERRORS[302]);
+		}
+	}
+
+	//验证时效
+	private function verifyTime(){
+		$nowtime = time();
+		//判断请求时间
+		if($nowtime <= ($this->timestamp+$this->validtime) && $nowtime >= ($this->timestamp-$this->validtime)){
+			return true;
+		}else{
+			//请求时间无效
+			$this->notice('ERR',304,$this->API_ERRORS[304]);
+		}
 	}
 }
