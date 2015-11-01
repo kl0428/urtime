@@ -124,4 +124,23 @@ class IndexController extends Controller
             $this->notice('ERR',304,$this->API_ERRORS[304]);
         }
     }
+
+    /**
+     *
+     * 公共返回处理函数
+     * @param string $status
+     * @param string $code
+     * @param unknown $msg
+     * @param unknown $data
+     */
+    protected function notice($status='ERR',$code='-1',$msg,$data=array()){
+        $notice = array(
+            "status" => $status,
+            "msg" => $msg,
+            "code" => $code,
+            "data" => $data
+        );
+        echo json_encode($notice);
+        exit;
+    }
 }
