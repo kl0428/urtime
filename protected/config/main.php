@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'测试',
+	'name'=>'urtime',
 	'language' =>'zh_cn',
 	'charset' => 'utf-8',
 	'defaultController' =>'index',
@@ -18,6 +18,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.services.v0.*',
 	),
 
 	'modules'=>array(
@@ -138,5 +139,9 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'app'	=>array(
+			'MobileApiKey'=>'1234567',
+			'MobileApiValidtime'=>10*60,
+		),
 	),
 );
