@@ -29,7 +29,6 @@ return array(
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters'=>array('127.0.0.1','::1'),
         ),
-        'admin',
     ),
 
     // application components
@@ -55,20 +54,16 @@ return array(
 
 
         // database settings are configured in database.php
-        //'db'=>require(dirname(__FILE__).'/database.php'),
-        'db'=>array(
-            'connectionString' => 'mysql:host=120.25.59.222;port=3306;dbname=urtime',
+       // 'db'=>require(dirname(__FILE__).'/database.php'),
+        'db' =>array(
+            'connectionString' => 'mysql:host=localhost;dbname=urtime',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'urtimerqwerty',
+            'password' => '123456',
             'charset' => 'utf8',
-            'tablePrefix' => 't_',
-            'schemaCacheID' => 'cache_file',
-            'schemaCachingDuration' => 0,
-            'enableParamLogging' => true,
         ),
 
-        'cache'=>array(
+        /*'cache'=>array(
             'class'=>'ext.redis.CRedisCache',
             //'keyPrefix' => false,
             //'hashKey'   => false,
@@ -80,7 +75,7 @@ return array(
                     'password' => '123456',
                 ),
             ),
-        ),
+        ),*/
         'cache_local' => array(
             'class' => 'ext.redis.CRedisCache',
             'keyPrefix'=>false,
@@ -94,7 +89,33 @@ return array(
                 ),
             ),
         ),
-        
+
+        'cache_ext' =>array(
+            'class' => 'ext.redis.CgtzRedisCache',
+            'keyPrefix'=>false,
+            'hashKey'=>false,
+            'serializer'=>false,
+            'hostname' => '127.0.0.1',
+            'port' => 6379,
+            'password' => '123456',
+            'database'=>2,
+        ),
+
+        //read-only redis cache
+        'cache2' => array(
+            'class' => 'ext.redis.CRedisCache',
+            'keyPrefix'=>'',
+            'hashKey'=>false,
+            'serializer'=>false,
+            'servers' => array(
+                array(
+                    'host' => '192.168.10.106',
+                    'port' => 6379,
+                    'password' => '00000000',
+
+                ),
+            ),
+        ),
 
         'errorHandler'=>array(
             // use 'site/error' action to display errors
