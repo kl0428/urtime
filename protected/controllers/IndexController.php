@@ -28,6 +28,11 @@ class IndexController extends Controller
     );
 
 
+    protected $Services = array(
+        'register' =>'UserService',
+    );
+
+
     public function __construct()
     {
         $this->app_secret = Yii::app()->params['app']['MobileApiKey'];
@@ -72,19 +77,24 @@ class IndexController extends Controller
             if(in_array($this->app_version, $arr_v1)){
                 $version_str = "v1";
             }
-
+            $this->params=array('password'=>123456);
+            if(in_array($model,array_keys($this->Services)))
+            {
+                $serv = new $this->Services[$model]();
+                $return = $serv->$model($this->params);
+            }
 
             //新接口开始走api自己的service层
-            if($model == "sample"){
+//            if($model == "sample"){
 
 //                $classStr = 'app.'.$version_str.'.SampleService';//service名称
 //                $className = new ReflectionClass($classStr);
 //                $serv  = $className->newInstance();
-                $serv = new SampleService();
+//                $serv = new SampleService();
 
-                $return = $serv->showSample($this->params);
-            }
-       // }
+//                $return = $serv->showSample($this->params);
+//            }
+//        }
         print_r($return);
         exit();
     }
