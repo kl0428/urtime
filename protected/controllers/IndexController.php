@@ -178,7 +178,11 @@ class IndexController extends Controller
 
     public function actionUpImage()
     {
+        /*var_dump($_POST);
+        exit();
         $this->params = $_REQUEST['params'];
+        var_dump($this->params);
+        exit;*/
         $image = CUploadedFile::getInstanceByName('params[file]');
         $dir=Yii::app()->basePath.'/../assets/images/heard/';
         $ext_arr = explode('.',$image->name);

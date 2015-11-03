@@ -56,12 +56,16 @@ return array(
 
         // database settings are configured in database.php
        // 'db'=>require(dirname(__FILE__).'/database.php'),
-        'db' =>array(
-            'connectionString' => 'mysql:host=localhost;dbname=urtime',
+        'db'=>array(
+            'connectionString' => 'mysql:host=127.0.0.1;port=3306;dbname=urtime',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => '123456',
             'charset' => 'utf8',
+            'tablePrefix' => 't_',
+            'schemaCacheID' => 'cache_file',
+            'schemaCachingDuration' => 0,
+            'enableParamLogging' => true,
         ),
 
         'cache'=>array(

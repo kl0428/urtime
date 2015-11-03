@@ -50,8 +50,8 @@ class SiteController extends Controller
         shuffle($a);
         echo "<br />";
         for ($i=0; $i<count($a); ++$i) echo $a[$i]." ";*/
-
-        //exit();
+        echo phpinfo();
+        exit();
         $this->render('index');
     }
 

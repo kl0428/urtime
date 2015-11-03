@@ -18,9 +18,15 @@
             </br>
 
         <?php if($data['action']=='register'){?>
-            username:<input type="text" name="params[username]"  value="zhaoqing@lamahui.com" />
+            image:<input type="text" name="params[image]" value="heard1446549220_7057.png"/>
             </br>
-            password:<input type="text" name="params[password]"  value="zhaoqing" />
+            sex:<input type="text" name="params[sex]" value="0"/>
+            </br>
+            nickname:<input type="text" name="params[nickname]" value="test"/>
+            </br>
+            password:<input type="text" name="params[password]" value="123456">
+            </br>
+            mobile:<input type="text" name="params[mobile]" value="18368113211">
             </br>
         <?php }elseif($data['action']=='login'){?>
             username:<input type="text" name="params[username]"  value="zhaoqing@lamahui.com" />
@@ -28,9 +34,9 @@
             password:<input type="text" name="params[password]"  value="zhaoqing" />
             </br>
         <?php }elseif($data['action'] == 'sendSms'){?>
-                mobile:<input type="text" name="params[mobile]" value="18368113211"/>
-                <br/>
-                type:<input type="text" name="params[type]" value="register"/>
+            mobile:<input type="text" name="params[mobile]" value="18368113211"/>
+            <br/>
+            type:<input type="text" name="params[type]" value="register"/>
         <?php }else{?>
             image:<input type="file" name="params[file]"/>
         <?php }?>

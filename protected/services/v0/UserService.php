@@ -17,11 +17,11 @@ class UserService extends AppApiService
     public function register($params=array())
     {
         extract($params);
-        /*if($nickname && $password){
+        if(isset($nickname) && isset($password)){
 
         }else{
             $ret = $this->notice('ERR', 307, '', $result);
-        }*/
+        }
         $result=array(
             'password' => $params['password'],
         );
