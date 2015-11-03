@@ -18,6 +18,7 @@ return array(
     'import'=>array(
         'application.models.*',
         'application.components.*',
+        'application.services.v0.*',
     ),
 
     'modules'=>array(
@@ -63,29 +64,16 @@ return array(
             'charset' => 'utf8',
         ),
 
-        /*'cache'=>array(
+        'cache'=>array(
             'class'=>'ext.redis.CRedisCache',
-            //'keyPrefix' => false,
-            //'hashKey'   => false,
+            'keyPrefix' => false,
+            'hashKey'   => false,
             //'serializer'=>false,
             'servers'   => array(
                 array(
                     'host' => '127.0.0.1',
                     'port' => 6379,
-                    'password' => '123456',
-                ),
-            ),
-        ),*/
-        'cache_local' => array(
-            'class' => 'ext.redis.CRedisCache',
-            'keyPrefix'=>false,
-            'hashKey'=>false,
-            //'serializer'=>false,
-            'servers' => array(
-                array(
-                    'host' => '127.0.0.1',
-                    'port' => 6379,
-                    'password' => '123456',
+                   // 'password' => '123456',
                 ),
             ),
         ),
@@ -97,7 +85,7 @@ return array(
             'serializer'=>false,
             'hostname' => '127.0.0.1',
             'port' => 6379,
-            'password' => '123456',
+            //'password' => '123456',
             'database'=>2,
         ),
 
@@ -109,9 +97,9 @@ return array(
             'serializer'=>false,
             'servers' => array(
                 array(
-                    'host' => '192.168.10.106',
+                    'host' => '127.0.0.1',
                     'port' => 6379,
-                    'password' => '00000000',
+                    //'password' => '00000000',
 
                 ),
             ),
@@ -145,5 +133,15 @@ return array(
     'params'=>array(
         // this is used in contact page
         'adminEmail'=>'webmaster@example.com',
+        'app'	=>array(
+            'MobileApiKey'=>'1234567',
+            'MobileApiValidtime'=>10*60,
+        ),
+        'chuanglan'=>array(
+            'api_send_url'=>'http://222.73.117.158/msg/HttpBatchSendSM',//创蓝发送短信接口URL, 如无必要，该参数可不用修改
+            'api_balance_query_url'=>'http://222.73.117.158/msg/QueryBalance',//创蓝短信余额查询接口URL, 如无必要，该参数可不用修改
+            'api_account'=>'xxxx',//创蓝账号 替换成你自己的账号
+            'api_password'=>'xxxx',//创蓝密码，以数字和字母组成的32位字符
+        ),
     ),
 );

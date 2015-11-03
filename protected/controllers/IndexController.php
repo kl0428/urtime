@@ -29,26 +29,24 @@ class IndexController extends Controller
 
 
     protected $Services = array(
-        'register' =>'UserService',
+        'register' =>'UserService',//注册接口
+        'sendSms'  =>'SmsService',//发送短信接口
     );
 
 
     public function __construct()
     {
         $this->app_secret = Yii::app()->params['app']['MobileApiKey'];
-        $this->app_key = $this->_get('app_key','14325');
-        $this->app_sign = $this->_get('app_sign');
-        $this->timestamp = $this->_get('timestamp');
-        $this->method = $this->_get('method');
-        $this->app_name = $this->_get('app_name');
-        $this->app_version = $this->_get('app_version');
-        $this->client = $this->_get('client');
-        $this->net = $this->_get('net');
-        if ($this->_get('debug') == 1) {
-            $this->params =$this->_get('params');
-        } else {
-            $this->params =json_decode($this->_get('params'),true);
-        }
+        $this->app_key = $this->_post('app_key','14325');
+        $this->app_sign = $this->_post('app_sign');
+        $this->timestamp = $this->_post('timestamp');
+        $this->method = $this->_post('method');
+        $this->app_name = $this->_post('app_name');
+        $this->app_version = $this->_post('app_version');
+        $this->client = $this->_post('client');
+        $this->net = $this->_post('net');
+        //$this->params =json_decode($this->_post('params'),true);
+
 
     }
 
@@ -64,6 +62,8 @@ class IndexController extends Controller
 
 //            global $_APP_KEY;
 //            $_APP_KEY=$this->APP_KEYS[$this->app_key];
+             $this->params = $_REQUEST['params'];
+
 
             $model = $this->method;//方法类型
 
@@ -77,7 +77,6 @@ class IndexController extends Controller
             if(in_array($this->app_version, $arr_v1)){
                 $version_str = "v1";
             }
-            $this->params=array('password'=>123456);
             if(in_array($model,array_keys($this->Services)))
             {
                 $serv = new $this->Services[$model]();
@@ -152,5 +151,48 @@ class IndexController extends Controller
         );
         echo json_encode($notice);
         exit;
+    }
+
+    public function actionReq()
+    {
+        $appsecret = "123456";
+        $action = $this->_get('action');
+        $data = array(
+            "app_key" => "14326",
+            "timestamp" => time(),
+            "method" => $action,
+            "client"	=>'ios',
+            //购物车列表
+            "params" => array(
+                "cookie_cart_id"=>array(327)
+            ),
+
+        );
+
+        $data['action'] =$action;
+        $data['user_id'] = 120;
+        $data['user_token'] = md5(md5(uniqid('cnbeir'.$data['user_id'])));
+        $data["app_sign"] = md5($data["app_key"].$data["method"].$data["timestamp"].$appsecret);
+        $this->render('req',['data'=>$data]);
+    }
+
+    public function actionUpImage()
+    {
+        $this->params = $_REQUEST['params'];
+        $image = CUploadedFile::getInstanceByName('params[file]');
+        $dir=Yii::app()->basePath.'/../assets/images/heard/';
+        $ext_arr = explode('.',$image->name);
+        $ext = $ext_arr[count($ext_arr)-1];
+        $name = 'heard'.time().'_'.rand(1, 9999).'.'.$ext;
+        //文件名绝对路径
+
+        $status = $image->saveAs($dir.$name,true);
+        //保存文件
+        if ($status) {
+            $result=array('name'=>$name);
+            $this->notice('OK',0,$result);
+        }else {
+            $this->notice('ERR',307,$this->API_ERRORS[307]);
+        }
     }
 }

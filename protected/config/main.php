@@ -103,7 +103,7 @@ return array(
 			'serializer'=>false,
 			'servers' => array(
 				array(
-					'host' => '192.168.10.106',
+					'host' => '127.0.0.1',
 					'port' => 6379,
 					'password' => '00000000',
 

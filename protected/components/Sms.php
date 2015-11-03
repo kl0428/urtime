@@ -26,25 +26,25 @@
         */
         public function sendSMS($mobile,$msg,$needstatus = 'false',$product = '',$extno = ''){
             $postArr = array(
-                'account'       =>'jiekou-clcs-07',
-                'pswd'          =>'Clwh2009',
+                'account'       =>Yii::app()->params['chuanglan']['api_account'],
+                'pswd'          =>Yii::app()->params['chuanglan']['api_password'],
                 'msg'           =>$msg,
                 'mobile'        => $mobile,
                 'needstatus'    =>$needstatus,
                 'product'       =>$product,
                 'extno'         =>$extno,
             );
-            $result = $this->curlPost('http://222.73.117.158/msg/HttpBatchSendSM',$postArr);
+            $result = $this->curlPost(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
             return $result;
         }
 
 
         public function queryBalance(){
             $postArr = array(
-                'account'       =>'jiekou-clcs-07',
-                'pswd'          =>'Clwh2009',
+                'account'       =>Yii::app()->params['chuanglan']['api_account'],
+                'pswd'          =>Yii::app()->params['chuanglan']['api_password'],
             );
-            $result = $this->curlPost('http://222.73.117.158/msg/QueryBalance',$postArr);
+            $result = $this->curlPost(Yii::app()->params['chuanglan']['api_balance_query_url'],$postArr);
             return $result;
         }
 
