@@ -18,14 +18,82 @@ class UserService extends AppApiService
     {
         extract($params);
         if(isset($nickname) && isset($password)){
+            //查询手机是否注册过
+            $user = User::model()->exists(array('condition'=>'mobile=:mobile','params'=>array(':mobile'=>isset($mobile)?$mobile:0)));
+            if(!$user){
+                $result = array(
+                    'nickname'=>$nickname,
+                    'sex'=>isset($sex)?$sex:0,
+                    'mobile'=>isset($mobile)?$mobile:0,
+                    'image'=>isset($image)?$image:'',
+                    'password'=>md5($mobile.md5($password)),
+                );
+                $model = new User();
+                $model->attributes=$result;
+                if($model->validate()&&$model->save())
+                {
+                    $ret = $this->notice('OK', 0, '', $result);
+                }else{
+                    $ret = $this->notice('ERR', 307, '', ['val']);
+                }
 
+            }else{
+                $ret = $this->notice('ERR', 306, '该号码已经注册过了', ['val']);
+            }
         }else{
-            $ret = $this->notice('ERR', 307, '', $result);
+            $ret = $this->notice('ERR', 307, '', []);
         }
         $result=array(
             'password' => $params['password'],
         );
         $ret = $this->notice('ERR', 307, '', $result);
         return $ret;
+    }
+
+    public function login($params = array()){
+        extract($params);
+        if(isset($username)&&isset($password)) {
+            //查询手机是否注册过
+            //$user = User::model()->find('mobile=:mobile',array(':mobile'=>$username));
+            $ret = $this->notice('OK',0,array('res'=>$username));
+//             $pwd = md5($user->mobile.md5($password));
+//             if($pwd == $user->password){
+//                 $result = array(
+//                     'id'    => $user->id,
+//                     'nickname'=>$user->nickname,
+//                     'mobile'  =>$user->mobile,
+//                     'username'=>$user->username
+//                 );
+//                 $ret = $this->notice('OK', 0, '', $result);
+//             }else{
+//                 $ret = $this->notice('ERR', 310, '登录失败',[]);
+//             }
+
+         }else{
+            $ret = $this->notice('ERR', 301, '缺少参数',[]);
+        }
+         return $ret;
+    }
+
+    //忘记密码
+    public function forget($params=array())
+    {
+        extract($params);
+        if(isset($mobile)&&isset($newpwd)){
+            $cache = Yii::app()->cache;
+            $save_code = strtolower($cache->hget($mobile,'forget'));
+            if(isset($code)&& $save_code==strtolower($code)){
+                //$model = new User();
+               // $user = User::model()->find(array('condition'=>'mobile=:mobile','params'=>array(':mobile'=>$mobile)));
+                $new_pwd = md5($mobile.md5($newpwd));
+               // $model->attributes = $user;
+                if(User::model()->updateAll(array('password'=>$new_pwd,'gmt_modified'=>date('Y-m-d H:i:s')),'mobile=:mobile',array(':mobile'=>$mobile))){
+                    $ret = $this->notice('OK',0,array('pwd'=>$new_pwd));
+                };
+            }else{
+                $ret = $this->notice('ERR',301,array('code'=>$code,'save_code'=>$save_code));
+            }
+            return $ret;
+        }
     }
 }

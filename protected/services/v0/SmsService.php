@@ -14,7 +14,7 @@ class SmsService extends AppApiService
         //extract($params);
         $type = $params['type'];
         $mobile = $params['mobile'];
-        if(isset($type) && $type =='register' && isset($mobile)){
+        if(isset($type) && isset($mobile)){// $type =='register','forget',
             $num = $this->getrandstr();
             $cache = Yii::app()->cache;
             $cache->hset($mobile,$type,$num);
