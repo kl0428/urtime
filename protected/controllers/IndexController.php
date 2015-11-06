@@ -31,10 +31,12 @@ class IndexController extends Controller
     protected $Services = array(
         'register' =>'UserService',//注册接口
         'sendSms'  =>'SmsService',//发送短信接口
+        'login'    =>'UserService',//登录接口
+        'forget'   =>'UserService',//忘记密码
     );
 
 
-    public function __construct()
+    public function init()
     {
         $this->app_secret = Yii::app()->params['app']['MobileApiKey'];
         $this->app_key = $this->_post('app_key','14325');
@@ -83,17 +85,6 @@ class IndexController extends Controller
                 $return = $serv->$model($this->params);
             }
 
-            //新接口开始走api自己的service层
-//            if($model == "sample"){
-
-//                $classStr = 'app.'.$version_str.'.SampleService';//service名称
-//                $className = new ReflectionClass($classStr);
-//                $serv  = $className->newInstance();
-//                $serv = new SampleService();
-
-//                $return = $serv->showSample($this->params);
-//            }
-//        }
         print_r($return);
         exit();
     }

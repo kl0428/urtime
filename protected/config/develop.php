@@ -63,9 +63,6 @@ return array(
             'password' => '123456',
             'charset' => 'utf8',
             'tablePrefix' => 't_',
-            'schemaCacheID' => 'cache_file',
-            'schemaCachingDuration' => 0,
-            'enableParamLogging' => true,
         ),
 
         'cache'=>array(

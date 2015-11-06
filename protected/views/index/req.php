@@ -29,7 +29,7 @@
             mobile:<input type="text" name="params[mobile]" value="18368113211">
             </br>
         <?php }elseif($data['action']=='login'){?>
-            username:<input type="text" name="params[username]"  value="1836811322" />
+            username:<input type="text" name="params[username]"  value="18368113211" />
             </br>
             password:<input type="text" name="params[password]"  value="123456" />
             </br>

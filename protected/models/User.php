@@ -34,7 +34,7 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nickname', 'required'),
+			array('nickname,mobile', 'required'),
 			array('sex', 'numerical', 'integerOnly'=>true),
 			array('nickname, username, email', 'length', 'max'=>32),
 			array('mobile', 'length', 'max'=>11),
@@ -122,5 +122,11 @@ class User extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function loadUser($mobile='')
+	{
+		$user = $this->model()->find('mobile=:mobile',array(':mobile'=>$mobile));
+		return $user;
 	}
 }
