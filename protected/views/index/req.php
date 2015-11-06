@@ -38,7 +38,7 @@
             <br/>
             new_pwd:<input type="text" name="params[newpwd]" value="12345678">
             <br/>
-            code:<input type="text" name="params[code]" value="DhzGf0">
+            code:<input type="text" name="params[code]" value="Ty2PZI">
         <?php }elseif($data['action'] == 'sendSms'){?>
             mobile:<input type="text" name="params[mobile]" value="18368113211"/>
             <br/>
