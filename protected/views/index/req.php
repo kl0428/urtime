@@ -36,9 +36,9 @@
         <?php }else if($data['action']=='forget'){?>
             mobile:<input type="text" name="params[mobile]" value="18368113211">
             <br/>
-            new_pwd:<input type="text" name="params[newpwd]" value="1235678">
+            new_pwd:<input type="text" name="params[newpwd]" value="12345678">
             <br/>
-            code:<input type="text" name="params[code]" value="kmsfu2">
+            code:<input type="text" name="params[code]" value="DhzGf0">
         <?php }elseif($data['action'] == 'sendSms'){?>
             mobile:<input type="text" name="params[mobile]" value="18368113211"/>
             <br/>

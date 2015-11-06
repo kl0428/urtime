@@ -56,7 +56,7 @@ class UserService extends AppApiService
             //查询手机是否注册过
             $user = User::model()->find('nickname=:nickname or mobile=:mobile',array(':nickname'=>$username,':mobile'=>$username));
             if($user) {
-                $pwd = md5($user->mobile . md5($password));
+                $pwd = md5($user->mobile.md5($password));
                 if ($pwd == $user->password) {
                     $result = array(
                         'id' => $user->id,
@@ -90,7 +90,6 @@ class UserService extends AppApiService
                 $user = User::model()->find(array('condition'=>'mobile=:mobile','params'=>array(':mobile'=>$mobile)));
                 if($user){
                     $new_pwd = md5($user->mobile.md5($newpwd));
-                   // $model->attributes = $user;
                     if(User::model()->updateAll(array('password'=>$new_pwd,'gmt_modified'=>date('Y-m-d H:i:s')),'mobile=:mobile',array(':mobile'=>$mobile))){
                         $ret = $this->notice('OK',0,array('pwd'=>$new_pwd));
                     };

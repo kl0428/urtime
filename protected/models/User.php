@@ -34,7 +34,7 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nickname,mobile', 'required'),
+			array('nickname,mobile,password', 'required'),
 			array('sex', 'numerical', 'integerOnly'=>true),
 			array('nickname, username, email', 'length', 'max'=>32),
 			array('mobile', 'length', 'max'=>11),
@@ -68,6 +68,7 @@ class User extends CActiveRecord
 			'nickname' => '登录名',
 			'username' => '姓名',
 			'mobile' => '手机号码',
+			'password'=>'密码',
 			'email' => '邮箱',
 			'sex' => '性别 0-女 1-男',
 			'image' => '头像',
