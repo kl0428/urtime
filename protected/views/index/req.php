@@ -43,9 +43,19 @@
             mobile:<input type="text" name="params[mobile]" value="18368113211"/>
             <br/>
             type:<input type="text" name="params[type]" value="register"/>
+        <?php }elseif($data['action'] == 'banner'){?>
+        <?php }elseif($data['action'] == 'cards'){?>
+            key:<input type="text" name="params[key]" value="1">
+        <?php }elseif($data['action'] == 'cardInfo'){?>
+            type_id:<input type="text" name="params[type_id]" value="0">
+            <br/>
+            num:<input type="text" name="params[num]"value="1">
         <?php }else{?>
             image:<input type="file" name="params[file]"/>
+            <br/>
+            type:<input type="text" name="type" value="banner"/>
         <?php }?>
+        <?php //echo  CHtml::image('http://local.urtime.com/assets/images/heard/heard1446549220_7057.png');?>
         <br/>
         <input type="submit" value="提交" />
     </form>

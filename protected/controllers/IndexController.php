@@ -33,6 +33,9 @@ class IndexController extends Controller
         'sendSms'  =>'SmsService',//发送短信接口
         'login'    =>'UserService',//登录接口
         'forget'   =>'UserService',//忘记密码
+        'banner'   =>'CardService',//获取banner及通卡类型接口
+        'cards'    =>'CardService',//获取指定类型的通卡列表
+        'cardInfo' =>'CardService',//获取指定类型通卡信息
     );
 
 
@@ -169,22 +172,27 @@ class IndexController extends Controller
 
     public function actionUpImage()
     {
-        /*var_dump($_POST);
-        exit();
-        $this->params = $_REQUEST['params'];
-        var_dump($this->params);
-        exit;*/
+        $type = $this->_post('type');
         $image = CUploadedFile::getInstanceByName('params[file]');
-        $dir=Yii::app()->basePath.'/../assets/images/heard/';
+        if($type == 'heard'){
+            $dir=Yii::app()->basePath.'/../assets/images/heard/';
+            $bath = 'assets/images/heard/';
+        }else if($type == 'banner'){
+            $dir=Yii::app()->basePath.'/../assets/images/banner/';
+            $bath = 'assets/images/banner/';
+        }else{
+            $dir=Yii::app()->basePath.'/../assets/images/';
+            $bath = 'assets/images/';
+        }
         $ext_arr = explode('.',$image->name);
         $ext = $ext_arr[count($ext_arr)-1];
-        $name = 'heard'.time().'_'.rand(1, 9999).'.'.$ext;
+        $name = 'urtime'.time().'_'.rand(1, 9999).'.'.$ext;
         //文件名绝对路径
 
         $status = $image->saveAs($dir.$name,true);
         //保存文件
         if ($status) {
-            $result=array('name'=>$name);
+            $result=array('name'=>$bath.$name);
             $this->notice('OK',0,$result);
         }else {
             $this->notice('ERR',307,$this->API_ERRORS[307]);
