@@ -36,6 +36,9 @@ class IndexController extends Controller
         'banner'   =>'CardService',//获取banner及通卡类型接口
         'cards'    =>'CardService',//获取指定类型的通卡列表
         'cardInfo' =>'CardService',//获取指定类型通卡信息
+        'city'     =>'CityService',//获取城市信息
+        'provice'  =>'CityService',//获取省
+        'cities'   =>'CityService',//获取省市
     );
 
 

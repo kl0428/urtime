@@ -58,10 +58,10 @@ return array(
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
 
-		/*'cache'=>array(
+		'cache'=>array(
 			'class'=>'ext.redis.CRedisCache',
-			//'keyPrefix' => false,
-			//'hashKey'   => false,
+			'keyPrefix' => false,
+			'hashKey'   => false,
 			//'serializer'=>false,
 			'servers'   => array(
 				array(
@@ -70,7 +70,7 @@ return array(
 					'password' => '123456',
 				),
 			),
-		),*/
+		),
 		'cache_local' => array(
 			'class' => 'ext.redis.CRedisCache',
 			'keyPrefix'=>false,

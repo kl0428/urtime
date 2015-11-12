@@ -50,6 +50,12 @@
             type_id:<input type="text" name="params[type_id]" value="0">
             <br/>
             num:<input type="text" name="params[num]"value="1">
+        <?php }elseif($data['action']=='city'){?>
+            provice:<input type="text" name="params[provice]" value="31"/>
+        <?php }elseif($data['action']=='cities'){?>
+
+        <?php }elseif($data['action']=='provice'){?>
+
         <?php }else{?>
             image:<input type="file" name="params[file]"/>
             <br/>
