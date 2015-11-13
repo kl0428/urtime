@@ -39,6 +39,7 @@ class IndexController extends Controller
         'city'     =>'CityService',//获取城市信息
         'provice'  =>'CityService',//获取省
         'cities'   =>'CityService',//获取省市
+        'alliance' =>'AllianceService',//创建/修改联盟信息
     );
 
 

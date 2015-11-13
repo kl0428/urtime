@@ -35,7 +35,7 @@ class Alliance extends CActiveRecord
 			array('leader, image, type, center_name', 'required'),
 			array('name','unique','className'=>'Alliance','attributeName'=>'name','message'=>'联盟名称已存在'),
 			array('leader, type', 'numerical', 'integerOnly'=>true),
-			array('image', 'length', 'max'=>64),
+			array('image', 'length', 'max'=>250),
 			array('center_name', 'length', 'max'=>32),
 			array('accept', 'length', 'max'=>1),
 			array('notice, gmt_created, gmt_modified', 'safe'),
@@ -116,5 +116,13 @@ class Alliance extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function beforeSave()
+	{
+		if($this->isNewRecord)
+			$this->gmt_created = date('Y-m-d H:i:s');
+		$this->gmt_modified = date('Y-m-d H:i:s');
+		return true;
 	}
 }
