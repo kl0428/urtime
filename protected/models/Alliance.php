@@ -53,6 +53,7 @@ class Alliance extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user'=>array(self::BELONGS_TO,'User','leader'),
 		);
 	}
 
@@ -124,5 +125,29 @@ class Alliance extends CActiveRecord
 			$this->gmt_created = date('Y-m-d H:i:s');
 		$this->gmt_modified = date('Y-m-d H:i:s');
 		return true;
+	}
+
+	public function getAlliance($alliance_id=0)
+	{
+
+		$criteria = new CDbCriteria;
+		$criteria->compare('t.id',$alliance_id);
+		$criteria->with='user';
+		$obj = $this->find($criteria);
+		if($obj){
+			$alliance = array(
+				'id'=>$obj->id,
+				'name'=>$obj->name,
+				'leader'=>$obj->leader,
+				'leader_name'=>$obj->user->nickname,
+				'type'=>$obj->type,
+				'center_name'=>$obj->center_name,
+				'notice'=>$obj->notice,
+				'members'=>Relations::model()->getMembers($alliance_id,0),
+			);
+		}else{
+			$alliance = [];
+		}
+		return $alliance;
 	}
 }

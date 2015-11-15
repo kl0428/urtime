@@ -58,7 +58,7 @@ class Dynamic extends CActiveRecord
 	{
 		return array(
 			'dy_id' => '动态编号',
-			'dy_type' => '动态类型 0-个人 1-联盟',
+			'dy_type' => '动态类型',// 0-个人 1-联盟
 			'dy_user' => '发表用户',
 			'dy_content' => '动态内容',
 			'dy_images' => '动态图片',
@@ -107,5 +107,13 @@ class Dynamic extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function beforeSave()
+	{
+		if($this->isNewRecord)
+			$this->gmt_created = date('Y-m-d H:i:s');
+		$this->gmt_modified = date('Y-m-d H:i:s');
+		return true;
 	}
 }

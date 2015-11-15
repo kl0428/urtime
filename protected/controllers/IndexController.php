@@ -40,8 +40,12 @@ class IndexController extends Controller
         'provice'  =>'CityService',//获取省
         'cities'   =>'CityService',//获取省市
         'alliance' =>'AllianceService',//创建/修改联盟信息
+        'getAlliances'=>'AllianceService',//获取联盟列表和指定联盟信息
+        'quitAlliance'=>'AllianceService',//删除并退出联盟
+        'addAlliance'=>'AllianceService',//申请加入联盟
+        'addDynamic' =>'AllianceService',//添加联盟动态
+        'getDynamic' =>'AllianceService',//获取联盟列表
     );
-
 
     public function init()
     {
@@ -71,8 +75,7 @@ class IndexController extends Controller
 
 //            global $_APP_KEY;
 //            $_APP_KEY=$this->APP_KEYS[$this->app_key];
-             $this->params = $_REQUEST['params'];
-
+             $this->params = $_REQUEST['params']?$_REQUEST['params']:[];
 
             $model = $this->method;//方法类型
 

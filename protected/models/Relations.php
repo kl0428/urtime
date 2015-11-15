@@ -47,6 +47,8 @@ class Relations extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user'=>array(self::BELONGS_TO,'User','user_id'),
+			'alliance'=>array(self::BELONGS_TO,'Alliance','alliance'),
 		);
 	}
 
@@ -104,5 +106,61 @@ class Relations extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	//获取联盟成员
+	public  function getMembers($alliance_id=0,$user_id=0)
+	{
+		$criteria = new CDbCriteria;
+		$criteria->order = 't.gmt_created asc';
+		if($alliance_id){
+			$members =array();
+			$criteria->compare('alliance_id',$alliance_id);
+			$criteria->addCondition('apply_type=1');
+			$obj = $this->findAll($criteria);
+			if($obj)
+			{
+				foreach($obj as $key=>$val)
+				{
+					$members[] = array(
+						'nickname'=>$val->user->nickname,
+						'user_id'=>$val->user_id,
+						'image'=>$val->user->image
+					);
+				}
+			}
+			return $members;
+
+		}
+
+		if($user_id){
+			$alliances = array();
+			$criteria->compare('user_id',$user_id);
+			$obj = $this->findAll($criteria);
+			if($obj)
+			{
+				foreach($obj as $key => $val)
+				{
+					$alliances[] = array(
+						'alliance_id' =>$val->alliance_id,
+						'name'		  =>$val->alliance->name,
+						'center_name' =>$val->alliance->center_name,
+						'image'		  =>$val->alliance->image,
+					);
+				}
+			}
+			return $alliances;
+		}
+
+
+
+	}
+
+	public function beforeSave()
+	{
+		if($this->isNewRecord)
+			$this->gmt_created = date('Y-m-d H:i:s');
+		$this->gmt_modified = date('Y-m-d H:i:s');
+		return true;
 	}
 }
