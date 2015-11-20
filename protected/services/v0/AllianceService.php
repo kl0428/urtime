@@ -248,4 +248,86 @@ class AllianceService extends AppApiService
         }
         return $ret;
     }
+
+
+    //添加联盟动态
+    public function addUserDynamic($params = array())
+    {
+        extract($params);
+        if(isset($user_id)&&$user_id)
+        {
+            $dynamic = array(
+                'dy_user'=>$user_id,
+                'dy_type'=>0,
+            );
+            if(isset($content)&&$content)
+            {
+                $dynamic['dy_content'] = $content;
+            }
+
+            if(isset($image)&&$image)
+            {
+                if(is_null(json_decode($image)))
+                {
+                    $images =json_decode($image);
+                    $dynamic['dy_images'] = implode(',',$images);
+                }else{
+                    $dynamic['dy_images'] = $image;
+                }
+            }
+
+            $model = new Dynamic();
+            if($model->validate()&&$model->save())
+            {
+                $id = $model->getPrimaryKey();
+                $result = array(
+                    'id'=>$id
+                );
+                $ret = $this->notice('OK',0,'成功',$result);
+            }else{
+                $ret = $this->notice('ERR',307,'操作数据错误',$model->getErrors());
+            }
+            return $ret;
+        }else{
+            return $this->notice('ERR',301,'缺少关键参数',[]);
+        }
+    }
+
+
+    //获取联盟列表
+    public function getUserDynamic($params = array())
+    {
+        extract($params);
+        if(isset($user_id)&&$user_id)
+        {
+            $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type and dy_user = :user',
+                'params'=>array(':type'=>0,':user'=>$user_id),
+                'order'=>'gmt_created desc',
+            ));
+
+        }else{
+
+            $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type',
+                'params'=>array(':type'=>1),
+                'order'=>'gmt_created desc',
+            ));
+        }
+        $dynamic = array();
+        if($obj){
+            foreach($obj as $key=>$val)
+            {
+                $image = explode(',',$val->dy_images);
+                $dynamic[] = array(
+                    'id'=>$val->dy_id,
+                    'content'=>$val->dy_content,
+                    'images'=>$image
+                );
+            }
+            $ret = $this->notice('OK',0,'成功',$dynamic);
+        }else{
+            $ret = $this->notice('ERR',306,'获取不到数据',[]);
+        }
+        return $ret;
+    }
+
 }

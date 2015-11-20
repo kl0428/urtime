@@ -102,4 +102,73 @@ class UserService extends AppApiService
             return $ret;
         }
     }
+
+    //添加关注
+    public function addFocus($params = array())
+    {
+        extract($params);
+        if(isset($focus_user)&&$focus_user&&isset($user_id)&&$user_id)
+        {
+            $focus = array(
+                'focus_user' =>$focus_user,
+                'user_id'    =>$user_id,
+            );
+            $model = new Focus();
+            $model->attributes = $focus;
+            if($model->validate() && $model->save())
+            {
+                $ret = $this->notice('OK',0,'成功',['id'=>$model->getPrimaryKey()]);
+            }else{
+                $ret = $this->notice('ERR',306,'数据错误',$model->getErrors());
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少参数',[]);
+        }
+        return $ret;
+    }
+
+    //取消关注
+    public function delFocus($params = array())
+    {
+        extract($params);
+        if(isset($focus_id)&&$focus_id&&isset($user_id)&&$user_id)
+        {
+
+            $focus = Focus::model()->find('focus_id=:focus_id and user_id=:user_id',array(':focus_id'=>$focus_id,'user_id'=>$user_id));
+            if($focus->update(['is_focus'=>'0']))
+            {
+                $ret = $this->notice('OK',0,'成功',['id'=>$focus_id]);
+            }else{
+                $ret = $this->notice('ERR',306,'数据错误',$focus->getErrors());
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少参数',[]);
+        }
+        return $ret;
+    }
+    //
+    public function getFocus($params = array())
+    {
+        extract($params);
+        if(isset($user_id)&&$user_id)
+        {
+            $focus = Focus::model()->with('user')->findAll('user_id=:user_id and is_focus = :focus',array(':user_id'=>$user_id,'is_focus'=>'1'));
+            if($focus){
+                $focus_arr = array();
+                foreach($focus as $key=>$val)
+                {
+                    $focus_arr[] = array(
+                        'user_name' =>$val->user->nickname,
+                        'image' =>$val->user->image,
+                    );
+                }
+                $result = $focus_arr;
+                $ret = $this->notice('OK',0,'成功',$result);
+            }else{
+                $ret = $this->notice('OK',0,'成功',[]);
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少参数',[]);
+        }
+    }
 }

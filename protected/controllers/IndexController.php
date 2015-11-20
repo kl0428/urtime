@@ -29,22 +29,28 @@ class IndexController extends Controller
 
 
     protected $Services = array(
-        'register' =>'UserService',//注册接口
-        'sendSms'  =>'SmsService',//发送短信接口
-        'login'    =>'UserService',//登录接口
-        'forget'   =>'UserService',//忘记密码
-        'banner'   =>'CardService',//获取banner及通卡类型接口
-        'cards'    =>'CardService',//获取指定类型的通卡列表
-        'cardInfo' =>'CardService',//获取指定类型通卡信息
-        'city'     =>'CityService',//获取城市信息
-        'provice'  =>'CityService',//获取省
-        'cities'   =>'CityService',//获取省市
-        'alliance' =>'AllianceService',//创建/修改联盟信息
-        'getAlliances'=>'AllianceService',//获取联盟列表和指定联盟信息
-        'quitAlliance'=>'AllianceService',//删除并退出联盟
-        'addAlliance'=>'AllianceService',//申请加入联盟
-        'addDynamic' =>'AllianceService',//添加联盟动态
-        'getDynamic' =>'AllianceService',//获取联盟列表
+        'register'              =>'UserService',//注册接口
+        'sendSms'               =>'SmsService',//发送短信接口
+        'login'                 =>'UserService',//登录接口
+        'forget'                =>'UserService',//忘记密码
+        'banner'                =>'CardService',//获取banner及通卡类型接口
+        'cards'                 =>'CardService',//获取指定类型的通卡列表
+        'cardInfo'              =>'CardService',//获取指定类型通卡信息
+        'city'                  =>'CityService',//获取城市信息
+        'provice'               =>'CityService',//获取省
+        'cities'                =>'CityService',//获取省市
+        'alliance'              =>'AllianceService',//创建/修改联盟信息
+        'getAlliances'          =>'AllianceService',//获取联盟列表和指定联盟信息
+        'quitAlliance'          =>'AllianceService',//删除并退出联盟
+        'addAlliance'           =>'AllianceService',//申请加入联盟
+        'addDynamic'            =>'AllianceService',//添加联盟动态
+        'getDynamic'            =>'AllianceService',//获取联盟列表
+        'addUserDynamic'        =>'AllianceService',//添加用户动态
+        'getUserDynamic'        =>'AllianceService',//获取用户动态
+        'pay'                   =>'PayService',//支付
+        'addFocus'              =>'UserService',//添加关注
+        'delFocus'              =>'UserService',//取消关注
+        'getFocus'              =>'UserService',//获取关注
     );
 
     public function init()
@@ -59,8 +65,6 @@ class IndexController extends Controller
         $this->client = $this->_post('client');
         $this->net = $this->_post('net');
         //$this->params =json_decode($this->_post('params'),true);
-
-
     }
 
     /**
@@ -204,5 +208,28 @@ class IndexController extends Controller
         }else {
             $this->notice('ERR',307,$this->API_ERRORS[307]);
         }
+    }
+
+    public function actionWebHooks()
+    {
+        $input_data = json_decode(file_get_contents('php://input'), true);
+        if($input_data['type'] == 'charge.succeeded')
+        {
+            //TODO update database
+            http_response_code(200);// PHP 5.4 or greater
+
+        }
+
+        else if($input_data['type'] == 'refund.succeeded')
+        {
+            //TODO update database
+            http_response_code(200);// PHP 5.4 or greater
+        }
+        else
+        {
+            //TODO update database
+            http_response_code(500);// PHP 5.4 or greater
+        }
+
     }
 }

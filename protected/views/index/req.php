@@ -67,7 +67,9 @@
         <?php }elseif($data['action']=='cities'){?>
 
         <?php }elseif($data['action']=='provice'){?>
-
+        <?php }elseif($data['action']=='pay'){?>
+            channel:<input type="text" name="params[channel]" value="alipay_wap"/> <br/>
+            amount:<input type="text" name="params[amount]" value="1"> <br/>
         <?php }else{?>
             image:<input type="file" name="params[file]"/>
             <br/>
