@@ -1,29 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "{{user}}".
+ * This is the model class for table "{{report}}".
  *
- * The followings are the available columns in table '{{user}}':
+ * The followings are the available columns in table '{{report}}':
  * @property integer $id
- * @property string $nickname
- * @property string $username
- * @property string $mobile
- * @property string $email
- * @property integer $sex
- * @property string $image
- * @property string $province
- * @property string $city
+ * @property integer $user_id
+ * @property string $content
+ * @property integer $to_report
+ * @property string $type
+ * @property string $style
  * @property string $gmt_created
  * @property string $gmt_modified
  */
-class User extends CActiveRecord
+class Report extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return '{{user}}';
+		return '{{report}}';
 	}
 
 	/**
@@ -34,16 +31,13 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nickname,mobile,password', 'required'),
-			array('sex', 'numerical', 'integerOnly'=>true),
-			array('nickname, username, email', 'length', 'max'=>32),
-			array('mobile', 'length', 'max'=>11),
-			array('image', 'length', 'max'=>64),
-			array('province, city', 'length', 'max'=>6),
-			array('gmt_created, gmt_modified', 'safe'),
+			array('user_id, to_report,type,style', 'required'),
+			array('user_id, to_report', 'numerical', 'integerOnly'=>true),
+			array('type, style', 'length', 'max'=>1),
+			array('content, gmt_created, gmt_modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nickname, username, mobile, email, sex, image, province, city, gmt_created, gmt_modified', 'safe', 'on'=>'search'),
+			array('id, user_id, content, to_report, type, style, gmt_created, gmt_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,18 +58,14 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => '用户id',
-			'nickname' => '登录名',
-			'username' => '姓名',
-			'mobile' => '手机号码',
-			'password'=>'密码',
-			'email' => '邮箱',
-			'sex' => '性别 0-女 1-男',
-			'image' => '头像',
-			'province' => '省',
-			'city' => '市',
+			'id' => '举报id',
+			'user_id' => '举报人',
+			'content' => '举报内容',
+			'to_report' => '举报对象',
+			'type' => '类型',//0-用户,1-联盟
+			'style' => '方式',//0-举报,1-反馈
 			'gmt_created' => '创建时间',
-			'gmt_modified' => '更新时间',
+			'gmt_modified' => '修改时间',
 		);
 	}
 
@@ -98,14 +88,11 @@ class User extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('nickname',$this->nickname,true);
-		$criteria->compare('username',$this->username,true);
-		$criteria->compare('mobile',$this->mobile,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('sex',$this->sex);
-		$criteria->compare('image',$this->image,true);
-		$criteria->compare('province',$this->province,true);
-		$criteria->compare('city',$this->city,true);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('content',$this->content,true);
+		$criteria->compare('to_report',$this->to_report);
+		$criteria->compare('type',$this->type,true);
+		$criteria->compare('style',$this->style,true);
 		$criteria->compare('gmt_created',$this->gmt_created,true);
 		$criteria->compare('gmt_modified',$this->gmt_modified,true);
 
@@ -118,19 +105,12 @@ class User extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return Report the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-
-	public function loadUser($mobile='')
-	{
-		$user = $this->model()->find('mobile=:mobile',array(':mobile'=>$mobile));
-		return $user;
-	}
-
 	public function beforeSave()
 	{
 		if($this->isNewRecord)

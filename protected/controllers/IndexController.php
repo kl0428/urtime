@@ -51,6 +51,7 @@ class IndexController extends Controller
         'addFocus'              =>'UserService',//添加关注
         'delFocus'              =>'UserService',//取消关注
         'getFocus'              =>'UserService',//获取关注
+        'report'                =>'UserService',//举报和意见反馈接口
     );
 
     public function init()

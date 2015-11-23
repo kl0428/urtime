@@ -171,4 +171,40 @@ class UserService extends AppApiService
             $ret = $this->notice('ERR',301,'缺少参数',[]);
         }
     }
+
+    //举报和意见反馈
+    public function report($params =array())
+    {
+        extract($params);
+        if(isset($user_id)&&isset($to_report)&&$to_report)
+        {
+            $report_arr = array(
+                'user_id' =>$user_id,
+                'to_report'=>$to_report,
+            );
+            if(isset($content) && $content)
+            {
+                $report_arr['content'] = $content;
+            }
+            if(isset($type) && $type)
+            {
+                $report_arr['type'] = $type;
+            }
+            if(isset($style)&&$style)
+            {
+                $report_arr['style'] = $style;
+            }
+            $model = new Report();
+            if($model->validate() && $model->save())
+            {
+                $id = $model->getPrimaryKey();
+                $ret = $this->notice('OK',0,'成功',['id'=>$id]);
+            }else{
+                $ret = $this->notice('ERR',307,'数据插入失败',$model->getErrors());
+            }
+        }else{
+            $ret = $this->notice('OK',301,'缺少参数',[]);
+        }
+        return $ret;
+    }
 }
