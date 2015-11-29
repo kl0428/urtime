@@ -11,6 +11,7 @@
  * @property string $email
  * @property integer $sex
  * @property string $image
+ * @property string $password
  * @property string $province
  * @property string $city
  * @property string $gmt_created
