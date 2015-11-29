@@ -30,6 +30,8 @@ class UserService extends AppApiService
                 );
                 $model = new User();
                 $model->attributes=$result;
+                var_dump($result);
+                exit;
                 if($model->validate()&&$model->save())
                 {
                     $id = $model->getPrimaryKey();
