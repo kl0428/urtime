@@ -29,9 +29,10 @@ class UserService extends AppApiService
                     'password'=>md5($mobile.md5($password)),
                 );
                 $model = new User();
-                $model->attributes=$result;
+
                 var_dump($result);
                 exit;
+                $model->attributes=$result;
                 if($model->validate()&&$model->save())
                 {
                     $id = $model->getPrimaryKey();
