@@ -7,7 +7,7 @@
  */
 ?>
 <div id="main_wrapper">
-    <form name="forminput" id="forminput" <?php if($data['action']){?>action="<?=$this->createUrl('index/index',array('debug'=>1))?>"<?php }else{ ?>action="<?=$this->createUrl('index/upImage')?>"<?php }?> method="post" enctype="multipart/form-data">
+    <form name="forminput" id="forminput" <?php if($data['action']){?>action="<?=$this->createUrl('index/index',array('debug'=>1))?>"<?php }else{ ?>action="<?=$this->createUrl('index/upImages')?>"<?php }?> method="post" enctype="multipart/form-data">
             app_key:<input type="text" name="app_key" value="<?=$data['app_key'] ?>"/>
             </br>
             method :<input type="text" name="method" value="<?=$data['method']?>"/>
@@ -71,9 +71,9 @@
             channel:<input type="text" name="params[channel]" value="alipay_wap"/> <br/>
             amount:<input type="text" name="params[amount]" value="1"> <br/>
         <?php }else{?>
-            image:<input type="file" name="params[file]"/>
+            image:<input type="file" name="upImage"/>
             <br/>
-            type:<input type="text" name="type" value="banner"/>
+            image2:<input type="file" name="upImage2"/>
         <?php }?>
         <?php //echo  CHtml::image('http://local.urtime.com/assets/images/heard/heard1446549220_7057.png');?>
         <br/>

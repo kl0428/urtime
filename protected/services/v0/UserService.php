@@ -32,13 +32,18 @@ class UserService extends AppApiService
                 $model->attributes=$result;
                 if($model->validate()&&$model->save())
                 {
-                    $ret = $this->notice('OK', 0, '', $result);
+                    $id = $model->getPrimaryKey();
+                    $res =array(
+                        'id'=>$id,
+                        'nickname'=>$nickname,
+                    );
+                    $ret = $this->notice('OK', 0, '成功', $res);
                 }else{
-                    $ret = $this->notice('ERR', 307, '', ['val']);
+                    $ret = $this->notice('ERR', 307, '', $model->getErrors());
                 }
 
             }else{
-                $ret = $this->notice('ERR', 306, '该号码已经注册过了', ['val']);
+                $ret = $this->notice('ERR', 306, '该号码已经注册过了', []);
             }
         }else{
             $ret = $this->notice('ERR', 307, '', []);
@@ -91,13 +96,13 @@ class UserService extends AppApiService
                 if($user){
                     $new_pwd = md5($user->mobile.md5($newpwd));
                     if(User::model()->updateAll(array('password'=>$new_pwd,'gmt_modified'=>date('Y-m-d H:i:s')),'mobile=:mobile',array(':mobile'=>$mobile))){
-                        $ret = $this->notice('OK',0,array('pwd'=>$new_pwd));
+                        $ret = $this->notice('OK',0,'修改成功',array('pwd'=>$new_pwd));
                     };
                 }else{
-                    $ret = $this->notice('ERR',309,array('error'=>serliaize($user)));
+                    $ret = $this->notice('ERR',309,"该用户不存在",array('error'=>serliaize($user)));
                 }
             }else{
-                $ret = $this->notice('ERR',301,array('code'=>$code,'save_code'=>$save_code));
+                $ret = $this->notice('ERR',301,'缺少参数',array('code'=>$code,'save_code'=>$save_code));
             }
             return $ret;
         }

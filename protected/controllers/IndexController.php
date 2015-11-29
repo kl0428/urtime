@@ -211,6 +211,43 @@ class IndexController extends Controller
         }
     }
 
+    public function actionUpImages()
+    {
+        //上传介绍图片
+        if($_FILES['upImage']['name']!=null)
+        {
+            $images = $this->setImageInformation($_FILES);
+            if($images)
+            {
+                //$images_str = implode(',',$images);
+                $this->notice('OK',0,'上传成功',$images);
+                Yii::app()->end();
+            }else{
+                $this->notice('ERR',307,$this->API_ERRORS[307]);
+            }
+        }else{
+            $this->notice('ERR',301,$this->API_ERRORS[301]);
+        }
+    }
+
+    //图片函数
+    public function setImageInformation($image){
+        $images = array();
+        foreach($image as $file){
+            $name=$file['name'];
+            $arr=explode('.',$name);
+            $ext=$arr[count($arr)-1];
+            //$root = Yii::app()->basePath.'/../../upload/';//"..".Yii::app()->request->baseUrl;//echo dirname(__FILE__)
+            $root=Yii::app()->basePath.'/../../admin/upload/';
+            $root2 = Yii::app()->basePath.'/../upload/';
+            $path="admin".date("YmdHis").mt_rand(1,9999).".".$ext;
+            copy($file['tmp_name'],$root2.$path);
+            move_uploaded_file($file['tmp_name'],$root.$path);
+            $images [] = $path;
+        }
+        return $images;
+    }
+
     public function actionWebHooks()
     {
         $input_data = json_decode(file_get_contents('php://input'), true);
