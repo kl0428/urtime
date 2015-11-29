@@ -16,6 +16,7 @@
  * @property string $city
  * @property string $gmt_created
  * @property string $gmt_modified
+ * @property string $password
  */
 class User extends CActiveRecord
 {
@@ -35,16 +36,20 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+<<<<<<< HEAD
 			array('nickname, mobile', 'required'),
+=======
+			array('nickname, password ,mobile', 'required'),
+>>>>>>> zq
 			array('sex', 'numerical', 'integerOnly'=>true),
-			array('nickname, username, email', 'length', 'max'=>32),
+			array('nickname, username, email, password', 'length', 'max'=>32),
 			array('mobile', 'length', 'max'=>11),
 			array('image', 'length', 'max'=>64),
 			array('province, city', 'length', 'max'=>6),
 			array('gmt_created, gmt_modified,password', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nickname, username, mobile, email, sex, image, province, city, gmt_created, gmt_modified', 'safe', 'on'=>'search'),
+			array('id, nickname, username, mobile, email, sex, image, province, city, gmt_created, gmt_modified, password', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,7 +74,6 @@ class User extends CActiveRecord
 			'nickname' => '登录名',
 			'username' => '姓名',
 			'mobile' => '手机号码',
-			'password'=>'密码',
 			'email' => '邮箱',
 			'sex' => '性别 0-女 1-男',
 			'image' => '头像',
@@ -77,6 +81,7 @@ class User extends CActiveRecord
 			'city' => '市',
 			'gmt_created' => '创建时间',
 			'gmt_modified' => '更新时间',
+			'password' => '密码',
 		);
 	}
 
@@ -109,6 +114,7 @@ class User extends CActiveRecord
 		$criteria->compare('city',$this->city,true);
 		$criteria->compare('gmt_created',$this->gmt_created,true);
 		$criteria->compare('gmt_modified',$this->gmt_modified,true);
+		$criteria->compare('password',$this->password,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
