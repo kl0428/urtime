@@ -20,8 +20,6 @@ class SmsService extends AppApiService
             $cache->hset($mobile,$type,$num);
             $sms = new Sms();
             $result = $sms->sendSMS($mobile, '您好，Urtime提示您,您的验证码是:'.$num,'true');
-            var_dump($result);
-            exit;
             $result = $sms->execResult($result);
             if($result[1]==0){
                // echo '发送成功';
