@@ -34,7 +34,9 @@
                 'product'       =>$product,
                 'extno'         =>$extno,
             );
-            $result = $this->curlPost(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
+            $snoopy = new Snoopy();
+            $result = $snoopy->submit(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
+            //$result = $this->curlPost(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
             return $result;
         }
 
@@ -57,10 +59,7 @@
 
         private function curlPost($url,$postFields){
             $postFields = http_build_query($postFields);
-            var_dump($postFields);
             $ch = curl_init();
-            var_dump($ch);
-            exit;
             curl_setopt($ch,CURLOPT_POST,1);
             curl_setopt($ch,CURLOPT_HEADER,0);
             curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
