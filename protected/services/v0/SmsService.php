@@ -16,10 +16,10 @@ class SmsService extends AppApiService
         $mobile = $params['mobile'];
         if(isset($type) && isset($mobile)){// $type =='register','forget',
             $num = $this->getrandstr();
-            var_dump($params);
-            exit;
             $cache = Yii::app()->cache;
             $cache->hset($mobile,$type,$num);
+            var_dump($params);
+            exit;
             $sms = new Sms();
             $result = $sms->sendSMS($mobile, '您好，Urtime提示您,您的验证码是:'.$num,'true');
             $result = $sms->execResult($result);

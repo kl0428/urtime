@@ -80,8 +80,8 @@
       <file leaf-file-name="SmsService.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/protected/services/v0/SmsService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2402746" vertical-offset="0" max-vertical-offset="874">
-              <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.27459955" vertical-offset="0" max-vertical-offset="874">
+              <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -981,8 +981,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/services/v0/SmsService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2402746" vertical-offset="0" max-vertical-offset="874">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.27459955" vertical-offset="0" max-vertical-offset="874">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
           <folding />
         </state>
       </provider>
