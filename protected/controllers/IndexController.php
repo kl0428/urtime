@@ -56,6 +56,8 @@ class IndexController extends Controller
 
     public function init()
     {
+        echo json_encode($_POST);
+        exit;
         $this->app_secret = Yii::app()->params['app']['MobileApiKey'];
         $this->app_key = $this->_post('app_key','14326');
         $this->app_sign = $this->_post('app_sign');
