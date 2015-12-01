@@ -60,12 +60,13 @@
             $ch = curl_init();
             curl_setopt($ch,CURLOPT_POST,1);
             curl_setopt($ch,CURLOPT_HEADER,0);
+            var_dump($postFields);
+            exit;
             curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
             curl_setopt($ch,CURLOPT_URL,$url);
             curl_setopt($ch,CURLOPT_POSTFIELDS,$postFields);
             $result = curl_exec($ch);
-            var_dump($result);
-            exit;
+
             curl_close($ch);
             return $result;
 
