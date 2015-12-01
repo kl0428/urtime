@@ -48,7 +48,7 @@ class UserService extends AppApiService
                     $ret = $this->notice('ERR', 306, '该号码已经注册过了', []);
                 }
             }else{
-                $ret = $this->notice('ERR', 305, '验证码错误', []);
+                $ret = $this->notice('ERR', 305, '验证码错误', ['code'=>$code,'save_code'=>$save_code]);
             }
         }else{
             $ret = $this->notice('ERR', 307, '', []);
