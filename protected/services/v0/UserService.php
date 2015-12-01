@@ -17,33 +17,38 @@ class UserService extends AppApiService
     public function register($params=array())
     {
         extract($params);
-        if(isset($nickname) && isset($password)){
-            //查询手机是否注册过
-            $user = User::model()->exists(array('condition'=>'mobile=:mobile','params'=>array(':mobile'=>isset($mobile)?$mobile:0)));
-            if(!$user){
-                $result = array(
-                    'nickname'=>$nickname,
-                    'sex'=>isset($sex)?$sex:0,
-                    'mobile'=>isset($mobile)?$mobile:0,
-                    'image'=>isset($image)?$image:'',
-                    'password'=>md5($mobile.md5($password)),
-                );
-                $model = new User();
-                $model->attributes=$result;
-                if($model->validate()&&$model->save())
-                {
-                    $id = $model->getPrimaryKey();
-                    $res =array(
-                        'id'=>$id,
-                        'nickname'=>$nickname,
+        if(isset($nickname) && isset($password)&& isset($mobile)){
+            $cache = Yii::app()->cache;
+            $save_code = strtolower($cache->hget($mobile,'register'));
+            if(isset($code)&& $save_code==strtolower($code)) {
+                //查询手机是否注册过
+                $user = User::model()->exists(array('condition' => 'mobile=:mobile', 'params' => array(':mobile' => isset($mobile) ? $mobile : 0)));
+                if (!$user) {
+                    $result = array(
+                        'nickname' => $nickname,
+                        'sex' => isset($sex) ? $sex : 0,
+                        'mobile' => isset($mobile) ? $mobile : 0,
+                        'image' => isset($image) ? $image : '',
+                        'password' => md5($mobile . md5($password)),
                     );
-                    $ret = $this->notice('OK', 0, '成功', $res);
-                }else{
-                    $ret = $this->notice('ERR', 307, '', $model->getErrors());
-                }
+                    $model = new User();
+                    $model->attributes = $result;
+                    if ($model->validate() && $model->save()) {
+                        $id = $model->getPrimaryKey();
+                        $res = array(
+                            'id' => $id,
+                            'nickname' => $nickname,
+                        );
+                        $ret = $this->notice('OK', 0, '成功', $res);
+                    } else {
+                        $ret = $this->notice('ERR', 307, '', $model->getErrors());
+                    }
 
+                } else {
+                    $ret = $this->notice('ERR', 306, '该号码已经注册过了', []);
+                }
             }else{
-                $ret = $this->notice('ERR', 306, '该号码已经注册过了', []);
+                $ret = $this->notice('ERR', 305, '验证码错误', []);
             }
         }else{
             $ret = $this->notice('ERR', 307, '', []);
