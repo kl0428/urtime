@@ -65,7 +65,7 @@ class IndexController extends Controller
         $this->app_version = $this->_post('app_version');
         $this->client = $this->_post('client');
         $this->net = $this->_post('net');
-        //$this->params =json_decode($this->_post('params'),true);
+        $this->params =json_decode($this->_post('params'),true);
     }
 
     /**
@@ -74,34 +74,33 @@ class IndexController extends Controller
      */
     public function actionIndex()
     {
-
-        $return ='';
-       // if (($return = $this->verify()) == true) {
+        if (($return = $this->verify()) == true) {
+            $return ='';
 
 //            global $_APP_KEY;
 //            $_APP_KEY=$this->APP_KEYS[$this->app_key];
-             $this->params = $_REQUEST['params']?$_REQUEST['params']:[];
+            // $this->params = $_REQUEST['params']?$_REQUEST['params']:[];
 
             $model = $this->method;//方法类型
 
-            if(empty($model)){
-                $this->notice('ERR',301,"参数不全");
+            if (empty($model)) {
+                $this->notice('ERR', 301, "参数不全");
             }
             $version_str = "v0";//APP版本号所对应的API版本号
 
-            $arr_v1 = array("1.2.0","12","2.0.0","14");//v1版本对应app_version
+            $arr_v1 = array("1.2.0", "12", "2.0.0", "14");//v1版本对应app_version
 
-            if(in_array($this->app_version, $arr_v1)){
+            if (in_array($this->app_version, $arr_v1)) {
                 $version_str = "v1";
             }
-            if(in_array($model,array_keys($this->Services)))
-            {
+            if (in_array($model, array_keys($this->Services))) {
                 $serv = new $this->Services[$model]();
                 $return = $serv->$model($this->params);
             }
 
-        print_r($return);
-        exit();
+            print_r($return);
+            exit();
+        }
     }
 
     //验证
