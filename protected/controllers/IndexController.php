@@ -123,18 +123,6 @@ class IndexController extends Controller
         if($md5_sign==$this->app_sign){
             return true;
         }else{
-            echo $this->app_key;
-            echo "<br/>";
-            echo $this->method;
-            echo "<br/>";
-            echo $this->timestamp;
-            echo "<br/>";
-            echo $this->app_secret;
-            echo "<br/>";
-            echo $md5_sign;
-            echo "<br/>";
-            echo $this->app_sign;
-            exit;
             //签名错误
             $this->notice('ERR',302,$this->API_ERRORS[302]);
         }
