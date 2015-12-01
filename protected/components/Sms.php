@@ -34,6 +34,8 @@
                 'product'       =>$product,
                 'extno'         =>$extno,
             );
+            var_dump($postArr);
+            exit;
             $result = $this->curlPost(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
             return $result;
         }
