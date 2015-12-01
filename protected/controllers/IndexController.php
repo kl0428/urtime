@@ -66,7 +66,7 @@ class IndexController extends Controller
         $this->client = $this->_post('client');
         $this->net = $this->_post('net');
         $this->validtime = Yii::app()->params['app']['MobileApiValidtime'];
-        $this->params =json_decode($this->_post('params'),true);
+        //$this->params =json_decode($this->_post('params'),true);
     }
 
     /**
@@ -80,7 +80,7 @@ class IndexController extends Controller
 
 //            global $_APP_KEY;
 //            $_APP_KEY=$this->APP_KEYS[$this->app_key];
-            // $this->params = $_REQUEST['params']?$_REQUEST['params']:[];
+             $this->params = $_REQUEST['params']?$_REQUEST['params']:[];
 
             $model = $this->method;//方法类型
 
