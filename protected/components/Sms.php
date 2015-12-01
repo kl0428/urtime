@@ -34,8 +34,6 @@
                 'product'       =>$product,
                 'extno'         =>$extno,
             );
-            var_dump($postArr);
-            exit;
             $result = $this->curlPost(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
             return $result;
         }
@@ -58,6 +56,8 @@
         }
 
         private function curlPost($url,$postFields){
+            var_dump($url);
+            exit;
             $postFields = http_build_query($postFields);
             $ch = curl_init();
             curl_setopt($ch,CURLOPT_POST,1);
