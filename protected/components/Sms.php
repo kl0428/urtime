@@ -57,6 +57,7 @@
 
         private function curlPost($url,$postFields){
             $postFields = http_build_query($postFields);
+            var_dump($postFields);
             $ch = curl_init();
             var_dump($ch);
             exit;
