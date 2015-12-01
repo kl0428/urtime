@@ -12,12 +12,12 @@ class SmsService extends AppApiService
     public function sendSms($params = array())
     {
         //extract($params);
-        var_dump($params);
-        exit;
         $type = $params['type'];
         $mobile = $params['mobile'];
         if(isset($type) && isset($mobile)){// $type =='register','forget',
             $num = $this->getrandstr();
+            var_dump($params);
+            exit;
             $cache = Yii::app()->cache;
             $cache->hset($mobile,$type,$num);
             $sms = new Sms();
