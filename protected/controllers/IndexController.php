@@ -123,6 +123,8 @@ class IndexController extends Controller
         if($md5_sign==$this->app_sign){
             return true;
         }else{
+            echo json_encode(array('md5_sing'=>$md5_sign,'app_sign'=>$this->app_sign,'app_key'=>$this->app_key,'method'=>$this->method,'timestamp'=>$this->timestamp,'app_secret'=>$this->app_secret));
+            exit;
             //签名错误
             $this->notice('ERR',302,$this->API_ERRORS[302]);
         }
