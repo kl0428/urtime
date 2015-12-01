@@ -58,9 +58,9 @@
         private function curlPost($url,$postFields){
             $postFields = http_build_query($postFields);
             $ch = curl_init();
-            curl_setopt($ch,CURLOPT_POST,1);
-            var_dump($postFields);
+            var_dump($ch);
             exit;
+            curl_setopt($ch,CURLOPT_POST,1);
             curl_setopt($ch,CURLOPT_HEADER,0);
             curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
             curl_setopt($ch,CURLOPT_URL,$url);
