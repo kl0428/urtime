@@ -57,7 +57,7 @@ class IndexController extends Controller
     public function init()
     {
         $this->app_secret = Yii::app()->params['app']['MobileApiKey'];
-        $this->app_key = $this->_post('app_key','14325');
+        $this->app_key = $this->_post('app_key','14326');
         $this->app_sign = $this->_post('app_sign');
         $this->timestamp = $this->_post('timestamp');
         $this->method = $this->_post('method');
@@ -65,6 +65,7 @@ class IndexController extends Controller
         $this->app_version = $this->_post('app_version');
         $this->client = $this->_post('client');
         $this->net = $this->_post('net');
+        $this->validtime = Yii::app()->params['app']['MobileApiValidtime'];
         $this->params =json_decode($this->_post('params'),true);
     }
 
@@ -122,6 +123,18 @@ class IndexController extends Controller
         if($md5_sign==$this->app_sign){
             return true;
         }else{
+            echo $this->app_key;
+            echo "<br/>";
+            echo $this->method;
+            echo "<br/>";
+            echo $this->timestamp;
+            echo "<br/>";
+            echo $this->app_secret;
+            echo "<br/>";
+            echo $md5_sign;
+            echo "<br/>";
+            echo $this->app_sign;
+            exit;
             //签名错误
             $this->notice('ERR',302,$this->API_ERRORS[302]);
         }
@@ -160,7 +173,7 @@ class IndexController extends Controller
 
     public function actionReq()
     {
-        $appsecret = "123456";
+        $appsecret = "1234567";
         $action = $this->_get('action');
         $data = array(
             "app_key" => "14326",
