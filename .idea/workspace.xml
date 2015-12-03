@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="603b9bf1-4733-4456-a2e1-af783bcef207" name="Default" comment="" />
+    <list default="true" id="603b9bf1-4733-4456-a2e1-af783bcef207" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/services/v0/SmsService.php" afterPath="$PROJECT_DIR$/protected/services/v0/SmsService.php" />
+    </list>
     <ignored path="urtime.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -68,8 +70,8 @@
       <file leaf-file-name="SmsService.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/protected/services/v0/SmsService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64" vertical-offset="520" max-vertical-offset="1680">
-              <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.64" vertical-offset="505" max-vertical-offset="1680">
+              <caret line="76" column="13" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -941,8 +943,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/services/v0/SmsService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64" vertical-offset="520" max-vertical-offset="1680">
-          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.64" vertical-offset="505" max-vertical-offset="1680">
+          <caret line="76" column="13" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
           <folding />
         </state>
       </provider>
