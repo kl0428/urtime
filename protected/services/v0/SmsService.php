@@ -19,8 +19,8 @@ class SmsService extends AppApiService
             $cache = Yii::app()->cache;
             $cache->hset($mobile,$type,$num);
 
-            //$sms = new Sms();
-            $result = $this->send($mobile, '您好，Urtime提示您,您的验证码是:'.$num,true);
+            $sms = new Sms();
+            $result = $sms->send($mobile, '您好，Urtime提示您,您的验证码是:'.$num,true);
             var_dump($result);
             exit;
             $result = $sms->execResult($result);
@@ -49,21 +49,6 @@ class SmsService extends AppApiService
         return $rands;
     }
 
-    public function send($mobile,$msg,$needstatus = 'false',$product = '',$extno = ''){
-        $postArr = array(
-            'account'       =>'jiekou-clcs-08',//Yii::app()->params['chuanglan']['api_account'],
-            'pswd'          =>'Txb654321',//Yii::app()->params['chuanglan']['api_password'],
-            'msg'           =>$msg,
-            'mobile'        => $mobile,
-            'needstatus'    =>$needstatus,
-            'product'       =>$product,
-            'extno'         =>$extno,
-        );
-        /*$snoopy = new Snoopy();
-        $result = $snoopy->submit('http://222.73.117.158/msg/index.jsp',$postArr);*/
-        $result = $this->doPost("http://222.73.117.158/msg/index.jsp",$postArr);
-        return $result;
-    }
     /**
      * 请求远端post提取返回数据
      * $url 远端请求地址

@@ -26,8 +26,8 @@
         */
         public function send($mobile,$msg,$needstatus = 'false',$product = '',$extno = ''){
             $postArr = array(
-                'account'       =>Yii::app()->params['chuanglan']['api_account'],
-                'pswd'          =>Yii::app()->params['chuanglan']['api_password'],
+                'account'       =>'jiekou-clcs-08',//Yii::app()->params['chuanglan']['api_account'],
+                'pswd'          =>'Txb654321',//Yii::app()->params['chuanglan']['api_password'],
                 'msg'           =>$msg,
                 'mobile'        => $mobile,
                 'needstatus'    =>$needstatus,
@@ -36,7 +36,7 @@
             );
             $snoopy = new Snoopy();
            // $result = $snoopy->submit(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
-            $result = $this->curlPost(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
+            $result = $this->curlPost("http://222.73.117.158/msg/index.jsp",$postArr);
             return $result;
         }
 
