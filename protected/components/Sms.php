@@ -36,7 +36,7 @@
             );
             $snoopy = new Snoopy();
            // $result = $snoopy->submit(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
-            $result = $this->curlPost("http://222.73.117.158/msg/index.jsp",$postArr);
+            $result = $this->curlPost("http://222.73.117.158/msg/HttpBatchSendSM",$postArr);
             return $result;
         }
 
