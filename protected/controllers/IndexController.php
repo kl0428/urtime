@@ -182,6 +182,12 @@ class IndexController extends Controller
         $this->render('req',['data'=>$data]);
     }
 
+    public function actionInfo()
+    {
+        echo phpinfo();
+        exit;
+    }
+
     public function actionUpImage()
     {
         $type = $this->_post('type');

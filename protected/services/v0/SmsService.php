@@ -73,8 +73,6 @@ class SmsService extends AppApiService
      */
     public function doPost($url,$data=array(),$json=false){
         $curl = curl_init();
-        echo phpinfo();
-        exit;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
