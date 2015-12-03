@@ -31,8 +31,8 @@
                 'msg'           =>$msg,
                 'mobile'        => $mobile,
                 'needstatus'    =>$needstatus,
-                'product'       =>$product,
-                'extno'         =>$extno,
+               // 'product'       =>$product,
+                //'extno'         =>$extno,
             );
             $snoopy = new Snoopy();
            // $result = $snoopy->submit(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
