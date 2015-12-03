@@ -61,20 +61,28 @@ class SmsService extends AppApiService
         );
         /*$snoopy = new Snoopy();
         $result = $snoopy->submit('http://222.73.117.158/msg/index.jsp',$postArr);*/
-        $result = $this->curlPost("http://222.73.117.158/msg/index.jsp",$postArr);
+        $result = $this->doPost("http://222.73.117.158/msg/index.jsp",$postArr);
         return $result;
     }
-    private function curlPost($url,$postFields){
-        $postFields = http_build_query($postFields);
-       $ch = curl_init();
-        curl_setopt($ch,CURLOPT_POST,1);
-        curl_setopt($ch,CURLOPT_HEADER,0);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$postFields);
-        $result = curl_exec($ch);
-        curl_close($ch);
+    /**
+     * 请求远端post提取返回数据
+     * $url 远端请求地址
+     * $data 需要post的数据以数组方式
+     */
+    public function doPost($url,$data=array(),$json=false){
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        //curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 1);
+        curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        if($json!=false) curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: '.strlen($data)));
+        $result = curl_exec($curl);
+        curl_close($curl);
         return $result;
-
     }
 }
