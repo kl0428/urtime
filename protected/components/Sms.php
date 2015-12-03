@@ -24,7 +24,7 @@
          * @param string $product
          * @param string $extno
         */
-        public function sendSMS($mobile,$msg,$needstatus = 'false',$product = '',$extno = ''){
+        public function send($mobile,$msg,$needstatus = 'false',$product = '',$extno = ''){
             $postArr = array(
                 'account'       =>Yii::app()->params['chuanglan']['api_account'],
                 'pswd'          =>Yii::app()->params['chuanglan']['api_password'],
@@ -35,8 +35,8 @@
                 'extno'         =>$extno,
             );
             $snoopy = new Snoopy();
-            $result = $snoopy->submit(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
-            //$result = $this->curlPost(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
+           // $result = $snoopy->submit(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
+            $result = $this->curlPost(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
             return $result;
         }
 
