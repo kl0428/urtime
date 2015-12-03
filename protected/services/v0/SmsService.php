@@ -59,33 +59,20 @@ class SmsService extends AppApiService
             'product'       =>$product,
             'extno'         =>$extno,
         );
-        $snoopy = new Snoopy();
-        $result = $snoopy->submit('http://222.73.117.158/msg/index.jsp',$postArr);
-        //$result = $this->curlPost("http://222.73.117.158/msg/index.jsp",$postArr);
+        /*$snoopy = new Snoopy();
+        $result = $snoopy->submit('http://222.73.117.158/msg/index.jsp',$postArr);*/
+        $result = $this->curlPost("http://222.73.117.158/msg/index.jsp",$postArr);
         return $result;
     }
     private function curlPost($url,$postFields){
         $postFields = http_build_query($postFields);
-       /* $ch = curl_init();
+       $ch = curl_init();
         curl_setopt($ch,CURLOPT_POST,1);
         curl_setopt($ch,CURLOPT_HEADER,0);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$postFields);
-        $result = curl_exec($ch);*/
-        //curl_close($ch);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        // post数据
-        curl_setopt($ch, CURLOPT_POST, 1);
-        // post的变量
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-        ob_start();
-        curl_exec($ch);
-        $result = ob_get_contents() ;
-        ob_end_clean();
-        //$result = curl_exec($ch);
+        $result = curl_exec($ch);
         curl_close($ch);
         return $result;
 
