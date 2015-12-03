@@ -72,10 +72,10 @@ class SmsService extends AppApiService
      * $data 需要post的数据以数组方式
      */
     public function doPost($url,$data=array(),$json=false){
-        var_dump($url);
-        exit;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
+        var_dump($url);
+        exit;
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
         curl_setopt($curl, CURLOPT_TIMEOUT, 30);
