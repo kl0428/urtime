@@ -81,6 +81,8 @@ class IndexController extends Controller
 //            global $_APP_KEY;
 //            $_APP_KEY=$this->APP_KEYS[$this->app_key];
              $this->params = $_REQUEST['params']?$_REQUEST['params']:[];
+            echo phpinfo();
+            exit;
 
             $model = $this->method;//方法类型
 
