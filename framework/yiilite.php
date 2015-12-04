@@ -52,8 +52,6 @@ class YiiBase
 	}
 	public static function createApplication($class,$config=null)
 	{
-		echo phpinfo();
-		exit;
 		return new $class($config);
 	}
 	public static function app()
