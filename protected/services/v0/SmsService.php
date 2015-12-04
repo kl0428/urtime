@@ -19,11 +19,11 @@ class SmsService extends AppApiService
             $cache = Yii::app()->cache;
             $cache->hset($mobile,$type,$num);
 
-            //$sms = new Sms();
-            $result = $this->send($mobile, '【Urtime】您的注册验证码是：'.$num.'.请完成注册',true);
-            //$result = $sms->execResult($result);
+            $sms = new Sms();
+            $result = $sms->send($mobile, '【Urtime】您的注册验证码是：'.$num.'.请完成注册',true);
+            $res = $sms->execResult($result);
 
-            if($result[1]==0){
+            if($res[1]==0){
                // echo '发送成功';
                 $ret = $this->notice('OK', 0, '', $result);
 
@@ -41,10 +41,6 @@ class SmsService extends AppApiService
         $str='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
         $randStr = str_shuffle($str);//打乱字符串
         $rands= substr($randStr,0,6);//substr(string,start,length);返回字符串的一部分
-
-        //++++++测试start+++++//
-        $rands = '654321';
-        //++++++测试end+++++++//
         return $rands;
     }
 
