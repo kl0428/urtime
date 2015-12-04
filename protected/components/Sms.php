@@ -26,18 +26,16 @@
         */
         public function send($mobile,$msg,$needstatus = 'false',$product = '',$extno = ''){
             $postArr = array(
-                'account'       =>'jiekou-clcs-08',//Yii::app()->params['chuanglan']['api_account'],
-                'pswd'          =>'Txb654321',//Yii::app()->params['chuanglan']['api_password'],
+                'account'       =>Yii::app()->params['chuanglan']['api_account'],//'jiekou-clcs-08',//
+                'pswd'          =>Yii::app()->params['chuanglan']['api_password'],//'Txb654321',//
                 'msg'           =>$msg,
                 'mobile'        => $mobile,
                 'needstatus'    =>$needstatus,
-               // 'product'       =>$product,
-                //'extno'         =>$extno,
+                'product'       =>$product,
+                'extno'         =>$extno,
             );
-            $snoopy = new Snoopy();
-           // $result = $snoopy->submit(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
-            $result = $snoopy->submitlinks(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
-            //$result = $this->curlPost("http://222.73.117.158/msg/HttpBatchSendSM",$postArr);
+
+            $result = $this->curlPost(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
             return $result;
         }
 
