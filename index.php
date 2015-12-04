@@ -7,9 +7,9 @@ $yii=dirname(__FILE__).'/framework/yii.php';
 // specify how many levels of call stack should be shown in each log message
 //defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
-defined('ENVIRONMENT') or define('ENVIRONMENT','PRODUCT');
+//defined('ENVIRONMENT') or define('ENVIRONMENT','PRODUCT');
 //defined('ENVIRONMENT') or define('ENVIRONMENT','TEST');
-//defined('ENVIRONMENT') or define('ENVIRONMENT', 'DEVELOP');
+defined('ENVIRONMENT') or define('ENVIRONMENT', 'DEVELOP');
 //develop 开发  test测试  product线上
 
 
