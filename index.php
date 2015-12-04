@@ -2,8 +2,6 @@
 ini_set("error_reporting","E_ALL & ~E_NOTICE");
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/framework/yii.php';
-var_dump($yii);
-exit;
 // remove the following lines when in production mode
 //defined('YII_DEBUG') or define('YII_DEBUG',true);
 // specify how many levels of call stack should be shown in each log message

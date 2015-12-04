@@ -67,7 +67,7 @@ return array(
 				array(
 					'host' => '127.0.0.1',
 					'port' => 6379,
-					'password' => '123456',
+				//	'password' => '123456',
 				),
 			),
 		),
@@ -80,7 +80,7 @@ return array(
 				array(
 					'host' => '127.0.0.1',
 					'port' => 6379,
-					'password' => '123456',
+					//'password' => '123456',
 				),
 			),
 		),
@@ -92,7 +92,7 @@ return array(
 			'serializer'=>false,
 			'hostname' => '127.0.0.1',
 			'port' => 6379,
-			'password' => '123456',
+			//'password' => '123456',
 			'database'=>2,
 		),
 
@@ -106,7 +106,7 @@ return array(
 				array(
 					'host' => '127.0.0.1',
 					'port' => 6379,
-					'password' => '00000000',
+					//'password' => '00000000',
 
 				),
 			),
