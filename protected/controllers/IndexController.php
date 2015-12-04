@@ -67,8 +67,6 @@ class IndexController extends Controller
         $this->net = $this->_post('net');
         $this->validtime = Yii::app()->params['app']['MobileApiValidtime'];
         //$this->params =json_decode($this->_post('params'),true);
-        echo phpinfo();
-        exit;
     }
 
     /**
