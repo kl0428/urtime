@@ -43,24 +43,7 @@ class SmsService extends AppApiService
         $rands= substr($randStr,0,6);//substr(string,start,length);返回字符串的一部分
         return $rands;
     }
-
-    public function send($mobile,$msg,$needstatus = 'false',$product = '',$extno = ''){
-        $postArr = array(
-            'account'       =>'jiekou-clcs-08',//Yii::app()->params['chuanglan']['api_account'],
-            'pswd'          =>'Txb654321',//Yii::app()->params['chuanglan']['api_password'],
-            'msg'           =>$msg,
-            'mobile'        => $mobile,
-            'needstatus'    =>$needstatus,
-            // 'product'       =>$product,
-            //'extno'         =>$extno,
-        );
-       //$snoopy = new Snoopy();
-       //  $result = $snoopy->submit(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
-        //$result = $snoopy->submitlinks(Yii::app()->params['chuanglan']['api_send_url'],$postArr);
-        //$result = $this->curlPost("http://222.73.117.158/msg/HttpBatchSendSM",$postArr);
-        $result = $this->doPost("http://222.73.117.158/msg/HttpBatchSendSM",$postArr);
-        return $result;
-    }
+    
 
     /**
      * 请求远端post提取返回数据
