@@ -70,8 +70,8 @@
       <file leaf-file-name="ApiRequestor.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7337143" vertical-offset="5193" max-vertical-offset="6585">
-              <caret line="389" column="17" selection-start-line="389" selection-start-column="17" selection-end-line="389" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.59657145" vertical-offset="5193" max-vertical-offset="6600">
+              <caret line="381" column="40" selection-start-line="381" selection-start-column="40" selection-end-line="381" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -1056,8 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7337143" vertical-offset="5193" max-vertical-offset="6585">
-          <caret line="389" column="17" selection-start-line="389" selection-start-column="17" selection-end-line="389" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.59657145" vertical-offset="5193" max-vertical-offset="6600">
+          <caret line="381" column="40" selection-start-line="381" selection-start-column="40" selection-end-line="381" selection-end-column="40" />
           <folding />
         </state>
       </provider>
