@@ -99,8 +99,7 @@ class ApiRequestor
         }
 
         list($rbody, $rcode, $myApiKey) = $this->_requestRaw($method, $url, $params, $headers);
-        var_dump(array($method,$url,$params,$headers,$rbody,$rcode,$myApiKey));
-        exit;
+
         $resp = $this->_interpretResponse($rbody, $rcode);
         return array($resp, $myApiKey);
     }
@@ -162,6 +161,7 @@ class ApiRequestor
 
 
         $myApiKey = $this->_apiKey;
+
         if (!$myApiKey) {
             $myApiKey = Pingpp::$apiKey;
         }
@@ -173,6 +173,9 @@ class ApiRequestor
                 . 'details, or email support@pingxx.com if you have any questions.';
             throw new Error\Authentication($msg);
         }
+
+        var_dump(array($method,$url,$params,$headers,$myApiKey));
+        exit;
 
         $absUrl = $this->_apiBase . $url;
         $params = self::_encodeObjects($params, $method == 'post');
