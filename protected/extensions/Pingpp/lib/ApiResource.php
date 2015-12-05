@@ -97,7 +97,8 @@ abstract class ApiResource extends Object
 
     protected static function _staticRequest($method, $url, $params, $options)
     {
-
+        var_dump(array($method,$url,'params',$params,$options));
+        exit;
         $opts = Util\RequestOptions::parse($options);
 
         $requestor = new ApiRequestor($opts->apiKey, static::baseUrl());
@@ -134,9 +135,6 @@ abstract class ApiResource extends Object
         $base = static::baseUrl();
         $url = static::classUrl();
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
-
-        var_dump(array($base,$url,'params',$response,$opts));
-        exit;
 
         return Util\Util::convertToPingppObject($response, $opts);
     }
