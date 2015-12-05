@@ -10,9 +10,9 @@ class PayService extends AppApiService
 {
     public function pay($params = array())
     {
+        Yii::import("application.extensions.Pingpp.*");
         var_dump($params);
         exit;
-        Yii::import("application.extensions.Pingpp.*");
         // $pay = new application\extensions\Pingpp\Pingpp();
         //$input_data = array('channel'=>'alipay_wap','amount'=>'1');
         if (empty($params['channel']) || empty($params['amount'])) {
