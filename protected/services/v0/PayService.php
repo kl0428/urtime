@@ -77,14 +77,13 @@ class PayService extends AppApiService
         }
 
         application\extensions\Pingpp\lib\Pingpp::setApiKey('sk_test_ibbTe5jLGCi5rzfH4OqPW9KC');
-        var_dump(array($channel,$amount,$orderNo,$extra));
-        exit;
+
 
         try {
             $ch = application\extensions\Pingpp\lib\Charge::create(
                 array(
                     'subject'   => 'Urtime',
-                    'body'      => '你在Urtime购买了本',
+                    'body'      => '你在Urtime购买了本产品',
                     'amount'    => $amount,
                     'order_no'  => $orderNo,
                     'currency'  => 'cny',
@@ -94,6 +93,8 @@ class PayService extends AppApiService
                     'app'       => array('id' => 'app_1Gqj58ynP0mHeX1q')
                 )
             );
+            var_dump(array($channel,$amount,$orderNo,$extra));
+            exit;
             echo $ch;
         } catch (application\extensions\Pingpp\lib\Error\Base $e) {
             header('Status: ' . $e->getHttpStatus());
