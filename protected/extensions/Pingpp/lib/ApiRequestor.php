@@ -386,6 +386,8 @@ class ApiRequestor
                 'you should check Pingpp\'s service status at '.
                 'https://pingxx.com. Reason was: '.$errstr
             );
+            var_dump(array($errno,$errstr));
+            exit;
 
         }
 
