@@ -34,6 +34,8 @@ class Charge extends ApiResource
      */
     public static function create($params = null, $options = null)
     {
+        var_dump($params);
+        exit;
         return self::_create($params, $options);
     }
 
