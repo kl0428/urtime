@@ -155,8 +155,6 @@ class ApiRequestor
 
         if (!array_key_exists($this->_apiBase, self::$_preFlight) ||
             !self::$_preFlight[$this->_apiBase]) {
-            var_dump(array($method,$url,$params,$headers,$this->_apiBase));
-            exit;
             self::$_preFlight[$this->_apiBase] = $this->checkSslCert($this->_apiBase);
         }
 
@@ -389,6 +387,8 @@ class ApiRequestor
                 'https://pingxx.com. Reason was: '.$errstr
             );
         }
+        var_dump(array($result));
+        exit;
 
         $params = stream_context_get_params($result);
 
