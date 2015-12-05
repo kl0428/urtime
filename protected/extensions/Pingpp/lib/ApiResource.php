@@ -134,7 +134,8 @@ abstract class ApiResource extends Object
         $base = static::baseUrl();
         $url = static::classUrl();
 
-
+        var_dump(array($base,$url,'params'));
+        exit;
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
 
         return Util\Util::convertToPingppObject($response, $opts);
