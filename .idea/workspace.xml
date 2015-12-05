@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="603b9bf1-4733-4456-a2e1-af783bcef207" name="Default" comment="" />
+    <list default="true" id="603b9bf1-4733-4456-a2e1-af783bcef207" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php" afterPath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiResource.php" afterPath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiResource.php" />
+    </list>
     <ignored path="urtime.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -65,11 +68,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApiResource.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ApiResource.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiResource.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62257695" vertical-offset="1134" max-vertical-offset="2505">
-              <caret line="112" column="61" selection-start-line="112" selection-start-column="61" selection-end-line="112" selection-end-column="61" />
+            <state vertical-scroll-proportion="-15.875" vertical-offset="1134" max-vertical-offset="2490">
+              <caret line="101" column="58" selection-start-line="101" selection-start-column="58" selection-end-line="101" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApiRequestor.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4617143" vertical-offset="1066" max-vertical-offset="6555">
+              <caret line="98" column="9" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -144,7 +157,6 @@
         <option value="$PROJECT_DIR$/protected/extensions/Pingpp/lib/Object.php" />
         <option value="$PROJECT_DIR$/protected/extensions/Pingpp/lib/Util/Set.php" />
         <option value="$PROJECT_DIR$/protected/extensions/Pingpp/lib/Util/RequestOptions.php" />
-        <option value="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php" />
         <option value="$PROJECT_DIR$/protected/extensions/Pingpp/lib/Util/Util.php" />
         <option value="$PROJECT_DIR$/protected/services/v0/BaseService.php" />
         <option value="$PROJECT_DIR$/protected/models/Focus.php" />
@@ -164,6 +176,7 @@
         <option value="$PROJECT_DIR$/protected/services/v0/PayService.php" />
         <option value="$PROJECT_DIR$/protected/extensions/Pingpp/lib/Charge.php" />
         <option value="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiResource.php" />
+        <option value="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php" />
       </list>
     </option>
   </component>
@@ -981,14 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.625" vertical-offset="0" max-vertical-offset="6510">
-          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/Charge.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="825">
@@ -999,8 +1004,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiResource.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62257695" vertical-offset="1134" max-vertical-offset="2505">
-          <caret line="112" column="61" selection-start-line="112" selection-start-column="61" selection-end-line="112" selection-end-column="61" />
+        <state vertical-scroll-proportion="-15.875" vertical-offset="1134" max-vertical-offset="2490">
+          <caret line="101" column="58" selection-start-line="101" selection-start-column="58" selection-end-line="101" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4617143" vertical-offset="1066" max-vertical-offset="6555">
+          <caret line="98" column="9" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
           <folding />
         </state>
       </provider>

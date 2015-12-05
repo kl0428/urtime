@@ -100,8 +100,7 @@ abstract class ApiResource extends Object
         $opts = Util\RequestOptions::parse($options);
         $requestor = new ApiRequestor($opts->apiKey, static::baseUrl());
         list($response, $opts->apiKey) = $requestor->request($method, $url, $params, $opts->headers);
-        var_dump(array($method,$url,$params,$options,$opts,$requestor,$response));
-        exit;
+
         foreach ($opts->headers as $k => $v) {
             if (!array_key_exists($k, self::$HEADERS_TO_PERSIST)) {
                 unset($opts->headers[$k]);
