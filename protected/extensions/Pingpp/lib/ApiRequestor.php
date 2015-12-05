@@ -377,6 +377,8 @@ class ApiRequestor
         $result = stream_socket_client(
             $url, $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $sslContext
         );
+        var_dump(array($result));
+        exit;
 
         if ($errno !== 0) {
             $apiBase = Pingpp::$apiBase;
@@ -387,8 +389,6 @@ class ApiRequestor
                 'https://pingxx.com. Reason was: '.$errstr
             );
         }
-        var_dump(array($result));
-        exit;
 
         $params = stream_context_get_params($result);
 
