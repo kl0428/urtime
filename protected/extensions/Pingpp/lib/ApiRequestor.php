@@ -377,11 +377,11 @@ class ApiRequestor
         $result = stream_socket_client(
             $url, $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $sslContext
         );
-        var_dump(array($result,$errno,$errstr,$url));
-        exit;
 
         if ($errno !== 0) {
             $apiBase = Pingpp::$apiBase;
+            var_dump(array($result,$errno,$errstr,$url,$apiBase));
+            exit;
             throw new Error\ApiConnection(
                 'Could not connect to Pingpp ($apiBase).  Please check your '.
                 'internet connection and try again.  If this problem persists, '.
