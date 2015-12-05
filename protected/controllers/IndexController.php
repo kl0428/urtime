@@ -257,9 +257,13 @@ class IndexController extends Controller
     public function actionWebHooks()
     {
         $input_data = json_decode(file_get_contents('php://input'), true);
+        $cache = Yii::app()->cache;
+        $cache->hset('webHooks','test',json_encode($input_data,JSON_UNESCAPED_UNICODE));
         if($input_data['type'] == 'charge.succeeded')
         {
             //TODO update database
+
+
             http_response_code(200);// PHP 5.4 or greater
 
         }

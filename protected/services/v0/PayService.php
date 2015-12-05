@@ -81,8 +81,8 @@ class PayService extends AppApiService
         try {
             $ch = application\extensions\Pingpp\lib\Charge::create(
                 array(
-                    'subject'   => 'Your Subject',
-                    'body'      => 'Your Body',
+                    'subject'   => 'Urtime',
+                    'body'      => '你在Urtime购买了本',
                     'amount'    => $amount,
                     'order_no'  => $orderNo,
                     'currency'  => 'cny',
