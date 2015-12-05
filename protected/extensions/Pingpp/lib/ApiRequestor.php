@@ -155,11 +155,11 @@ class ApiRequestor
 
         if (!array_key_exists($this->_apiBase, self::$_preFlight) ||
             !self::$_preFlight[$this->_apiBase]) {
-
+            var_dump(array($method,$url,$params,$headers,$this->_apiBase));
+            exit;
             self::$_preFlight[$this->_apiBase] = $this->checkSslCert($this->_apiBase);
         }
-        var_dump(array($method,$url,$params,$headers));
-        exit;
+
 
         $myApiKey = $this->_apiKey;
 
