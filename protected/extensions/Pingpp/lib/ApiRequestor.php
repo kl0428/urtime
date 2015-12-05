@@ -161,12 +161,12 @@ class ApiRequestor
 
 
         $myApiKey = $this->_apiKey;
-
+        var_dump(array($method,$url,$params,$headers,$myApiKey));
+        exit;
         if (!$myApiKey) {
             $myApiKey = Pingpp::$apiKey;
         }
-        var_dump(array($method,$url,$params,$headers,$myApiKey));
-        exit;
+
 
         if (!$myApiKey) {
             $msg = 'No API key provided.  (HINT: set your API key using '
