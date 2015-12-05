@@ -377,7 +377,7 @@ class ApiRequestor
         $result = stream_socket_client(
             $url, $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $sslContext
         );
-        var_dump(array($result));
+        var_dump(array($result,$errno,$errstr,$url));
         exit;
 
         if ($errno !== 0) {
