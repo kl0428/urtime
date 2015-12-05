@@ -165,6 +165,8 @@ class ApiRequestor
         if (!$myApiKey) {
             $myApiKey = Pingpp::$apiKey;
         }
+        var_dump(array($method,$url,$params,$headers,$myApiKey));
+        exit;
 
         if (!$myApiKey) {
             $msg = 'No API key provided.  (HINT: set your API key using '
@@ -174,8 +176,6 @@ class ApiRequestor
             throw new Error\Authentication($msg);
         }
 
-        var_dump(array($method,$url,$params,$headers,$myApiKey));
-        exit;
 
         $absUrl = $this->_apiBase . $url;
         $params = self::_encodeObjects($params, $method == 'post');
