@@ -20,8 +20,7 @@ class PayService extends AppApiService
         $channel = strtolower($params['channel']);
         $amount = $params['amount'];
         $orderNo = substr(md5(time()), 0, 12);
-        var_dump(array($channel,$amount,$orderNo));
-        exit;
+
 
 //$extra 在使用某些渠道的时候，需要填入相应的参数，其它渠道则是 array() .具体见以下代码或者官网中的文档。其他渠道时可以传空值也可以不传。
         switch ($channel) {
@@ -76,6 +75,8 @@ class PayService extends AppApiService
                 );
                 break;
         }
+        var_dump(array($channel,$amount,$orderNo,$extra));
+        exit;
 
         application\extensions\Pingpp\lib\Pingpp::setApiKey('sk_test_ibbTe5jLGCi5rzfH4OqPW9KC');
 
