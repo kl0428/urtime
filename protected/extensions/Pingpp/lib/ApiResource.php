@@ -133,10 +133,10 @@ abstract class ApiResource extends Object
         self::_validateParams($params);
         $base = static::baseUrl();
         $url = static::classUrl();
-
-        var_dump(array($base,$url,'params'));
-        exit;
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
+
+        var_dump(array($base,$url,'params',$response,$opts));
+        exit;
 
         return Util\Util::convertToPingppObject($response, $opts);
     }

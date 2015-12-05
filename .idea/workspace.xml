@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="603b9bf1-4733-4456-a2e1-af783bcef207" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiResource.php" afterPath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiResource.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/Charge.php" afterPath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/Charge.php" />
     </list>
     <ignored path="urtime.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +30,7 @@
       <file leaf-file-name="IndexController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/controllers/IndexController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3445" max-vertical-offset="4320">
+            <state vertical-scroll-proportion="-9.583333" vertical-offset="3445" max-vertical-offset="4320">
               <caret line="245" column="0" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
               <folding />
             </state>
@@ -72,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/Charge.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-22.5" vertical-offset="0" max-vertical-offset="825">
-              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -81,8 +80,8 @@
       <file leaf-file-name="ApiResource.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiResource.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46294186" vertical-offset="1634" max-vertical-offset="2550">
-              <caret line="136" column="41" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.4982857" vertical-offset="1619" max-vertical-offset="2550">
+              <caret line="137" column="58" selection-start-line="137" selection-start-column="58" selection-end-line="137" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -965,7 +964,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3445" max-vertical-offset="4320">
+        <state vertical-scroll-proportion="-9.583333" vertical-offset="3445" max-vertical-offset="4320">
           <caret line="245" column="0" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
           <folding />
         </state>
@@ -982,15 +981,15 @@
     <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/Charge.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.5" vertical-offset="0" max-vertical-offset="825">
-          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiResource.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46294186" vertical-offset="1634" max-vertical-offset="2550">
-          <caret line="136" column="41" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.4982857" vertical-offset="1619" max-vertical-offset="2550">
+          <caret line="137" column="58" selection-start-line="137" selection-start-column="58" selection-end-line="137" selection-end-column="58" />
           <folding />
         </state>
       </provider>
