@@ -158,11 +158,11 @@ class ApiRequestor
 
             self::$_preFlight[$this->_apiBase] = $this->checkSslCert($this->_apiBase);
         }
-
+        var_dump(array($method,$url,$params,$headers));
+        exit;
 
         $myApiKey = $this->_apiKey;
-        var_dump(array($method,$url,$params,$headers,$myApiKey));
-        exit;
+
         if (!$myApiKey) {
             $myApiKey = Pingpp::$apiKey;
         }
