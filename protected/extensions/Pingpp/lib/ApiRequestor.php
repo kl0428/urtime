@@ -98,11 +98,9 @@ class ApiRequestor
             $headers = array();
         }
 
-        var_dump(array($method,$url,$params,$headers));
-        exit;
-
         list($rbody, $rcode, $myApiKey) = $this->_requestRaw($method, $url, $params, $headers);
-
+        var_dump(array($method,$url,$params,$headers,$rbody,$rcode,$myApiKey));
+        exit;
         $resp = $this->_interpretResponse($rbody, $rcode);
         return array($resp, $myApiKey);
     }
