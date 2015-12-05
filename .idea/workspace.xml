@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="603b9bf1-4733-4456-a2e1-af783bcef207" name="Default" comment="" />
+    <list default="true" id="603b9bf1-4733-4456-a2e1-af783bcef207" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php" afterPath="$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php" />
+    </list>
     <ignored path="urtime.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -68,8 +70,8 @@
       <file leaf-file-name="ApiRequestor.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9737143" vertical-offset="5193" max-vertical-offset="6600">
-              <caret line="403" column="18" selection-start-line="403" selection-start-column="18" selection-end-line="403" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.6137143" vertical-offset="5178" max-vertical-offset="6570">
+              <caret line="381" column="40" selection-start-line="381" selection-start-column="40" selection-end-line="381" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -1054,8 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/extensions/Pingpp/lib/ApiRequestor.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9737143" vertical-offset="5193" max-vertical-offset="6600">
-          <caret line="403" column="18" selection-start-line="403" selection-start-column="18" selection-end-line="403" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.6137143" vertical-offset="5178" max-vertical-offset="6570">
+          <caret line="381" column="40" selection-start-line="381" selection-start-column="40" selection-end-line="381" selection-end-column="40" />
           <folding />
         </state>
       </provider>

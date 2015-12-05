@@ -380,8 +380,6 @@ class ApiRequestor
 
         if ($errno !== 0) {
             $apiBase = Pingpp::$apiBase;
-            var_dump(array($errno,$errstr));
-            exit;
             throw new Error\ApiConnection(
                 'Could not connect to Pingpp ($apiBase).  Please check your '.
                 'internet connection and try again.  If this problem persists, '.
