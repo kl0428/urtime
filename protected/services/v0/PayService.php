@@ -26,8 +26,8 @@ class PayService extends AppApiService
         switch ($channel) {
             case 'alipay_wap':
                 $extra = array(
-                    'success_url' => 'http://www.yourdomain.com/success',
-                    'cancel_url' => 'http://www.yourdomain.com/cancel'
+                    'success_url' => 'http://www.baidu.com/success',
+                    'cancel_url' => 'http://www.sohu.com/cancel'
                 );
                 break;
             case 'upmp_wap':
@@ -75,10 +75,10 @@ class PayService extends AppApiService
                 );
                 break;
         }
-        var_dump(array($channel,$amount,$orderNo,$extra));
-        exit;
 
         application\extensions\Pingpp\lib\Pingpp::setApiKey('sk_test_ibbTe5jLGCi5rzfH4OqPW9KC');
+        var_dump(array($channel,$amount,$orderNo,$extra));
+        exit;
 
         try {
             $ch = application\extensions\Pingpp\lib\Charge::create(
