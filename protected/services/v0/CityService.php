@@ -73,7 +73,7 @@ class CityService extends AppApiService
             $provices = CJSON::decode($city_all);
         }else{
             //获取全国省列表
-            $provice_obj = YhmCity::model()->findAll('class_parent_id=:id',array(':id'=>1));
+            $provice_obj = YhmCity::model()->findAll('class_parent_id=:id',array(':id'=>'1'));
             $provices =array();
             if($provice_obj){
                 foreach($provice_obj as $key=>$val)
