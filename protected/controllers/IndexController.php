@@ -43,10 +43,9 @@ class IndexController extends Controller
         'getAlliances'          =>'AllianceService',//获取联盟列表和指定联盟信息
         'quitAlliance'          =>'AllianceService',//删除并退出联盟
         'addAlliance'           =>'AllianceService',//申请加入联盟
-        'addDynamic'            =>'AllianceService',//添加联盟动态
-        'getDynamic'            =>'AllianceService',//获取联盟列表
-        'addUserDynamic'        =>'AllianceService',//添加用户动态
-        'getUserDynamic'        =>'AllianceService',//获取用户动态
+        'addDynamic'            =>'AllianceService',//添加动态
+        'getDynamic'            =>'AllianceService',//获取动态列表
+        'deleteDynamic'         =>'AllianceService',//删除动态
         'pay'                   =>'PayService',//支付
         'addFocus'              =>'UserService',//添加关注
         'delFocus'              =>'UserService',//取消关注

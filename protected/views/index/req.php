@@ -80,11 +80,21 @@
         <?php }elseif($data['action']=='getFocus'){?>
             user_id:<input type="text" name="params[user_id]" value=""/> <br/>
         <?php }elseif($data['action']=='report'){?>
-            user_id:<input type="text" name="params[user_id]" value=""/> <br/>
+            user_id:<input type="text" name="params[user_id]" value=""/><br/>
             to_report:<input type="text" name="params[to_report]" value=""/> <br/>
             content:<input type="text" name="params[content]" value=""/> <br/>
             type:<input type="text" name="params[type]" value=""/> 0-用户,1-联盟<br/>
             style:<input type="text" name="params[style]" value=""/> 0-举报,1-反馈<br/>
+        <?php }elseif($data['action']=='addDynamic'){?>
+            id:<input type="text" name="params[id]" value=""/> id<br/>
+            type:<input type="text" name="params[type]" value=""/> 动态类型 0-个人 1-联盟 2-店铺 3-其他<br/>
+            content:<input type="text" name="params[content]" value=""/> <br/>
+            image:<input type="text" name="params[image]" value=""/> json格式<br/>
+        <?php }elseif($data['action']=='getDynamic'){?>
+            id:<input type="text" name="params[id]" value=""/> id(传入获取指定联盟动态/空获取所有)<br/>
+            type:<input type="text" name="params[type]" value=""/> 动态类型 0-个人 1-联盟 2-店铺 3-其他(必填)<br/>
+        <?php }elseif($data['action']=='deleteDynamic'){?>
+            id:<input type="text" name="params[id]" value=""/> 动态id(必填)<br/>
         <?php }else{?>
             image:<input type="file" name="upImage"/>
             <br/>
