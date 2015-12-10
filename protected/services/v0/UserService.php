@@ -170,6 +170,7 @@ class UserService extends AppApiService
                     $focus_arr[] = array(
                         'user_name' =>$val->user->nickname,
                         'image' =>$val->user->image,
+                        'focus_id' =>$val->focus_id,
                     );
                 }
                 $result = $focus_arr;

@@ -1,5 +1,5 @@
 <?php
-ini_set("error_reporting","E_ALL & ~E_NOTICE");
+//ini_set("error_reporting","E_ALL & ~E_NOTICE");
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/framework/yii.php';
 // remove the following lines when in production mode
