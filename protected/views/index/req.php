@@ -103,6 +103,26 @@
             id:<input type="text" name="params[id]" value=""/> 动态id(必填)<br/>
         <?php }elseif($data['action']=='getDetailDynamic'){?>
             id:<input type="text" name="params[id]" value=""/> id(动态id)<br/>
+        <?php }elseif($data['action']=='update'){?>
+            id:<input type="text" name="params[id]" value=""/> id(用户)<br/>
+            nickname:<input type="text" name="params[nickname]" value="png"/>
+            </br>
+            username:<input type="text" name="params[username]" value="heardg"/>
+            </br>
+            image:<input type="text" name="params[image]" value="heard1446549220_7057.png"/>
+            </br>
+            sex:<input type="text" name="params[sex]" value="0"/>
+            </br>
+            province:<input type="text" name="params[province]" value="1"/>
+            </br>
+            mobile:<input type="text" name="params[mobile]" value="18368113211">
+            </br>
+            email:<input type="text" name="params[email]" value="123@qq.com">
+            </br>
+            city:<input type="text" name="params[city]" value="23">
+            </br>
+         <?php }elseif($data['action']=='user'){?>
+            id:<input type="text" name="params[id]" value=""/> id(用户id)<br/>
         <?php }else{?>
             image:<input type="file" name="upImage"/>
             <br/>

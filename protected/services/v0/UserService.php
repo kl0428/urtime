@@ -113,6 +113,89 @@ class UserService extends AppApiService
         }
     }
 
+    //个人信息更新
+    public function update($params = array())
+    {
+        extract($params);
+        if(isset($id)&&$id){
+            $model = User::model()->findByPk($id);
+            if($model){
+                $user = array();
+                if(isset($nickname)&&$nickname){
+                    $user['nickname'] = $nickname;
+                }
+                if(isset($username)&&$username){
+                    $user['username'] = $username;
+                }
+                if(isset($mobile)&&$mobile){
+                    $user['mobile'] = $mobile;
+                }
+                if(isset($email)&&$email)
+                {
+                    $user['email'] = $email;
+                }
+                if(isset($sex)&&$sex)
+                {
+                    $user['sex'] = $sex;
+                }
+                if(isset($image)&&$image)
+                {
+                    $user['image']=$image;
+                }
+                if(isset($province)&&$province)
+                {
+                    $user['province'] = $province;
+                }
+                if(isset($city)&&$city)
+                {
+                    $user['city'] = $city;
+                }
+                $model->attributes = $user;
+                if($model->validate()&&$model->save()){
+                    $ret = $this->notice('OK',0,'修改成功',$user);
+                }else{
+                    $ret = $this->notice('ERR',307,'修改失败',$model->getErrors());
+                }
+
+            }else{
+                $ret = $this->notice('ERR',304,'该用户不存在',[]);
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少参数',[]);
+        }
+        return $ret;
+    }
+
+    //获取用户信息
+    public function user($params = array()){
+        extract($params);
+        if(isset($id)&&$id){
+            $model = User::model()->findByPk($id);
+            if($model){
+                $user = array();
+                    $user['nickname'] = $model->nickname;
+                    $user['username'] = $model->username;
+                    $user['mobile'] = $model->mobile;
+                    $user['email'] = $model->email;
+                    $user['sex'] = $model->sex;
+                    $user['image']=$model->image;
+                    $user['province'] = $model->province;
+                    $user['city'] = $model->city;
+                if($user){
+                    $ret = $this->notice('OK',0,'查询成功',$user);
+                }else{
+                    $ret = $this->notice('ERR',307,'查询失败',$model->getErrors());
+                }
+
+            }else{
+                $ret = $this->notice('ERR',304,'该用户不存在',[]);
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少参数',[]);
+        }
+        return $ret;
+    }
+
     //添加关注
     public function addFocus($params = array())
     {
