@@ -219,19 +219,52 @@ class AllianceService extends AppApiService
     {
         extract($params);
         if(isset($type)){
-            if(isset($id)&&$id)
+            if(!$type){
+                if(isset($id)&&$id)
+                {
+                    $obj = Dynamic::model()->with('user')->findAll(array('condition'=>'dy_type=:type and dy_user=:dy_user',
+                        'params'=>array(':type'=>$type,':dy_user'=>$id),
+                        'order'=>'dy_num desc , t.gmt_created desc'
+                    ));
+
+                }else{
+
+                    $obj = Dynamic::model()->with('user')->findAll(array('condition'=>'dy_type=:type',
+                        'params'=>array(':type'=>$type),
+                        'order'=>'dy_num desc , t.gmt_created desc',
+                    ));
+                }
+            }else if($type == 1)
             {
-                $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type and dy_user=:dy_user',
-                    'params'=>array(':type'=>$type,':dy_user'=>$id),
-                    'order'=>'dy_num desc , gmt_created desc'
-                ));
+                if(isset($id)&&$id)
+                {
+                    $obj = Dynamic::model()->with('alliance')->findAll(array('condition'=>'dy_type=:type and dy_user=:dy_user',
+                        'params'=>array(':type'=>$type,':dy_user'=>$id),
+                        'order'=>'dy_num desc , t.gmt_created desc'
+                    ));
 
+                }else{
+
+                    $obj = Dynamic::model()->with('alliance')->findAll(array('condition'=>'dy_type=:type',
+                        'params'=>array(':type'=>$type),
+                        'order'=>'dy_num desc , t.gmt_created desc',
+                    ));
+                }
             }else{
+                if(isset($id)&&$id)
+                {
+                    $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type and dy_user=:dy_user',
+                        'params'=>array(':type'=>$type,':dy_user'=>$id),
+                        'order'=>'dy_num desc , t.gmt_created desc'
+                    ));
 
-                $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type',
-                    'params'=>array(':type'=>$type),
-                    'order'=>'dy_num desc , gmt_created desc',
-                ));
+                }else{
+
+                    $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type',
+                        'params'=>array(':type'=>$type),
+                        'order'=>'dy_num desc , t.gmt_created desc',
+                    ));
+                }
             }
 
             $dynamic = array();
@@ -243,8 +276,18 @@ class AllianceService extends AppApiService
                     $dynamic[] = array(
                         'id'=>$val->dy_id,
                         'content'=>$val->dy_content,
-                        'images'=>$image
+                        'images'=>$image,
+                        'num' =>$val->dy_num,
+                        'time' =>$val->gmt_created,
                     );
+                    if(!$type){
+                        $dynamic['logo'] = $val->user->image;
+                        $dynamic['nickname'] = $val->user->nickname;
+                    }else if($type == 1){
+                        $dynamic['logo'] = $val->alliance->image;
+                        $dynamic['nickname'] = $val->alliance->name;
+                    }
+                    $dynamic['url'] = 'www.baidu.com';
                 }
                 $ret = $this->notice('OK',0,'成功',$dynamic);
             }else{
