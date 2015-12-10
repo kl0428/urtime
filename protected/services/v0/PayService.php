@@ -20,6 +20,9 @@ class PayService extends AppApiService
         $channel = strtolower($params['channel']);
         $amount = $params['amount'];
         $orderNo = substr(md5(time()), 0, 12);
+        $subject = $params['subject']?$params['subject']:"Urtime";
+        $body = $params['body']?$params['body']:"你在Urtime购买了本产品";
+
 
 
 //$extra 在使用某些渠道的时候，需要填入相应的参数，其它渠道则是 array() .具体见以下代码或者官网中的文档。其他渠道时可以传空值也可以不传。
@@ -80,10 +83,10 @@ class PayService extends AppApiService
 
 
         try {
-            $ch = application\extensions\Pingpp\lib\Charge::create(
+            $ch = $res = application\extensions\Pingpp\lib\Charge::create(
                 array(
-                    'subject'   => 'Urtime',
-                    'body'      => '你在Urtime购买了本产品',
+                    'subject'   => $subject,
+                    'body'      => $body,
                     'amount'    => $amount,
                     'order_no'  => $orderNo,
                     'currency'  => 'cny',
@@ -93,9 +96,45 @@ class PayService extends AppApiService
                     'app'       => array('id' => 'app_1Gqj58ynP0mHeX1q')
                 )
             );
-            var_dump(array($channel,$amount,$orderNo,$extra));
-            exit;
-            echo $ch;
+            if($res){
+                $result = json_decode($res);
+               if($result->id && $user_id = $params['user_id'])
+               {
+
+                   $order = array(
+                       'user_id'=>$user_id,
+                       'ping_id'=>$result->id,
+                       'flag' =>$params['flag']?$params['flag']:0,
+                       'app'=>$result->app,
+                       'channel'=>$result->channel,
+                       'order_no'=>$result->order_no,
+                       'client_ip'=>$result->client_ip,
+                       'amount' =>$result->amount,
+                       'subject' =>$subject,
+                       'body' =>$body,
+                   );
+                   if($result->paid){
+                       $order['paid'] = 1;
+                   }
+                   if($result->time_paid)
+                   {
+                       $order['time_paid'] = $result->time_paid;
+                   }
+                   if($params['content']){
+                       $order['flag_content'] = $params['content'];
+                   }
+                   $model = new Order();
+                   $model->attributes = $order;
+                   if($model->validate() && $model->save())
+                   {
+                       echo $ch;
+                   }else{
+                       echo json_encode($model->getErrors());
+                   }
+               }
+            }
+
+
         } catch (application\extensions\Pingpp\lib\Error\Base $e) {
             header('Status: ' . $e->getHttpStatus());
             echo($e->getHttpBody());

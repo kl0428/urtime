@@ -69,8 +69,14 @@
 
         <?php }elseif($data['action']=='provice'){?>
         <?php }elseif($data['action']=='pay'){?>
-            channel:<input type="text" name="params[channel]" value="alipay_wap"/> <br/>
-            amount:<input type="text" name="params[amount]" value="1"> <br/>
+            channel:<input type="text" name="params[channel]" value="alipay_wap"/>付款方式 <br/>
+            amount:<input type="text" name="params[amount]" value="1"> 金额<br/>
+            subject:<input type="text" name="params[subject]" value="Urtime"> <br/>
+            body:<input type="text" name="params[body]" value="你在Urtime购买了本产品"> <br/>
+            user_id:<input type="text" name="params[user_id]" value="1">用户id <br/>
+            store_id:<input type="text" name="params[store_id]" value="1">店铺id选填 <br/>
+            flag:<input type="text" name="params[flag]" value="1">1-卡,2-课程 <br/>
+            content:<input type="text" name="params[content]" value="1">卡号或课程 <br/>
         <?php }elseif($data['action']=='addFocus'){?>
             user_id:<input type="text" name="params[user_id]" value=""/> <br/>
             focus_user:<input type="text" name="params[focus_user]" value=""/> <br/>
