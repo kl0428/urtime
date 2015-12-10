@@ -7,7 +7,7 @@
  */
 ?>
 <div id="main_wrapper">
-    <form name="forminput" id="forminput" <?php if($data['action']){?>action="<?=$this->createUrl('index/index',array('debug'=>1))?>"<?php }else{ ?>action="<?=$this->createUrl('index/upImages')?>"<?php }?> method="post" enctype="multipart/form-data">
+    <form name="forminput" id="forminput" <?php if($data['action']){?>action="<?=$this->createUrl('index/index',array('debug'=>1))?>"<?php }else{ ?>action="<?=$this->createUrl('image/upImages')?>"<?php }?> method="post" enctype="multipart/form-data">
             app_key:<input type="text" name="app_key" value="<?=$data['app_key'] ?>"/>
             </br>
             method :<input type="text" name="method" value="<?=$data['method']?>"/>
@@ -71,6 +71,20 @@
         <?php }elseif($data['action']=='pay'){?>
             channel:<input type="text" name="params[channel]" value="alipay_wap"/> <br/>
             amount:<input type="text" name="params[amount]" value="1"> <br/>
+        <?php }elseif($data['action']=='addFocus'){?>
+            user_id:<input type="text" name="params[user_id]" value=""/> <br/>
+            focus_user:<input type="text" name="params[focus_user]" value=""/> <br/>
+        <?php }elseif($data['action']=='delFocus'){?>
+            focus_id:<input type="text" name="params[focus_id]" value=""/> <br/>
+            user_id:<input type="text" name="params[user_id]" value=""/> <br/>
+        <?php }elseif($data['action']=='getFocus'){?>
+            user_id:<input type="text" name="params[user_id]" value=""/> <br/>
+        <?php }elseif($data['action']=='report'){?>
+            user_id:<input type="text" name="params[user_id]" value=""/> <br/>
+            to_report:<input type="text" name="params[to_report]" value=""/> <br/>
+            content:<input type="text" name="params[content]" value=""/> <br/>
+            type:<input type="text" name="params[type]" value=""/> 0-用户,1-联盟<br/>
+            style:<input type="text" name="params[style]" value=""/> 0-举报,1-反馈<br/>
         <?php }else{?>
             image:<input type="file" name="upImage"/>
             <br/>

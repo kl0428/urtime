@@ -149,5 +149,10 @@ return array(
             0=>array('key'=>0,'name'=>'体验通卡'),
             1=>array('key'=>1,'name'=>'通卡'),
         ),
+
+        'qiniu'=>array(
+            'accessKey'=>'xDEAAZipfS863nRtNUj8NhKvij4rSuhDcWZ-WZcV',
+            'secretKey'=>'f1KfH4sq04OgAfJV8up4NrRN-zaejZeN15S-TSK8',
+        ),
     ),
 );
