@@ -173,11 +173,11 @@ class AllianceService extends AppApiService
     public function addDynamic($params = array())
     {
         extract($params);
-        if(isset($alliance_id)&&$alliance_id)
+        if(isset($id)&&$id&&isset($type))
         {
             $dynamic = array(
-                'dy_user'=>$alliance_id,
-                'dy_type'=>1,
+                'dy_user'=>$id,
+                'dy_type'=>$type?$type:0,
             );
             if(isset($content)&&$content)
             {
@@ -186,7 +186,7 @@ class AllianceService extends AppApiService
 
             if(isset($image)&&$image)
             {
-                if(is_null(json_decode($image)))
+                if(!is_null(json_decode($image)))
                 {
                     $images =json_decode($image);
                     $dynamic['dy_images'] = implode(',',$images);
@@ -196,6 +196,7 @@ class AllianceService extends AppApiService
             }
 
             $model = new Dynamic();
+            $model->attributes = $dynamic;
             if($model->validate()&&$model->save())
             {
                 $id = $model->getPrimaryKey();
@@ -217,115 +218,61 @@ class AllianceService extends AppApiService
     public function getDynamic($params = array())
     {
         extract($params);
-        if(isset($alliance_id)&&$alliance_id)
-        {
-            $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type and dy_user = :user',
-                'params'=>array(':type'=>1,':user'=>$alliance_id),
-                'order'=>'gmt_created desc',
-            ));
-
-        }else{
-
-            $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type',
-                'params'=>array(':type'=>1),
-                'order'=>'gmt_created desc',
-            ));
-        }
-        $dynamic = array();
-        if($obj){
-            foreach($obj as $key=>$val)
+        if(isset($type)){
+            if(isset($id)&&$id)
             {
-                $image = explode(',',$val->dy_images);
-                $dynamic[] = array(
-                    'id'=>$val->dy_id,
-                    'content'=>$val->dy_content,
-                    'images'=>$image
-                );
+                $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type and dy_user=:dy_user',
+                    'params'=>array(':type'=>$type,':dy_user'=>$id),
+                    'order'=>'dy_num desc , gmt_created desc'
+                ));
+
+            }else{
+
+                $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type',
+                    'params'=>array(':type'=>$type),
+                    'order'=>'dy_num desc , gmt_created desc',
+                ));
             }
-            $ret = $this->notice('OK',0,'成功',$dynamic);
+
+            $dynamic = array();
+            if($obj){
+
+                foreach($obj as $key=>$val)
+                {
+                    $image = explode(',',$val->dy_images);
+                    $dynamic[] = array(
+                        'id'=>$val->dy_id,
+                        'content'=>$val->dy_content,
+                        'images'=>$image
+                    );
+                }
+                $ret = $this->notice('OK',0,'成功',$dynamic);
+            }else{
+                $ret = $this->notice('OK',0,'暂无数据',[]);
+            }
         }else{
-            $ret = $this->notice('ERR',306,'获取不到数据',[]);
+            $ret = $this->notice('ERR',301,'缺少关键参数',[]);
         }
         return $ret;
     }
 
-
-    //添加联盟动态
-    public function addUserDynamic($params = array())
+    //删除动态
+    public function deleteDynamic($params =array())
     {
         extract($params);
-        if(isset($user_id)&&$user_id)
-        {
-            $dynamic = array(
-                'dy_user'=>$user_id,
-                'dy_type'=>0,
-            );
-            if(isset($content)&&$content)
-            {
-                $dynamic['dy_content'] = $content;
-            }
-
-            if(isset($image)&&$image)
-            {
-                if(is_null(json_decode($image)))
-                {
-                    $images =json_decode($image);
-                    $dynamic['dy_images'] = implode(',',$images);
+        if(isset($id)&&$id){
+            $is_exists = Dynamic::model()->exists('dy_id=:id',array(':id'=>$id));
+            if($is_exists){
+                if(Dynamic::model()->deleteByPk($id)){
+                    $ret = $this->notice('OK',0,'成功',[]);
                 }else{
-                    $dynamic['dy_images'] = $image;
+                    $ret = $this->notice('ERR',307,'操作数据错误',[]);
                 }
-            }
-
-            $model = new Dynamic();
-            if($model->validate()&&$model->save())
-            {
-                $id = $model->getPrimaryKey();
-                $result = array(
-                    'id'=>$id
-                );
-                $ret = $this->notice('OK',0,'成功',$result);
             }else{
-                $ret = $this->notice('ERR',307,'操作数据错误',$model->getErrors());
+                $ret = $this->notice('ERR',306,'获取不到数据',[]);
             }
-            return $ret;
         }else{
-            return $this->notice('ERR',301,'缺少关键参数',[]);
-        }
-    }
-
-
-    //获取联盟列表
-    public function getUserDynamic($params = array())
-    {
-        extract($params);
-        if(isset($user_id)&&$user_id)
-        {
-            $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type and dy_user = :user',
-                'params'=>array(':type'=>0,':user'=>$user_id),
-                'order'=>'gmt_created desc',
-            ));
-
-        }else{
-
-            $obj = Dynamic::model()->findAll(array('condition'=>'dy_type=:type',
-                'params'=>array(':type'=>1),
-                'order'=>'gmt_created desc',
-            ));
-        }
-        $dynamic = array();
-        if($obj){
-            foreach($obj as $key=>$val)
-            {
-                $image = explode(',',$val->dy_images);
-                $dynamic[] = array(
-                    'id'=>$val->dy_id,
-                    'content'=>$val->dy_content,
-                    'images'=>$image
-                );
-            }
-            $ret = $this->notice('OK',0,'成功',$dynamic);
-        }else{
-            $ret = $this->notice('ERR',306,'获取不到数据',[]);
+            $ret = $this->notice('ERR',301,'缺少关键参数',[]);
         }
         return $ret;
     }
