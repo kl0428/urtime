@@ -34,7 +34,7 @@ class IndexController extends Controller
         'login'                 =>'UserService',//登录接口
         'forget'                =>'UserService',//忘记密码
         'update'                =>'UserService',//个人信息修改
-        'user'                  =>'UserService',
+        'user'                  =>'UserService',//个人信息获取
         'banner'                =>'CardService',//获取banner及通卡类型接口
         'cards'                 =>'CardService',//获取指定类型的通卡列表
         'cardInfo'              =>'CardService',//获取指定类型通卡信息
