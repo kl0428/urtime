@@ -101,6 +101,8 @@
             type:<input type="text" name="params[type]" value=""/> 动态类型 0-个人 1-联盟 2-店铺 3-其他(必填)<br/>
         <?php }elseif($data['action']=='deleteDynamic'){?>
             id:<input type="text" name="params[id]" value=""/> 动态id(必填)<br/>
+        <?php }elseif($data['action']=='getDetailDynamic'){?>
+            id:<input type="text" name="params[id]" value=""/> id(动态id)<br/>
         <?php }else{?>
             image:<input type="file" name="upImage"/>
             <br/>

@@ -46,6 +46,7 @@ class IndexController extends Controller
         'addDynamic'            =>'AllianceService',//添加动态
         'getDynamic'            =>'AllianceService',//获取动态列表
         'deleteDynamic'         =>'AllianceService',//删除动态
+        'getDetailDynamic'      =>'AllianceService',//获取动态详情
         'pay'                   =>'PayService',//支付
         'addFocus'              =>'UserService',//添加关注
         'delFocus'              =>'UserService',//取消关注

@@ -273,7 +273,7 @@ class AllianceService extends AppApiService
                 foreach($obj as $key=>$val)
                 {
                     $image = explode(',',$val->dy_images);
-                    $dynamic[] = array(
+                    $dynamic[$key] = array(
                         'id'=>$val->dy_id,
                         'content'=>$val->dy_content,
                         'images'=>$image,
@@ -281,14 +281,60 @@ class AllianceService extends AppApiService
                         'time' =>$val->gmt_created,
                     );
                     if(!$type){
-                        $dynamic['logo'] = $val->user->image;
-                        $dynamic['nickname'] = $val->user->nickname;
+                        $dynamic[$key]['logo'] = $val->user->image;
+                        $dynamic[$key]['nickname'] = $val->user->nickname;
                     }else if($type == 1){
-                        $dynamic['logo'] = $val->alliance->image;
-                        $dynamic['nickname'] = $val->alliance->name;
+                        $dynamic[$key]['logo'] = $val->alliance->image;
+                        $dynamic[$key]['nickname'] = $val->alliance->name;
                     }
-                    $dynamic['url'] = 'www.baidu.com';
+                    $dynamic[$key]['url'] = 'www.baidu.com';
                 }
+                $ret = $this->notice('OK',0,'成功',$dynamic);
+            }else{
+                $ret = $this->notice('OK',0,'暂无数据',[]);
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少关键参数',[]);
+        }
+        return $ret;
+    }
+
+    public function getDetailDynamic($params = array())
+    {
+        extract($params);
+        if(isset($id)&&$id){
+
+
+                $obj = Dynamic::model()->findAll(array('condition'=>'dy_id=:id',
+                    'params'=>array(':id'=>$id)
+                ));
+
+            $dynamic = array();
+            if($obj){
+
+                    $image = explode(',',$obj->dy_images);
+                    $dynamic = array(
+                        'id'=>$obj->dy_id,
+                        'content'=>$obj->dy_content,
+                        'images'=>$image,
+                        'num' =>$obj->dy_num,
+                        'time' =>$obj->gmt_created,
+                    );
+                if($obj->type && $obj->dy_user){
+                    if(!$obj->type){
+                        $user = User::model()->findByPk($obj->dy_user);
+                        $dynamic['logo'] = $user->image;
+                        $dynamic['nickname'] = $user->nickname;
+                    }
+                }elseif($obj->type==1){
+                    $alliance = Alliance::model()->findByPk($obj->dy_user);
+                    $dynamic['logo'] = $alliance->image;
+                    $dynamic['nickname'] = $alliance->name;
+                }else{
+                    $dynamic['logo'] = '';
+                    $dynamic['nickname'] = '';
+                }
+                    $dynamic['url'] = 'www.baidu.com';
                 $ret = $this->notice('OK',0,'成功',$dynamic);
             }else{
                 $ret = $this->notice('OK',0,'暂无数据',[]);
