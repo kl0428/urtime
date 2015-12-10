@@ -206,6 +206,7 @@ class UserService extends AppApiService
                 $report_arr['style'] = $style;
             }
             $model = new Report();
+            $model->attributes=$report_arr;
             if($model->validate() && $model->save())
             {
                 $id = $model->getPrimaryKey();
