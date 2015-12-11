@@ -388,6 +388,75 @@ class AllianceService extends AppApiService
         return $ret;
     }
 
+    //添加评论
+    public function addComment($params =array())
+    {
+        extract($params);
+        if(isset($dynamic_id)&&isset($user_id)&&$user_id&&$dynamic_id)
+        {
+            $comment  = array(
+                'dynamic_id'=>$dynamic_id,
+                'user_id' =>$user_id,
+            );
+            if(isset($content)&&$content)
+            {
+                $comment['content'] = $content;
+            }
+
+            if(isset($image)&&$image){
+                if(!is_null(json_decode($image)))
+                {
+                    $images =json_decode($image);
+                    $comment['images'] = implode(',',$images);
+                }else{
+                    $comment['images'] = $image;
+                }
+            }
+            if(isset($content)&&$content||isset($image)&&$image){
+                $model = new Comments();
+                $model->attributes = $comment;
+                if($model->validate()&&$model->save())
+                {
+                    $ret = $this->notice('OK',0,'成功',[]);
+                }else{
+                    $ret = $this->notice('ERR',307,'操作数据错误',$model->getErrors());
+                }
+            }else{
+                $ret = $this->notice('ERR',303,'没有评论内容',[]);
+            }
+
+        }else{
+            $ret = $this->notice('ERR',301,'缺少关键参数',[]);
+        }
+
+        return $ret;
+    }
+
+    //获取评论列表
+    public function getComment($params=array())
+    {
+        extract($params);
+        if(isset($dynamic_id)&&$dynamic_id){
+            $obj = Comments::model()->with('user')->findAll('dynamic_id=:dynamic and is_del=:del',array(':dynamic'=>$dynamic_id,'del'=>'0'));
+            if($obj){
+                $comments = array();
+                foreach($obj as $key=>$val)
+                {
+                    $image = explode(',',$val->images);
+                    $comment[] = array(
+                        'nickname'=> $val->user->nickname,
+                        'content' =>$val->content,
+                        'images'  =>
+                    );
+                }
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少关键参数',[]);
+        }
+
+        return $ret;
+    }
+
 
 
 }
