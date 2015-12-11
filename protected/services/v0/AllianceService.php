@@ -277,7 +277,7 @@ class AllianceService extends AppApiService
                         'id'=>$val->dy_id,
                         'content'=>$val->dy_content,
                         'images'=>$image,
-                        'num' =>$val->dy_num,
+                        'num' =>$val->t_agree,
                         'time' =>$val->gmt_created,
                     );
                     if(!$type){
@@ -317,7 +317,7 @@ class AllianceService extends AppApiService
                         'id'=>$obj->dy_id,
                         'content'=>$obj->dy_content,
                         'images'=>$image,
-                        'num' =>$obj->dy_num,
+                        'num' =>$obj->t_agree,
                         'time' =>$obj->gmt_created,
                     );
                 if($obj->type && $obj->dy_user){
@@ -365,5 +365,29 @@ class AllianceService extends AppApiService
         }
         return $ret;
     }
+
+    public function agree($params = array()){
+        extract($params);
+        if(isset($id)&&$id){
+            $model = Dynamic::model()->findByPk($id);
+            if($model){
+                $user = array('t_agree'=>$model->t_agree+1);
+                $model->attributes = $user;
+                if($model->save()&&$model->validate()){
+                    $ret = $this->notice('OK',0,'成功',[]);
+                }else{
+                    $ret = $this->notice('ERR',307,'操作数据错误',[]);
+                }
+            }else{
+                $ret = $this->notice('ERR',306,'获取不到数据',[]);
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少关键参数',[]);
+        }
+
+        return $ret;
+    }
+
+
 
 }

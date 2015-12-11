@@ -123,6 +123,8 @@
             </br>
          <?php }elseif($data['action']=='user'){?>
             id:<input type="text" name="params[id]" value=""/> id(用户id)<br/>
+        <?php }elseif($data['action']=='agree'){?>
+            id:<input type="text" name="params[id]" value=""/> id(动态id)<br/>
         <?php }else{?>
             image:<input type="file" name="upImage"/>
             <br/>
