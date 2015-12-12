@@ -55,6 +55,8 @@ class IndexController extends Controller
         'getFocus'              =>'UserService',//获取关注
         'report'                =>'UserService',//举报和意见反馈接口
         'agree'                 =>'AllianceService',//动态点赞
+        'addComment'            =>'AllianceService',// 添加评论
+        'getComment'            =>'AllianceService',//获取评论
     );
 
     public function init()
