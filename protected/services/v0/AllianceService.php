@@ -266,11 +266,11 @@ class AllianceService extends AppApiService
                     ));
                 }
             }
-            var_dump($obj);
-            exit;
 
             $dynamic = array();
             if((array)$obj){
+                var_dump($obj);
+                exit;
 
                 foreach($obj as $key=>$val)
                 {
