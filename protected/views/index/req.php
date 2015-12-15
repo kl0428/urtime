@@ -125,6 +125,13 @@
             id:<input type="text" name="params[id]" value=""/> id(用户id)<br/>
         <?php }elseif($data['action']=='agree'){?>
             id:<input type="text" name="params[id]" value=""/> id(动态id)<br/>
+        <?php }elseif($data['action']=='addComment'){?>
+            dynamic_id:<input type="text" name="params[dynamic_id]" value=""/> id(动态id)<br/>
+            user_id:<input type="text" name="params[user_id]" value=""/> id(用户id)<br/>
+            content:<input type="text" name="params[content]" value=""/> 评论内容<br/>
+            images:<input type="text" name="params[images]" value=""/> 图片<br/>
+        <?php }elseif($data['action']=='getComment'){?>
+            dynamic_id:<input type="text" name="params[dynamic_id]" value=""/> id(动态id)<br/>
         <?php }else{?>
             image:<input type="file" name="upImage"/>
             <br/>
