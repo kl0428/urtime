@@ -272,9 +272,10 @@ class AllianceService extends AppApiService
 
 
                 foreach($obj as $key=>$val)
-                { var_dump($val);
-                    exit;
+                {
                     $image = explode(',',$val->dy_images);
+                    var_dump($image);
+                    exit;
                     $images = array();
                     if($image){
                         foreach($image as $key=>$val){
