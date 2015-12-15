@@ -268,7 +268,7 @@ class AllianceService extends AppApiService
             }
 
             $dynamic = array();
-            if($obj){
+            if((array)$obj){
 
                 foreach($obj as $key=>$val)
                 {
