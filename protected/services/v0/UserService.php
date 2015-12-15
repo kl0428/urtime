@@ -178,7 +178,7 @@ class UserService extends AppApiService
                     $user['mobile'] = $model->mobile;
                     $user['email'] = $model->email;
                     $user['sex'] = $model->sex;
-                    $user['image']=$model->image;
+                    $user['image']=Yii::app()->params['qiniu']['host'].$model->image;
                     $user['province'] = $model->province;
                     $user['city'] = $model->city;
                 if($user){
@@ -252,7 +252,7 @@ class UserService extends AppApiService
                 {
                     $focus_arr[] = array(
                         'user_name' =>$val->user->nickname,
-                        'image' =>$val->user->image,
+                        'image' =>Yii::app()->params['qiniu']['host'].$val->user->image,
                         'focus_id' =>$val->focus_id,
                     );
                 }

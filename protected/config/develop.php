@@ -153,6 +153,7 @@ return array(
         'qiniu'=>array(
             'accessKey'=>'xDEAAZipfS863nRtNUj8NhKvij4rSuhDcWZ-WZcV',
             'secretKey'=>'f1KfH4sq04OgAfJV8up4NrRN-zaejZeN15S-TSK8',
+            'host'=>'http://7xp01t.com2.z0.glb.qiniucdn.com/',
         ),
     ),
 );

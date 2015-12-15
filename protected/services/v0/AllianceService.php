@@ -273,18 +273,22 @@ class AllianceService extends AppApiService
                 foreach($obj as $key=>$val)
                 {
                     $image = explode(',',$val->dy_images);
+                    $images = array();
+                    foreach($image as $key=>$val){
+                        $images[] = Yii::app()->params['qiniu']['host'].$val;
+                    }
                     $dynamic[$key] = array(
                         'id'=>$val->dy_id,
                         'content'=>$val->dy_content,
-                        'images'=>$image,
+                        'images'=>$images,
                         'num' =>$val->t_agree,
                         'time' =>$val->gmt_created,
                     );
                     if(!$type){
-                        $dynamic[$key]['logo'] = $val->user->image;
+                        $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'].$val->user->image;
                         $dynamic[$key]['nickname'] = $val->user->nickname;
                     }else if($type == 1){
-                        $dynamic[$key]['logo'] = $val->alliance->image;
+                        $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'].$val->alliance->image;
                         $dynamic[$key]['nickname'] = $val->alliance->name;
                     }
                     $dynamic[$key]['url'] = 'www.baidu.com';
@@ -313,22 +317,26 @@ class AllianceService extends AppApiService
             if($obj){
 
                     $image = explode(',',$obj->dy_images);
+                    $images = array();
+                    foreach($image as $key=>$val){
+                        $images[] = Yii::app()->params['qiniu']['host'].$val;
+                    }
                     $dynamic = array(
                         'id'=>$obj->dy_id,
                         'content'=>$obj->dy_content,
-                        'images'=>$image,
+                        'images'=>$images,
                         'num' =>$obj->t_agree,
                         'time' =>$obj->gmt_created,
                     );
                 if($obj->type && $obj->dy_user){
                     if(!$obj->type){
                         $user = User::model()->findByPk($obj->dy_user);
-                        $dynamic['logo'] = $user->image;
+                        $dynamic['logo'] = Yii::app()->params['qiniu']['host'].$user->image;
                         $dynamic['nickname'] = $user->nickname;
                     }
                 }elseif($obj->type==1){
                     $alliance = Alliance::model()->findByPk($obj->dy_user);
-                    $dynamic['logo'] = $alliance->image;
+                    $dynamic['logo'] = Yii::app()->params['qiniu']['host'].$alliance->image;
                     $dynamic['nickname'] = $alliance->name;
                 }else{
                     $dynamic['logo'] = '';

@@ -130,8 +130,6 @@ class ImageController extends Controller
 
             $bucket = 'urtime1';
             $token = $auth->uploadToken($bucket);
-            var_dump($token);
-            exit;
             $uploadMgr = new UploadManager();
 
             //上传介绍图片
@@ -163,7 +161,7 @@ class ImageController extends Controller
             if ($err !== null) {
                 $images ['err'][] = $err;
             } else {
-                $images ['ret'][] = $ret;
+                $images[] = $ret['key'];
             }
 
         }
