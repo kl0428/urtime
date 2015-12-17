@@ -86,4 +86,52 @@ class SmsService extends AppApiService
         curl_close($curl);
         return $result;
     }
+
+    /*运通讯*/
+    /**
+     * 发送模板短信
+     * @param to 手机号码集合,用英文逗号分开
+     * @param datas 内容数据 格式为数组 例如：array('Marry','Alon')，如不需替换请填 null
+     * @param $tempId 模板Id
+     */
+    public function sendSmsByCCP($params = array())
+    {
+        Yii::import('application.extensions.Rest.*');
+        extract($params);
+        if(isset($to)&&isset($tempId)) {
+            $datas = array('Marry','Alon');
+            // 初始化REST SDK
+            $reset = Yii::app()->params['ccp'];
+            /*var_dump($reset);
+            exit;*/
+            $accountSid=$reset['accountSid'];
+            $accountToken=$reset['accountToken'];
+            $appId=$reset['appId'];
+            $serverIP=$reset['serverIP'];
+            $serverPort=$reset['serverPort'];
+            $softVersion=$reset['softVersion'];
+            $rest = new REST($serverIP, $serverPort, $softVersion);
+            $rest->setAccount($accountSid, $accountToken);
+            $rest->setAppId($appId);
+
+            // 发送模板短信
+            echo "Sending TemplateSMS to $to <br/>";
+            $result = $rest->sendTemplateSMS($to, $datas, $tempId);
+            if ($result == NULL) {
+                echo "result error!";
+            }
+            if ($result->statusCode != 0) {
+                echo "error code :" . $result->statusCode . "<br>";
+                echo "error msg :" . $result->statusMsg . "<br>";
+                //TODO 添加错误处理逻辑
+            } else {
+                echo "Sendind TemplateSMS success!<br/>";
+                // 获取返回信息
+                $smsmessage = $result->TemplateSMS;
+                echo "dateCreated:" . $smsmessage->dateCreated . "<br/>";
+                echo "smsMessageSid:" . $smsmessage->smsMessageSid . "<br/>";
+                //TODO 添加成功处理逻辑
+            }
+        }
+    }
 }

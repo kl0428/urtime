@@ -132,6 +132,9 @@
             images:<input type="text" name="params[images]" value=""/> 图片<br/>
         <?php }elseif($data['action']=='getComment'){?>
             dynamic_id:<input type="text" name="params[dynamic_id]" value=""/> id(动态id)<br/>
+        <?php }elseif($data['action']=='sendSmsByCCP'){?>
+            to:<input type="text" name="params[to]" value="18368113211"/> <br/>
+            tempId:<input type="text" name="params[tempId]" value="1"/><br/>
         <?php }else{?>
             image:<input type="file" name="upImage"/>
             <br/>

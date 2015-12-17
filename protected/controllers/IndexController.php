@@ -57,6 +57,7 @@ class IndexController extends Controller
         'agree'                 =>'AllianceService',//动态点赞
         'addComment'            =>'AllianceService',// 添加评论
         'getComment'            =>'AllianceService',//获取评论
+        'sendSmsByCCP'          =>'SmsService',//运通讯
     );
 
     public function init()

@@ -155,5 +155,13 @@ return array(
             'secretKey'=>'f1KfH4sq04OgAfJV8up4NrRN-zaejZeN15S-TSK8',
             'host'=>'http://7xp01t.com2.z0.glb.qiniucdn.com/',
         ),
+        'ccp' =>array(
+            'accountSid'=>'aaf98f8951858ab8015185f08f7601ba',
+            'accountToken'=>'e06bb3d4375a4146848526b1119ff965',
+            'appId'=>'aaf98f8951a6249b0151aa27e9b30811',
+            'serverIP'=>'sandboxapp.cloopen.com',
+            'serverPort'=>'8883',
+            'softVersion'=>'2013-12-26',
+        ),
     ),
 );

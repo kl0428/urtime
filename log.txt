@@ -1,0 +1,72 @@
+request body = <TemplateSMS>
+                    <to>18368113211</to> 
+                    <appId>8a48b5515185cb1a015185f16999009d</appId>
+                    <templateId>8006804700000001</templateId>
+                    <datas><data>Marry</data><data>Alon</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/aaf98f8951858ab8015185f08f7601ba/SMS/TemplateSMS?sig=8E3C1A5828E14D92EA76152F6411231F
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>112315</statusCode><statusMsg>【短信】短信模板ID长度超长</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>18368113211</to> 
+                    <appId>8a48b5515185cb1a015185f16999009d</appId>
+                    <templateId>8006804700000001</templateId>
+                    <datas><data>Marry</data><data>Alon</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/aaf98f8951858ab8015185f08f7601ba/SMS/TemplateSMS?sig=C642A4E015157D7E24344CC5A6A37CAA
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>112315</statusCode><statusMsg>【短信】短信模板ID长度超长</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>18368113211</to> 
+                    <appId>8a48b5515185cb1a015185f16999009d</appId>
+                    <templateId>8006804700000001</templateId>
+                    <datas><data>Marry</data><data>Alon</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/aaf98f8951858ab8015185f08f7601ba/SMS/TemplateSMS?sig=6A58BC2349827B5AE8A5D311D48BC8D0
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>112315</statusCode><statusMsg>【短信】短信模板ID长度超长</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>18368113211</to> 
+                    <appId>8a48b5515185cb1a015185f16999009d</appId>
+                    <templateId>8006804700000001</templateId>
+                    <datas><data>Marry</data><data>Alon</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/aaf98f8951858ab8015185f08f7601ba/SMS/TemplateSMS?sig=0B784F239CD0274B4434A6EE7411A3A4
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>112315</statusCode><statusMsg>【短信】短信模板ID长度超长</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>18368113211</to> 
+                    <appId>8a48b5515185cb1a015185f16999009d</appId>
+                    <templateId>8006804700000001</templateId>
+                    <datas><data>Marry</data><data>Alon</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/aaf98f8951858ab8015185f08f7601ba/SMS/TemplateSMS?sig=90A18766479D48C7CACC98F45073A7C7
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>112315</statusCode><statusMsg>【短信】短信模板ID长度超长</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>18368113211</to> 
+                    <appId>8a48b5515185cb1a015185f16999009d</appId>
+                    <templateId>1</templateId>
+                    <datas><data>Marry</data><data>Alon</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/aaf98f8951858ab8015185f08f7601ba/SMS/TemplateSMS?sig=29B2A602116A25FB8AE102129D7FB337
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>112310</statusCode><statusMsg>【短信】应用未上线，模板短信接收号码外呼受限</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>18368113211</to> 
+                    <appId>aaf98f8951a6249b0151aa27e9b30811</appId>
+                    <templateId>1</templateId>
+                    <datas><data>Marry</data><data>Alon</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/aaf98f8951858ab8015185f08f7601ba/SMS/TemplateSMS?sig=E634CE720651677C753BA8CDC408FD0E
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>113302</statusCode><statusMsg>您正在使用云通讯测试模板且短信接收者不是注册的测试号码</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>18368113211</to> 
+                    <appId>aaf98f8951a6249b0151aa27e9b30811</appId>
+                    <templateId>1</templateId>
+                    <datas><data>Marry</data><data>Alon</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/aaf98f8951858ab8015185f08f7601ba/SMS/TemplateSMS?sig=E72F0EBC47958A626FFA6EBDBDB20921
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>000000</statusCode><TemplateSMS><dateCreated>20151217094434</dateCreated><smsMessageSid>bdd06724335c4d5ca039531edba466db</smsMessageSid></TemplateSMS></Response>
+request body = <TemplateSMS>
+                    <to>18267129265</to> 
+                    <appId>aaf98f8951a6249b0151aa27e9b30811</appId>
+                    <templateId>1</templateId>
+                    <datas><data>Marry</data><data>Alon</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/aaf98f8951858ab8015185f08f7601ba/SMS/TemplateSMS?sig=A576FC408C49B2FC0B6B1F1B355A50AC
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>113302</statusCode><statusMsg>您正在使用云通讯测试模板且短信接收者不是注册的测试号码</statusMsg></Response>
