@@ -287,4 +287,9 @@ class IndexController extends Controller
 
     }
 
+    public function actionUrtime()
+    {
+        $this->render("urtime");
+    }
+
 }
