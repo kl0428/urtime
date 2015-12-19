@@ -449,12 +449,13 @@ class AllianceService extends AppApiService
         extract($params);
         if(isset($dynamic_id)&&$dynamic_id){
             $obj = (array)Comments::model()->with('user')->findAll('dynamic_id=:dynamic and is_del=:del',array(':dynamic'=>$dynamic_id,'del'=>'0'));
-           /* var_dump($obj);
-            exit;*/
+
             if($obj){
                 $comments = array();
                 foreach($obj as $key=>$val)
                 {
+                    var_dump($val);
+                    exit;
                     $image = explode(',',$val->images);
                     $comments[] = array(
                         'nickname'=> $val->user->nickname,
@@ -465,6 +466,7 @@ class AllianceService extends AppApiService
                     );
                 }
             }
+
             $ret = $this->notice('OK',0,'成功',$comments);
         }else{
             $ret = $this->notice('ERR',301,'缺少关键参数',[]);
