@@ -460,7 +460,7 @@ class AllianceService extends AppApiService
                     }
                     $comments[] = array(
                         'nickname'=> $val->user->nickname,
-                        'logo'  =>$val->user->logo,
+                        'logo'  =>$val->user->image,
                         'content' =>$val->content,
                         'images'  =>$image,
                         'time'    =>$val->gmt_created,
