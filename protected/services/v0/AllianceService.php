@@ -448,9 +448,9 @@ class AllianceService extends AppApiService
     {
         extract($params);
         if(isset($dynamic_id)&&$dynamic_id){
-            var_dump($dynamic_id);
-            exit;
             $obj = (array)Comments::model()->with('user')->findAll('dynamic_id=:dynamic and is_del=:del',array(':dynamic'=>$dynamic_id,'del'=>'0'));
+            var_dump($obj);
+            exit;
             if($obj){
                 $comments = array();
                 foreach($obj as $key=>$val)
