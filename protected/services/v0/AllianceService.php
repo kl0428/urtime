@@ -454,9 +454,10 @@ class AllianceService extends AppApiService
                 $comments = array();
                 foreach($obj as $key=>$val)
                 {
-                    var_dump($val);
-                    exit;
-                    $image = explode(',',$val->images);
+                    $image = array();
+                    if($val->images){
+                        $image = explode(',',$val->images);
+                    }
                     $comments[] = array(
                         'nickname'=> $val->user->nickname,
                         'logo'  =>$val->user->logo,
