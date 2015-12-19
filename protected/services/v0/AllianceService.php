@@ -463,6 +463,7 @@ class AllianceService extends AppApiService
                     );
                 }
             }
+            $ret = $this->notice('OK',0,'成功',$comment);
         }else{
             $ret = $this->notice('ERR',301,'缺少关键参数',[]);
         }
