@@ -56,15 +56,15 @@ return array(
 
 
 		// database settings are configured in database.php
-		//'db'=>require(dirname(__FILE__).'/database.php'),
-		'db'=>array(
+		'db'=>require(dirname(__FILE__).'/database.php'),
+		/*'db'=>array(
 			'connectionString' => 'mysql:host=127.0.0.1;port=3306;dbname=urtime',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'urtimerqwerty',
 			'charset' => 'utf8',
 			'tablePrefix' => 't_',
-		),
+		),*/
 
 		'cache'=>array(
 			'class'=>'ext.redis.CRedisCache',
