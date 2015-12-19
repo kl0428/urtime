@@ -458,17 +458,15 @@ class AllianceService extends AppApiService
                     if($val->images){
                         $image = explode(',',$val->images);
                     }
-                    var_dump($val);
-                    exit;
-                    $comments[] = array(
-                        'nickname'=> $val->user->nickname,
-                        'logo'  =>$val->user->image,
-                        'content' =>$val->content,
-                        'images'  =>$image,
-                        'time'    =>$val->gmt_created,
-                    );
-                    var_dump($comments);
-                    exit;
+                    if($val->user){
+                        $comments[] = array(
+                            'nickname'=> $val->user->nickname,
+                            'logo'  =>$val->user->image,
+                            'content' =>$val->content,
+                            'images'  =>$image,
+                            'time'    =>$val->gmt_created,
+                        );
+                    }
                 }
             }
 
