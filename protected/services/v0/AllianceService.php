@@ -465,6 +465,8 @@ class AllianceService extends AppApiService
                         'images'  =>$image,
                         'time'    =>$val->gmt_created,
                     );
+                    var_dump($comments);
+                    exit;
                 }
             }
 
