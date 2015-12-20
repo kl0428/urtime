@@ -59,6 +59,7 @@ class IndexController extends Controller
         'getComment'            =>'AllianceService',//获取评论
         'sendSmsByCCP'          =>'SmsService',//运通讯
         'emchat'                =>'EmchatService',//环信通讯
+        'focusDynamic'          =>'DynamicService',//获取关注动态
     );
 
     public function init()

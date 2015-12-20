@@ -50,6 +50,7 @@ class Dynamic extends CActiveRecord
 		return array(
 			'user' =>array(self::BELONGS_TO,'User','dy_user'),
 			'alliance' =>array(self::BELONGS_TO,'Alliance','dy_user'),
+			'focus' => array(self::BELONGS_TO,'Focus','','on'=>'dy_user=focus_user and dy_type=focus_type'),
 		);
 	}
 
@@ -119,5 +120,16 @@ class Dynamic extends CActiveRecord
 			$this->gmt_created = date('Y-m-d H:i:s');
 		$this->gmt_modified = date('Y-m-d H:i:s');
 		return true;
+	}
+
+	public function getFocusDynamic($user_id=0,$is_focus=1)
+	{
+		$db = Yii::app()->db;
+		$sql = 'select * from `t_dynamic` as dy left join `t_focus` as focus on dy.dy_user=focus.focus_user and dy.dy_type=focus.focus_type';
+		$sql_where = " where focus.user_id=".$user_id." and focus.is_focus=".$is_focus;
+		$sql_str = $sql.$sql_where;
+		$command = $db->createCommand($sql_str);
+		$result = $command->queryAll();
+		return $result;
 	}
 }

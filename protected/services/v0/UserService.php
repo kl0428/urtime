@@ -200,12 +200,15 @@ class UserService extends AppApiService
     public function addFocus($params = array())
     {
         extract($params);
-        if(isset($focus_user)&&$focus_user&&isset($user_id)&&$user_id)
+        if(isset($focus_user)&&$focus_user&&isset($user_id)&&$user_id&&isset($focus_type))
         {
             $focus = array(
                 'focus_user' =>$focus_user,
                 'user_id'    =>$user_id,
+                'focus_type' =>$focus_type?$focus_type:0,
             );
+            $cache = Yii::app()->cache;
+            $cache->del('Focus.User.'.$user_id);
             $model = new Focus();
             $model->attributes = $focus;
             if($model->validate() && $model->save())
@@ -226,6 +229,8 @@ class UserService extends AppApiService
         extract($params);
         if(isset($focus_id)&&$focus_id&&isset($user_id)&&$user_id)
         {
+            $cache = Yii::app()->cache;
+            $cache->del('Focus.User.'.$user_id);
 
             $focus = Focus::model()->find('focus_id=:focus_id and user_id=:user_id',array(':focus_id'=>$focus_id,'user_id'=>$user_id));
             if($focus->update(['is_focus'=>'0']))
@@ -245,25 +250,58 @@ class UserService extends AppApiService
         extract($params);
         if(isset($user_id)&&$user_id)
         {
-            $focus = Focus::model()->with('user')->findAll('user_id=:user_id and is_focus = :focus',array(':user_id'=>$user_id,'is_focus'=>'1'));
-            if($focus){
-                $focus_arr = array();
-                foreach($focus as $key=>$val)
+            $focus_arr = array();
+            $focus_user = Focus::model()->with('user')->findAll('user_id=:user_id and focus_type=:type and is_focus=:focus',array(':user_id'=>$user_id,':type'=>'0',':focus'=>'1'));
+            if($focus_user){//个人关注
+
+                foreach($focus_user as $key=>$val)
                 {
                     $focus_arr[] = array(
                         'user_name' =>$val->user->nickname,
                         'image' =>Yii::app()->params['qiniu']['host'].$val->user->image,
                         'focus_id' =>$val->focus_id,
+                        'type'=>0,
                     );
                 }
-                $result = $focus_arr;
+
+            }
+            $focus_alliance = Focus::model()->with('alliance')->findAll('user_id=:user_id and focus_type = :type and is_focus = :focus',array(':user_id'=>$user_id,':type'=>'1',':focus'=>'1'));
+            if($focus_alliance){//联盟关注
+
+                foreach($focus_alliance as $key=>$val)
+                {
+                    $focus_arr[] = array(
+                        'user_name' =>$val->alliance->name,
+                        'image' =>Yii::app()->params['qiniu']['host'].$val->alliance->image,
+                        'focus_id' =>$val->focus_id,
+                        'type'=>0,
+                    );
+                }
+
+            }
+            $focus_store = Focus::model()->with('store')->findAll('user_id=:user_id and focus_type = :type and is_focus = :focus',array(':user_id'=>$user_id,':type'=>'2',':focus'=>'1'));
+            if($focus_store){//联盟关注
+                foreach($focus_store as $key=>$val)
+                {
+                    $focus_arr[] = array(
+                        'user_name' =>$val->store->name,
+                        'image' =>Yii::app()->params['qiniu']['host'].$val->store->image,
+                        'focus_id' =>$val->focus_id,
+                        'type'=>0,
+                    );
+                }
+
+            }
+            if($focus_arr){
+            $result = $focus_arr;
                 $ret = $this->notice('OK',0,'成功',$result);
             }else{
-                $ret = $this->notice('OK',0,'成功',[]);
+                $ret = $this->notice('OK',0,'没有关注对象',[]);
             }
         }else{
             $ret = $this->notice('ERR',301,'缺少参数',[]);
         }
+        return $ret;
     }
 
     //举报和意见反馈

@@ -137,6 +137,8 @@
             tempId:<input type="text" name="params[tempId]" value="1"/><br/>
         <?php }elseif($data['action']=='emchat'){?>
             channel:<input type="text" name="params[channel]" value="44"/> <br/>
+        <?php }elseif($data['action']=='focusDynamic'){?>
+            $user_id:<input type="text" name="params[user_id]" value="123"/> <br/>
         <?php }else{?>
             upImage:<input type="file" name="upImage"/>
             <br/>
