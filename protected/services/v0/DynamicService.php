@@ -54,7 +54,7 @@ class DynamicService extends AppApiService
 
         } else {
             //$ret = $this->notice('ERR', 301, '缺少参数', []);
-            $obj = Dynamic::model()->findAll(array('order'=>'gmt_created desc'));
+            $obj = Dynamic::model()->findAll(array('order'=>'gmt_created desc','limit'=>'100'));
             $dynamic = array();
             if($obj)
             {

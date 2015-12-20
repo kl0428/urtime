@@ -126,7 +126,7 @@ class Dynamic extends CActiveRecord
 	{
 		$db = Yii::app()->db;
 		$sql = 'select * from `t_dynamic` as dy left join `t_focus` as focus on dy.dy_user=focus.focus_user and dy.dy_type=focus.focus_type';
-		$sql_where = " where focus.user_id=".$user_id." and focus.is_focus=".$is_focus." order by dy.gmt_created desc";
+		$sql_where = " where focus.user_id=".$user_id." and focus.is_focus=".$is_focus." order by dy.gmt_created desc limit 0 ,100";
 		$sql_str = $sql.$sql_where;
 		$command = $db->createCommand($sql_str);
 		$result = $command->queryAll();
