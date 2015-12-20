@@ -150,4 +150,20 @@ class Alliance extends CActiveRecord
 		}
 		return $alliance;
 	}
+
+	public function loadAlliances()
+	{
+		$alliance = $this->findAll(array('select'=>array('id','name','image')));
+		$alliance_arr = array();
+		if($alliance){
+			foreach($alliance as $key=>$val)
+			{
+				$alliance_arr[$val->id] = array(
+					'name' => $val->name,
+					'image'=>$val->image,
+				);
+			}
+		}
+		return $alliance_arr;
+	}
 }

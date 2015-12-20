@@ -141,4 +141,27 @@ class Store extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function beforeSave()
+	{
+		if($this->isNewRecord)
+			$this->gmt_created = date('Y-m-d H:i:s');
+		$this->gmt_modified = date('Y-m-d H:i:s');
+		return true;
+	}
+	public function loadStores()
+	{
+		$store = $this->findAll(array('select'=>array('id','name','image')));
+		$store_arr = array();
+		if($store){
+			foreach($store as $key=>$val)
+			{
+				$store_arr[$val->id] = array(
+					'name' => $val->name,
+					'image'=>$val->image,
+				);
+			}
+		}
+		return $store_arr;
+	}
 }

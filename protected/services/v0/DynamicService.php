@@ -48,14 +48,71 @@ class DynamicService extends AppApiService
                     $ret = $this->notice('OK', 0, '暂无数据', []);
                 }
             } else {
+                $ret = $this->notice('ERR', 307, '暂无数据', []);
+            }
+
+        } else {
+            //$ret = $this->notice('ERR', 301, '缺少参数', []);
+            $obj = Dynamic::model()->findAll(array('order'=>'gmt_created desc'));
+            $dynamic = array();
+            if($obj)
+            {
+                //user
+                $users = User::model()->loadUsers();
+                $alliances = Alliance::model()->loadAlliances();
+                $stores = Store::model()->loadStores();
+                foreach ($obj as $key => $val) {
+                    if(!$val->dy_type){
+                        $user = $users[$val->dy_user];
+                        if($user){
+                            $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'] . $user['image'];
+                            $dynamic[$key]['nickname'] = $user['name'];
+                        }else{
+                            continue;
+                        }
+                    }else if($val->dy_type==1){
+                        $alliance = $alliances[$val->dy_user];
+                        if($alliance){
+                            $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'] . $alliance['image'];
+                            $dynamic[$key]['nickname'] = $alliance['name'];
+                        }else{
+                            continue;
+                        }
+                    }else if($val->dy_type==2){
+                        $store = $stores[$val->dy_user];
+                        if($store){
+                            $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'] . $store['image'];
+                            $dynamic[$key]['nickname'] = $store['name'];
+                        }else{
+                            continue;
+                        }
+                    }
+                    $image = explode(',', $val->dy_images);
+                    $images = array();
+                    if ($image) {
+                        foreach ($image as $k => $v) {
+                            $images[] = Yii::app()->params['qiniu']['host'] . $v;
+                        }
+                    }
+                    $dynamic[$key] = array(
+                        'id' => $val->dy_id,
+                        'content' => $val->dy_content,
+                        'images' => $images,
+                        'num' => $val->t_agree,
+                        'time' => $val->gmt_created,
+                    );
+
+                }
+                if ($dynamic) {
+                    $ret = $this->notice('OK', 0, '成功', $dynamic);
+                } else {
+                    $ret = $this->notice('OK', 0, '暂无数据', []);
+                }
+            }else{
                 $ret = $this->notice('OK', 0, '暂无数据', []);
             }
-        } else {
-            $ret = $this->notice('ERR', 301, '缺少参数', []);
         }
         return $ret;
-
-
     }
 
     public function getFocus($user_id = 0)

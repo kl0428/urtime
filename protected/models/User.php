@@ -129,7 +129,7 @@ class User extends CActiveRecord
 
 	public function loadUser($mobile='')
 	{
-		$user = $this->model()->find('mobile=:mobile',array(':mobile'=>$mobile));
+		$user = $this->find('mobile=:mobile',array(':mobile'=>$mobile));
 		return $user;
 	}
 
@@ -139,5 +139,21 @@ class User extends CActiveRecord
 			$this->gmt_created = date('Y-m-d H:i:s');
 		$this->gmt_modified = date('Y-m-d H:i:s');
 		return true;
+	}
+
+	public function loadUsers()
+	{
+		$user = $this->findAll(array('select'=>array('id','nickname','image')));
+		$user_arr = array();
+		if($user){
+			foreach($user as $key=>$val)
+			{
+				$user_arr[$val->id] = array(
+					'name' => $val->nickname,
+					'image'=>$val->image,
+				);
+			}
+		}
+		return $user_arr;
 	}
 }
