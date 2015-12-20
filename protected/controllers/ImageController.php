@@ -33,7 +33,7 @@ class ImageController extends Controller
     protected $app_version; //应用版本号
     protected $client; 		//客户端类型
     protected $net; 		//客户端网络状态
-    protected $params; 		//接口参数
+   // protected $params; 		//接口参数
 
     //接口编号数组
     protected $APP_KEYS = array(
