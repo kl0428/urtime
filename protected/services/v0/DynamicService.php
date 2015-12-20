@@ -40,6 +40,7 @@ class DynamicService extends AppApiService
                         );
                         $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'] . $user_info['image'];
                         $dynamic[$key]['nickname'] = $user_info['user_name'];
+                        $dynamic[$key]['url'] = 'www.baidu.com';
                     }
                 }
                 if ($dynamic) {
@@ -101,6 +102,7 @@ class DynamicService extends AppApiService
                         'num' => $val->t_agree,
                         'time' => $val->gmt_created,
                     );
+                    $dynamic[$key]['url'] = 'www.baidu.com';
 
                 }
                 if ($dynamic) {
