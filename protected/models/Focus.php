@@ -29,13 +29,13 @@ class Focus extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('focus_user, user_id', 'required'),
+			array('focus_user,focus_type， user_id', 'required'),
 			array('focus_user, user_id', 'numerical', 'integerOnly'=>true),
 			array('is_focus', 'length', 'max'=>1),
 			array('gmt_created, gmt_modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('focus_id, focus_user, user_id, is_focus, gmt_created, gmt_modified', 'safe', 'on'=>'search'),
+			array('focus_id, focus_type,focus_user, user_id, is_focus, gmt_created, gmt_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +58,7 @@ class Focus extends CActiveRecord
 	{
 		return array(
 			'focus_id' => '关注id',
+			'focus_type' =>'关注类型',//0-个人，1-联盟，2-店铺，3-其他
 			'focus_user' => '关注对象',
 			'user_id' => '关注者',
 			'is_focus' => '是否关注',//0-取消关注 1-关注

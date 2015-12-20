@@ -306,6 +306,8 @@ class AllianceService extends AppApiService
         return $ret;
     }
 
+    //关注对象
+
     public function getDetailDynamic($params = array())
     {
         extract($params);
