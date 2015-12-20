@@ -119,7 +119,7 @@
             </br>
             email:<input type="text" name="params[email]" value="123@qq.com">
             </br>
-            city:<input type="text" name="params[city]" value="23">
+            city:<input type="text" name="pagrams[city]" value="23">
             </br>
          <?php }elseif($data['action']=='user'){?>
             id:<input type="text" name="params[id]" value=""/> id(用户id)<br/>
