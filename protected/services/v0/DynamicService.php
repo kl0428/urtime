@@ -48,7 +48,7 @@ class DynamicService extends AppApiService
                     $ret = $this->notice('OK', 0, '暂无数据', []);
                 }
             } else {
-                $ret = $this->notice('ERR', 307, '暂无数据', []);
+                $ret = $this->notice('OK', 0, '暂无数据', []);
             }
 
         } else {
