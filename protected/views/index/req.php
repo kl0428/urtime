@@ -135,10 +135,12 @@
         <?php }elseif($data['action']=='sendSmsByCCP'){?>
             to:<input type="text" name="params[to]" value="18368113211"/> <br/>
             tempId:<input type="text" name="params[tempId]" value="1"/><br/>
+        <?php }elseif($data['action']=='emchat'){?>
+            channel:<input type="text" name="params[channel]" value="44"/> <br/>
         <?php }else{?>
-            image:<input type="file" name="upImage"/>
+            upImage:<input type="file" name="upImage"/>
             <br/>
-            image2:<input type="file" name="upImage2"/>
+            upImage2:<input type="file" name="upImage2"/>
         <?php }?>
         <?php //echo  CHtml::image('http://local.urtime.com/assets/images/heard/heard1446549220_7057.png');?>
         <br/>
