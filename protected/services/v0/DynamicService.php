@@ -40,6 +40,7 @@ class DynamicService extends AppApiService
                         );
                         $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'] . $user_info['image'];
                         $dynamic[$key]['nickname'] = $user_info['user_name'];
+                        $dynamic[$key]['url'] = 'www.baidu.com';
                     }
                 }
                 if ($dynamic) {
@@ -48,12 +49,12 @@ class DynamicService extends AppApiService
                     $ret = $this->notice('OK', 0, '暂无数据', []);
                 }
             } else {
-                $ret = $this->notice('ERR', 307, '暂无数据', []);
+                $ret = $this->notice('OK', 0, '暂无数据', []);
             }
 
         } else {
             //$ret = $this->notice('ERR', 301, '缺少参数', []);
-            $obj = Dynamic::model()->findAll(array('order'=>'gmt_created desc'));
+            $obj = Dynamic::model()->findAll(array('order'=>'gmt_created desc','limit'=>'100'));
             $dynamic = array();
             if($obj)
             {
@@ -101,6 +102,7 @@ class DynamicService extends AppApiService
                         'num' => $val->t_agree,
                         'time' => $val->gmt_created,
                     );
+                    $dynamic[$key]['url'] = 'www.baidu.com';
 
                 }
                 if ($dynamic) {
