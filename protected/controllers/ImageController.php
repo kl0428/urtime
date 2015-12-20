@@ -133,7 +133,7 @@ class ImageController extends Controller
             $uploadMgr = new UploadManager();
 
             //上传介绍图片
-            if ($_FILES['upImage']['name'] != null) {
+            //if ($_FILES['upImage']['name'] != null) {
                 $images = $this->setImageInformation($_FILES, $token, $uploadMgr);
                 if ($images) {
                     //$images_str = implode(',',$images);
@@ -142,9 +142,9 @@ class ImageController extends Controller
                 } else {
                     $this->notice('ERR', 307, $this->API_ERRORS[307]);
                 }
-            } else {
+            /*} else {
                 $this->notice('ERR', 301, $this->API_ERRORS[301]);
-            }
+            }*/
         }
 
     }
