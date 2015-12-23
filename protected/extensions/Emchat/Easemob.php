@@ -9,11 +9,11 @@
 	--------------------------------------------------
 */
 class Easemob{
-	private $client_id='YXA6pkUGANa6EeSUKBtg-ak7UQ';
-	private $client_secret='YXA6ZzJ5AzFGPAgYVuYFTtJs_bZnmNI';
-	private $org_name='easemob-demo';
-	private $app_name='chatdemoui';
-	private $url='https://a1.easemob.com/easemob-demo/chatdemoui/';
+	private $client_id='YXA6a0q8MKh4EeWRZgfF0WL3Cw';
+	private $client_secret='YXA6jhl_5JPCk88se8TXuLEbcrQ7d30';
+	private $org_name='wujiurtime';
+	private $app_name='urtime';
+	private $url='https://a1.easemob.com/wujiurtime/urtime/';
 //------------------------------------------------------用户体系	
 		/**
 	 * 初始化参数

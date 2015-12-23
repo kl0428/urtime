@@ -7,6 +7,184 @@
  */
 class EmchatService extends AppApiService
 {
+
+    //获取token
+    public function getEmchatToken($params=array())
+    {
+        extract($params);
+        Yii::import("application.extensions.Emchat.*");
+        $h=new Easemob();
+        $token=$h->getToken();
+        if($token){
+            $ret= $this->notice('OK',0,'成功',['token'=>$token]);
+        }else{
+            $ret=$this->notice('ERR',307,'获取失败',[]);
+        }
+        return $ret;
+    }
+
+    //创建单个用户
+    public function addEmchatUser($params=array())
+    {
+        extract($params);
+        Yii::import("application.extensions.Emchat.*");
+        $h=new Easemob();
+        if(isset($name)&&$name){
+            $pwd = isset($pwd)?$pwd:'123456';
+            $res=$h->createUser($name,$pwd);
+        }
+        if($res){
+            $ret= $this->notice('OK',0,'成功',$res);
+        }else{
+            $ret=$this->notice('ERR',307,'获取失败',[]);
+        }
+        return $ret;
+    }
+
+    //创建群组
+    public function createEmchatGroup($params=array())
+    {
+        extract($params);
+        if(isset($groupname)&&$groupname&&isset($owner)&&$owner){
+            Yii::import("application.extensions.Emchat.*");
+            $h=new Easemob();
+            $options ['groupname'] = $groupname;
+            $options ['desc'] = (isset($desc)&&$desc)?$desc:"this is a love group";
+            $options ['public'] = true;
+            $options ['owner'] = $owner;
+            $group = $h->createGroup($options);
+            if($groupid=$group['data']['groupid']){
+                $groups = array(
+                    'name'=>$groupname,
+                    'owner'=>$owner,
+                    'desc'=>(isset($desc)&&$desc)?$desc:"this is a love group",
+                    'emchat_id'=>$groupid
+                );
+                $emchat = new Emchat();
+                $emchat->attributes = $groups;
+                if($emchat->validate()&&$emchat->save()){
+                    $ret = $this->notice('OK',0,'成功',$groups);
+                }else{
+                    $ret = $this->notice('ERR',307,'操作失败',$emchat->getErrors());
+                }
+            }else{
+                $ret = $this->notice('ERR',306,'操作失败',$group);
+            }
+
+        }else{
+            $ret = $this->notice('ERR',301,'缺少参数',[]);
+        }
+       return $ret;
+
+    }
+
+    //修改群组
+    public function changeEmchatGroup($params=array())
+    {
+        extract($params);
+        if(isset($id)&&$id){
+            Yii::import("application.extensions.Emchat.*");
+            $h=new Easemob();
+            $model = new Emchat();
+            $emchat = $model->findByPk($id);
+            $emchat_arr =array();
+            $emchat_group = array();
+            $emchat_id = $emchat->emchat_id;
+            if(isset($name)&&$name)
+            {
+                $emchat_arr['name']=$name;
+                $emchat_group['groupname']=$name;
+            }
+            if(isset($desc)&&$desc)
+            {
+                $emchat_arr['desc']=$desc;
+                $emchat_group['description']=$desc;
+            }
+            $emchat_group['maxusers'] = 300;
+            if($emchat_arr){
+                $emchat->attributes=$emchat_arr;
+                if($emchat->validate()&&$emchat->save()){
+                    $res =$h->modifyGroupInfo($emchat_id,$emchat_group);
+                    $ret = $this->notice('OK',0,'成功',$res);
+                }else{
+                    $ret = $this->notice('ERR',307,'操作失败',$emchat->getErrors());
+                }
+            }else{
+                $ret = $this->notice('ERR',304,'没有可修改数据',[]);
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少参数',[]);
+        }
+          return $ret;
+    }
+
+    //添加群成员
+    public function emchatGroupUsers($params=array())
+    {
+        extract($params);
+        if(isset($group_id)&&$group_id&&isset($type)&&$type)
+        {
+            Yii::import("application.extensions.Emchat.*");
+            $h=new Easemob();
+            if($type=='add' && isset($username)&&$username){
+                $usernames['usernames']=array($username);
+                $res = $h->addGroupMembers($group_id,$usernames);
+                if($res['data']){
+                    $ret= $this->notice('OK',0,'成功',$res['data']);
+                }else{
+                    $ret= $this->notice('ERR',306,'获取数据失败',$res);
+                }
+            }else if($type=='delete'&&isset($username)&&$username)
+            {
+                $usernames['usernames']=array($username);
+               $res =  $h->deleteGroupMembers($group_id,$usernames);
+                if($res['data']){
+                    $ret= $this->notice('OK',0,'成功',$res['data']);
+                }else{
+                    $ret= $this->notice('ERR',306,'获取数据失败',$res);
+                };
+            }else if($type=='get')
+            {
+                $res =  $h->getGroupUsers($group_id);
+                if($res['data']){
+                    $ret= $this->notice('OK',0,'成功',$res['data']);
+                }else{
+                    $ret= $this->notice('ERR',306,'获取数据失败',$res);
+                }
+            }
+        }else{
+            $ret =$this->notice('ERR',301,'缺少参数',[]);
+        }
+        return $ret;
+    }
+
+    public function getEmchatList($params=array()){
+         extract($params);
+        $model = Emchat::model()->findAll();
+        $emchats = array();
+        if($model)
+        {
+            foreach($model as $key=>$val)
+            {
+                $emchats[]=array(
+                    'id'=>$val->id,
+                    'name'=>$val->name,
+                    'desc'=>$val->desc,
+                    'group_id'=>$val->emchat_id,
+                    'created'=>$val->gmt_created,
+                );
+            }
+            $ret= $this->notice('OK',0,'成功',$emchats);
+
+        }else{
+            $ret= $this->notice('ERR',306,'获取数据失败',[]);
+        }
+        return $ret;
+    }
+
+
+
+
     public function emchat($params = array())
     {
         extract($params);
@@ -168,7 +346,6 @@ class EmchatService extends AppApiService
                 var_dump($h->sendVedio($filePath,$from="admin",$target_type,$target,$filename,$length,$thumb,$thumb_secret,$ext));
                 break;
             case 40://发文件消息
-
                 break;
             case 41://获取app中的所有群组-----不分页（默认返回10个）
                 var_dump($h->getGroups());
@@ -185,7 +362,7 @@ class EmchatService extends AppApiService
                 $options ['groupname'] = "group001";
                 $options ['desc'] = "this is a love group";
                 $options ['public'] = true;
-                $options ['owner'] = "zhangsan";
+                $options ['owner'] = "zhaoqing";
                 $options['members']=Array("fengpei","lisi");
                 var_dump($h->createGroup($options));
                 break;

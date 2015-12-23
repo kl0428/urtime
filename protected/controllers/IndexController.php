@@ -60,6 +60,12 @@ class IndexController extends Controller
         'sendSmsByCCP'          =>'SmsService',//运通讯
         'emchat'                =>'EmchatService',//环信通讯
         'focusDynamic'          =>'DynamicService',//获取关注动态
+        'getEmchatToken'        =>'EmchatService',//环信聊天
+        'addEmchatUser'         =>'EmchatService',//环信单个用户添加
+        'createEmchatGroup'     =>'EmchatService',//创建群组
+        'changeEmchatGroup'     =>'EmchatService',//修改群组
+        'emchatGroupUsers'      =>'EmchatService',//群组用户操作
+        'getEmchatList'         =>'EmchatService',//获取群组列表
     );
 
     public function init()

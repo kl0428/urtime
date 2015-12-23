@@ -29,6 +29,35 @@
             mobile:<input type="text" name="params[mobile]" value="18368113211">
             </br>
             code:<input type="text" name="params[code]" value="654321">
+        <?php }elseif($data['action']=='getEmchatToken'){?>
+              token:<input type="text" name="params[token]"  value="urtime" />
+              </br>
+        <?php }elseif($data['action']=='addEmchatUser'){?>
+            name:<input type="text" name="params[name]"  value="test" />
+            </br>
+            pwd:<input type="text" name="params[pwd]"  value="123456" />
+            </br>
+        <?php }elseif($data['action']=='createEmchatGroup'){?>
+            groupname:<input type="text" name="params[groupname]"  value="test" />
+            </br>
+            owner:<input type="text" name="params[owner]"  value="zhaoqing" />
+            </br>
+            desc:<input type="text" name="params[desc]" value="测试群"/>
+        <?php }elseif($data['action']=='changeEmchatGroup'){?>
+            id:<input type="text" name="params[id]"  value="1" />
+            </br>
+            desc:<input type="text" name="params[desc]"  value="测试群2" />
+            </br>
+            name:<input type="text" name="params[name]" value="测试群"/>
+        <?php }elseif($data['action']=='emchatGroupUsers'){?>
+            group_id:<input type="text" name="params[group_id]"  value="142612998723207616" />
+            </br>
+            type:<input type="text" name="params[type]"  value="add" />添加:add删除delete获取所有 get
+            </br>
+            username:<input type="text" name="params[username]" value="test"/>
+        <?php }elseif($data['action']=='getEmchatList'){?>
+            type:<input type="text" name="params[type]"  value="group" />
+            </br>
         <?php }elseif($data['action']=='login'){?>
             username:<input type="text" name="params[username]"  value="18368113211" />
             </br>
