@@ -314,14 +314,12 @@ class AllianceService extends AppApiService
         if(isset($id)&&$id){
 
 
-                $obj = Dynamic::model()->findAll(array('condition'=>'dy_id=:id',
+                $obj = Dynamic::model()->find(array('condition'=>'dy_id=:id',
                     'params'=>array(':id'=>$id)
                 ));
 
             $dynamic = array();
             if($obj){
-                    var_dump($obj);
-                    exit;
                     $image = explode(',',$obj->dy_images);
                     $images = array();
                     if($image) {
