@@ -323,8 +323,10 @@ class AllianceService extends AppApiService
 
                     $image = explode(',',$obj->dy_images);
                     $images = array();
-                    foreach($image as $key=>$val){
-                        $images[] = Yii::app()->params['qiniu']['host'].$val;
+                    if($image) {
+                        foreach ($image as $key => $val) {
+                            $images[] = Yii::app()->params['qiniu']['host'] . $val;
+                        }
                     }
                     $dynamic = array(
                         'id'=>$obj->dy_id,
