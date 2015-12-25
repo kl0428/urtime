@@ -32,14 +32,36 @@ class AllianceService extends AppApiService
 
         if(isset($user_id)&&$user_id){
             $alliance['leader'] = $user_id;
+            $owner = User::model()->loadUserByPk($user_id);
             $model->attributes = $alliance;
             if($model->validate() && $model->save())
             {
                 $id = $model->getPrimaryKey();
-                $result = array(
-                    'id' => $id,
-                );
-                $ret = $this->notice('OK',0,'成功',$result);
+                Yii::import("application.extensions.Emchat.*");
+                $h=new Easemob();
+                $options ['groupname'] = $name;
+                $options ['desc'] = (isset($notice)&&$notice)?$notice:"this is a love group";
+                $options ['public'] = true;
+                $options ['owner'] = $owner;
+                $group = $h->createGroup($options);
+                if($groupid=$group['data']['groupid']) {
+                    $groups = array(
+                        'name' => $name,
+                        'owner' => $owner,
+                        'desc' => (isset($desc) && $desc) ? $desc : "this is a love group",
+                        'emchat_id' => $groupid,
+                        'id' => $id,
+                    );
+                    $emchat = new Emchat();
+                    $emchat->attributes = $groups;
+                    if ($emchat->validate() && $emchat->save()) {
+                        $ret = $this->notice('OK', 0, '成功', $groups);
+                    } else {
+                        $ret = $this->notice('ERR', 307, '操作失败', $emchat->getErrors());
+                    }
+                }else{
+                    $res = $this->notice('ERR',305,'环信数据保存失败',$model->getErrors());
+                }
             }else{
                 $res = $this->notice('ERR',305,'数据保存失败',$model->getErrors());
             }

@@ -156,4 +156,19 @@ class User extends CActiveRecord
 		}
 		return $user_arr;
 	}
+
+	public function loadUserByPk($user_id=0)
+	{
+		$user = $this->findByPk($user_id);
+		$user_arr = array();
+		if($user){
+
+				$user_arr= array(
+					'name' => $user->nickname,
+					'image'=>$user->image,
+				);
+
+		}
+		return $user_arr;
+	}
 }
