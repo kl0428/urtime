@@ -31,12 +31,12 @@ class Emchat extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, emchat_id, owner, desc', 'required'),
-			array('name, emchat_id, owner', 'length', 'max'=>64),
+			array('name, emchat_id,alliance_id owner', 'length', 'max'=>64),
 			array('desc', 'length', 'max'=>250),
 			array('gmt_created, gmt_modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, emchat_id, owner, desc, gmt_created, gmt_modified', 'safe', 'on'=>'search'),
+			array('id, name, emchat_id,alliance_id owner, desc, gmt_created, gmt_modified', 'safe', 'on'=>'search'),
 		);
 	}
 

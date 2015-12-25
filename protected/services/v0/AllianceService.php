@@ -50,7 +50,7 @@ class AllianceService extends AppApiService
                             'owner' => $owner,
                             'desc' => (isset($desc) && $desc) ? $desc : "this is a love group",
                             'emchat_id' => $groupid,
-                            'id' => $id,
+                            'alliance_id' => $id,
                         );
                         $emchat = new Emchat();
                         $emchat->attributes = $groups;
