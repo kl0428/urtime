@@ -334,13 +334,13 @@ class AllianceService extends AppApiService
                         'num' =>$obj->t_agree,
                         'time' =>$obj->gmt_created,
                     );
-                if($obj->type && $obj->dy_user){
-                    if(!$obj->type){
+                if($obj->dy_type && $obj->dy_user){
+                    if(!$obj->dy_type){
                         $user = User::model()->findByPk($obj->dy_user);
                         $dynamic['logo'] = Yii::app()->params['qiniu']['host'].$user->image;
                         $dynamic['nickname'] = $user->nickname;
                     }
-                }elseif($obj->type==1){
+                }elseif($obj->dy_type==1){
                     $alliance = Alliance::model()->findByPk($obj->dy_user);
                     $dynamic['logo'] = Yii::app()->params['qiniu']['host'].$alliance->image;
                     $dynamic['nickname'] = $alliance->name;
