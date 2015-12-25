@@ -320,7 +320,8 @@ class AllianceService extends AppApiService
 
             $dynamic = array();
             if($obj){
-
+                    var_dump($obj);
+                    exit;
                     $image = explode(',',$obj->dy_images);
                     $images = array();
                     if($image) {
