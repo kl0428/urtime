@@ -41,7 +41,7 @@ class User extends CActiveRecord
 			array('mobile', 'length', 'max'=>11),
 			array('image', 'length', 'max'=>64),
 			array('province, city', 'length', 'max'=>6),
-			array('gmt_created,uuid ,gmt_modified', 'safe'),
+			array('gmt_created,uuid,gmt_modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, nickname, username,uuid, mobile, email, sex, image, province, city, gmt_created, gmt_modified, password', 'safe', 'on'=>'search'),
