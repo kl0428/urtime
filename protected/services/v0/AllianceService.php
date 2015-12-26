@@ -310,8 +310,6 @@ class AllianceService extends AppApiService
                         'num' =>$val->dy_agree,
                         'time' =>$val->gmt_created,
                     );
-                    print_r($val->user);
-                    exit;
                     if(!$type){
                         $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'].$val->user->image;
                         $dynamic[$key]['nickname'] = $val->user->nickname;
@@ -320,6 +318,8 @@ class AllianceService extends AppApiService
                         $dynamic[$key]['nickname'] = $val->alliance->name;
                     }
                     $dynamic[$key]['url'] = 'www.baidu.com';
+                    print_r($dynamic);
+                    exit;
                 }
                 $ret = $this->notice('OK',0,'成功',$dynamic);
             }else{
