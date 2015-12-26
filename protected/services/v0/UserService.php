@@ -24,6 +24,13 @@ class UserService extends AppApiService
                 //查询手机是否注册过
                 $user = User::model()->exists(array('condition' => 'mobile=:mobile', 'params' => array(':mobile' => isset($mobile) ? $mobile : 0)));
                 if (!$user) {
+                    Yii::import("application.extensions.Emchat.*");
+                    $h=new Easemob();
+                    if(isset($nickname)&&$nickname){
+                        $pwd = isset($password)?$password:'123456';
+                        $res=$h->createUser($nickname,$pwd);
+                    }
+
                     $result = array(
                         'nickname' => $nickname,
                         'sex' => isset($sex) ? $sex : 0,
@@ -31,6 +38,9 @@ class UserService extends AppApiService
                         'image' => isset($image) ? $image : '',
                         'password' => md5($mobile . md5($password)),
                     );
+                    if($uuid=$res['enities']['uuid']){
+                        $result['uuid'] = $uuid;
+                    }
                     $model = new User();
                     $model->attributes = $result;
                     if ($model->validate() && $model->save()) {
@@ -72,7 +82,8 @@ class UserService extends AppApiService
                         'id' => $user->id,
                         'nickname' => $user->nickname,
                         'mobile' => $user->mobile,
-                        'username' => $user->username
+                        'username' => $user->username,
+                        'uuid'  =>$user->uuid,
                     );
                     $ret = $this->notice('OK', 0, '', $result);
                 } else {
@@ -181,6 +192,7 @@ class UserService extends AppApiService
                     $user['image']=Yii::app()->params['qiniu']['host'].$model->image;
                     $user['province'] = $model->province;
                     $user['city'] = $model->city;
+                    $user['uuid'] = $model->uuid;
                 if($user){
                     $ret = $this->notice('OK',0,'查询成功',$user);
                 }else{
