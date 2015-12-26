@@ -39,7 +39,7 @@ class UserService extends AppApiService
                         'image' => isset($image) ? $image : '',
                         'password' => md5($mobile . md5($password)),
                     );
-                    if($uuid=$res['entities']['uuid']){
+                    if($uuid=$res['entities'][0]['uuid']){
                         $result['uuid'] = $uuid;
                     }
                     $model = new User();
@@ -49,6 +49,7 @@ class UserService extends AppApiService
                         $res = array(
                             'id' => $id,
                             'nickname' => $nickname,
+                            'uuid' =>$uuid
                         );
                         $ret = $this->notice('OK', 0, '成功', $res);
                     } else {

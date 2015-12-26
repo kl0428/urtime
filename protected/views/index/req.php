@@ -28,7 +28,7 @@
             </br>
             mobile:<input type="text" name="params[mobile]" value="18368113211">
             </br>
-            code:<input type="text" name="params[code]" value="654321">
+            code:<input type="text" name="params[code]" value="FqyYj8">
         <?php }elseif($data['action']=='getEmchatToken'){?>
               token:<input type="text" name="params[token]"  value="urtime" />
               </br>
