@@ -26,9 +26,10 @@ class UserService extends AppApiService
                 if (!$user) {
                     Yii::import("application.extensions.Emchat.*");
                     $h=new Easemob();
-                    if(isset($nickname)&&$nickname){
+                    if(isset($mobile)&&$mobile){
+                        $ur_name = 'ur_'.$mobile;
                         $pwd = isset($password)?$password:'123456';
-                        $res=$h->createUser($nickname,$pwd);
+                        $res=$h->createUser($ur_name,$pwd);
                     }
 
                     $result = array(
