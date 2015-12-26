@@ -310,7 +310,7 @@ class AllianceService extends AppApiService
                         'num' =>$val->dy_agree,
                         'time' =>$val->gmt_created,
                     );
-                    print_r($dynamic);
+                    print_r($val->user);
                     exit;
                     if(!$type){
                         $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'].$val->user->image;
