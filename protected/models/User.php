@@ -166,6 +166,7 @@ class User extends CActiveRecord
 				$user_arr= array(
 					'name' => $user->nickname,
 					'image'=>$user->image,
+					'mobile'=>$user->mobile,
 				);
 
 		}

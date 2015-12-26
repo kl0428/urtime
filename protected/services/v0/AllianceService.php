@@ -33,7 +33,7 @@ class AllianceService extends AppApiService
         if(isset($user_id)&&$user_id){
             $alliance['leader'] = $user_id;
             $owner_arr = User::model()->loadUserByPk($user_id);
-            if($owner=$owner_arr['name']) {
+            if($owner_mobile=$owner_arr['mobile']) {
                 $model->attributes = $alliance;
                 if ($model->validate() && $model->save()) {
                     $id = $model->getPrimaryKey();
@@ -42,12 +42,12 @@ class AllianceService extends AppApiService
                     $options ['groupname'] = $name;
                     $options ['desc'] = (isset($notice) && $notice) ? $notice : "this is a love group";
                     $options ['public'] = true;
-                    $options ['owner'] = $owner;
+                    $options ['owner'] = 'ur_'.$owner_mobile;
                     $group = $h->createGroup($options);
                     if ($groupid = $group['data']['groupid']) {
                         $groups = array(
                             'name' => $name,
-                            'owner' => $owner,
+                            'owner' => 'ur_'.$owner_mobile,
                             'desc' => (isset($desc) && $desc) ? $desc : "this is a love group",
                             'emchat_id' => $groupid,
                             'alliance_id' => $id,
