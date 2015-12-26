@@ -309,7 +309,7 @@ class AllianceService extends AppApiService
                         'id'=>$val->dy_id,
                         'content'=>$val->dy_content,
                         'images'=>$images,
-                        'num' =>$val->t_agree,
+                        'num' =>$val->dy_agree,
                         'time' =>$val->gmt_created,
                     );
                     if(!$type){
@@ -356,7 +356,7 @@ class AllianceService extends AppApiService
                         'id'=>$obj->dy_id,
                         'content'=>$obj->dy_content,
                         'images'=>$images,
-                        'num' =>$obj->t_agree,
+                        'num' =>$obj->dy_agree,
                         'time' =>$obj->gmt_created,
                     );
                 if($obj->dy_type && $obj->dy_user){
@@ -410,7 +410,7 @@ class AllianceService extends AppApiService
         if(isset($id)&&$id){
             $model = Dynamic::model()->findByPk($id);
             if($model){
-                $user = array('t_agree'=>$model->t_agree+1);
+                $user = array('dy_agree'=>$model->dy_agree+1);
                 $model->attributes = $user;
                 if($model->save()&&$model->validate()){
                     $ret = $this->notice('OK',0,'成功',[]);

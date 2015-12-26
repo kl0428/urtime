@@ -33,10 +33,10 @@ class Dynamic extends CActiveRecord
 			array('dy_user', 'required'),
 			array('dy_user', 'numerical', 'integerOnly'=>true),
 			array('dy_type', 'length', 'max'=>1),
-			array('dy_content,t_agree, dy_images, gmt_created, gmt_modified', 'safe'),
+			array('dy_content,dy_agree, dy_images, gmt_created, gmt_modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('dy_id, dy_type,t_agree, dy_user, dy_content, dy_images, gmt_created, gmt_modified', 'safe', 'on'=>'search'),
+			array('dy_id, dy_type,dy_agree, dy_user, dy_content, dy_images, gmt_created, gmt_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,7 +66,7 @@ class Dynamic extends CActiveRecord
 			'dy_content' => '动态内容',
 			'dy_images' => '动态图片',
 			'dy_num' =>'排序',
-			't_agree' =>'点赞数',
+			'dy_agree' =>'点赞数',
 			'gmt_created' => '创建时间',
 			'gmt_modified' => '更新时间',
 		);
