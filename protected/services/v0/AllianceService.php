@@ -294,10 +294,14 @@ class AllianceService extends AppApiService
 
             $dynamic = array();
             if($obj){
-                print_r($obj);
-                exit;
                 foreach($obj as $key=>$val)
                 {
+                    if(!$type && !$val->user){
+                        continue;
+                    }elseif($type == 1&&$val->alliance)
+                    {
+                        continue;
+                    }
                     $image = explode(',',$val->dy_images);
                     $images = array();
                     if($image){
@@ -320,10 +324,8 @@ class AllianceService extends AppApiService
                         $dynamic[$key]['nickname'] = $val->alliance->name;
                     }
                     $dynamic[$key]['url'] = 'www.baidu.com';
-                    print_r($dynamic);
                 }
 
-                exit;
                 $ret = $this->notice('OK',0,'成功',$dynamic);
             }else{
                 $ret = $this->notice('OK',0,'暂无数据',[]);
