@@ -318,9 +318,9 @@ class AllianceService extends AppApiService
                         $dynamic[$key]['nickname'] = $val->alliance->name;
                     }
                     $dynamic[$key]['url'] = 'www.baidu.com';
-                    print_r($dynamic);
-                    exit;
                 }
+                print_r($dynamic);
+                exit;
                 $ret = $this->notice('OK',0,'成功',$dynamic);
             }else{
                 $ret = $this->notice('OK',0,'暂无数据',[]);
