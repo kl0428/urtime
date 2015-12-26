@@ -86,13 +86,13 @@
             name:<input type="text" name="params[name]" value="健身"/> <br/>
             center_name:<input type="text" name="params[center_name]" value="健身中心"> <br/>
             image:<input type="text" name="params[image]" value="http://local.urtime.com/assets/images/heard/heard1446549220_7057.png"> <br/>
-            leader:<input type="text" name="params[user_id]" value="6"> <br/>
+            user_id:<input type="text" name="params[user_id]" value="6"> <br/>
             <!--name:<input type="text" name="params[name]" value="健身"/> <br/>
             alliance:<input type="text" name="params[alliance_id]" value="1"><br/>-->
             <!--notice:<input type="text" name="params[notice]" value="2015-11-25日火星救援上映"><br/>-->
             <!--leader:<input type="text" name="params[user_id]" value="1">-->
         <?php }elseif($data['action']=='getAlliances'){?>
-            alliance:<input type="text" name="params[alliance_id]" value="1"><br/>
+            alliance_id:<input type="text" name="params[alliance_id]" value="1"><br/>
 
         <?php }elseif($data['action']=='cities'){?>
 
