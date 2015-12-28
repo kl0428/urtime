@@ -364,6 +364,12 @@ class AllianceService extends AppApiService
                         'num' =>$obj->dy_agree,
                         'time' =>$obj->gmt_created,
                     );
+                $cache_ext = Yii::app()->cache_ext;
+                if(isset($user_id)&&$user_id&&$cache_ext->hget('Dynamic.'.$id,$user_id)){
+                    $dynamic['is_agree'] = 1;
+                }else{
+                    $dynamic['is_agree'] = 0;
+                }
                 if($obj->dy_type && $obj->dy_user){
                     if(!$obj->dy_type){
                         $user = User::model()->findByPk($obj->dy_user);
@@ -412,18 +418,24 @@ class AllianceService extends AppApiService
 
     public function agree($params = array()){
         extract($params);
-        if(isset($id)&&$id){
-            $model = Dynamic::model()->findByPk($id);
-            if($model){
-                $user = array('dy_agree'=>$model->dy_agree+1);
-                $model->attributes = $user;
-                if($model->save()&&$model->validate()){
-                    $ret = $this->notice('OK',0,'成功',[]);
+        if(isset($id)&&$id&&isset($user_id)&&$user_id){
+            $cache_ext = Yii::app()->cache_ext;
+            if(!$cache_ext->hget('Dynamic.'.$id,$user_id)){
+                $model = Dynamic::model()->findByPk($id);
+                if($model){
+                    $user = array('dy_agree'=>$model->dy_agree+1);
+                    $model->attributes = $user;
+                    if($model->save()&&$model->validate()){
+                        $cache_ext->hset('Dynamic.'.$id,$user_id,1);
+                        $ret = $this->notice('OK',0,'成功',[]);
+                    }else{
+                        $ret = $this->notice('ERR',307,'操作数据错误',[]);
+                    }
                 }else{
-                    $ret = $this->notice('ERR',307,'操作数据错误',[]);
+                    $ret = $this->notice('ERR',306,'获取不到数据',[]);
                 }
             }else{
-                $ret = $this->notice('ERR',306,'获取不到数据',[]);
+                $ret = $this->notice('ERR',305,'已经点赞过了',[]);
             }
         }else{
             $ret = $this->notice('ERR',301,'缺少关键参数',[]);

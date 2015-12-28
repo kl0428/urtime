@@ -35,7 +35,7 @@ class DynamicService extends AppApiService
                             'id' => $val->dy_id,
                             'content' => $val->dy_content,
                             'images' => $images,
-                            'num' => $val->t_agree,
+                            'num' => $val->dy_agree,
                             'time' => $val->gmt_created,
                         );
                         $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'] . $user_info['image'];
@@ -99,7 +99,7 @@ class DynamicService extends AppApiService
                         'id' => $val->dy_id,
                         'content' => $val->dy_content,
                         'images' => $images,
-                        'num' => $val->t_agree,
+                        'num' => $val->dy_agree,
                         'time' => $val->gmt_created,
                     );
                     $dynamic[$key]['url'] = 'www.baidu.com';

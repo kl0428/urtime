@@ -135,6 +135,7 @@
             id:<input type="text" name="params[id]" value=""/> 动态id(必填)<br/>
         <?php }elseif($data['action']=='getDetailDynamic'){?>
             id:<input type="text" name="params[id]" value=""/> id(动态id)<br/>
+            user_id:<input type="text" name="params[user_id]" value="">当前用户id<br/>
         <?php }elseif($data['action']=='update'){?>
             id:<input type="text" name="params[id]" value=""/> id(用户)<br/>
             nickname:<input type="text" name="params[nickname]" value="png"/>
@@ -157,6 +158,7 @@
             id:<input type="text" name="params[id]" value=""/> id(用户id)<br/>
         <?php }elseif($data['action']=='agree'){?>
             id:<input type="text" name="params[id]" value=""/> id(动态id)<br/>
+            user_id:<input type="text" name="params[user_id]" value="">当前用户id<br/>
         <?php }elseif($data['action']=='addComment'){?>
             dynamic_id:<input type="text" name="params[dynamic_id]" value=""/> id(动态id)<br/>
             user_id:<input type="text" name="params[user_id]" value=""/> id(用户id)<br/>
