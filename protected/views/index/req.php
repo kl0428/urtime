@@ -29,6 +29,9 @@
             mobile:<input type="text" name="params[mobile]" value="18368113211">
             </br>
             code:<input type="text" name="params[code]" value="FqyYj8">
+        <?php }elseif($data['action']=='findEmchatGroup'){?>
+            name:<input type="text" name="params[name]"  value="test" />
+            </br>
         <?php }elseif($data['action']=='getEmchatToken'){?>
               token:<input type="text" name="params[token]"  value="urtime" />
               </br>

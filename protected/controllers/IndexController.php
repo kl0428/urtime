@@ -66,6 +66,7 @@ class IndexController extends Controller
         'changeEmchatGroup'     =>'EmchatService',//修改群组
         'emchatGroupUsers'      =>'EmchatService',//群组用户操作
         'getEmchatList'         =>'EmchatService',//获取群组列表
+        'findEmchatGroup'       =>'EmchatService',//查找组群
     );
 
     public function init()

@@ -48,7 +48,7 @@ class AllianceService extends AppApiService
                         $groups = array(
                             'name' => $name,
                             'owner' => 'ur_'.$owner_mobile,
-                            'desc' => (isset($desc) && $desc) ? $desc : "this is a love group",
+                            'desc' => (isset($notice) && $notice) ? $notice : "this is a love group",
                             'emchat_id' => $groupid,
                             'alliance_id' => $id,
                         );
