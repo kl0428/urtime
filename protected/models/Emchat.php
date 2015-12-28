@@ -116,4 +116,26 @@ class Emchat extends CActiveRecord
 		$this->gmt_modified = date('Y-m-d H:i:s');
 		return true;
 	}
+
+
+	public function findEmchat($find=''){
+		$sql = "select * from `t_emchat` where `name` like '%".$find."%' or `desc` like '%".$find."%' or `owner` like '%".$find."%' order by gmt_created desc";
+		$command = Yii::app()->db->createCommand($sql);
+		$res = $command->queryAll();
+		$data = array();
+		if($res){
+			foreach($res as $key=>$val)
+			{
+				$data[] = array(
+					'id'=>$val['id'],
+					'name'=>$val['name'],
+					'desc'=>$val['desc'],
+					'emchat_id'=>$val['emchat_id'],
+					'alliance_id'=>$val['alliance_id'],
+					'created'=>$val['gmt_created'],
+				);
+			}
+		}
+		return $data;
+	}
 }

@@ -118,6 +118,22 @@ class EmchatService extends AppApiService
           return $ret;
     }
 
+    //查找组群
+    public function findEmchatGroup($params=array()){
+        extract($params);
+        if(isset($name)&&$name){
+            $emchat = Emchat::model()->findEmchat($name);
+            if($emchat){
+                $ret = $this->notice('OK',0,'成功',$emchat);
+            }else{
+                $ret = $this->notice('OK',0,'没有查到相关数据',[]);
+            }
+        }else{
+            $ret = $this->notice('ERR',301,'缺少参数',[]);
+        }
+        return $ret;
+    }
+
     //添加群成员
     public function emchatGroupUsers($params=array())
     {
