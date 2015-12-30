@@ -83,8 +83,7 @@ class AllianceService extends AppApiService
         {
 
             $alliance = Alliance::model()->getAlliance($alliance_id);
-            print_r($alliance);
-            exit;
+
             if($alliance)
             {
                 $result = $alliance;
