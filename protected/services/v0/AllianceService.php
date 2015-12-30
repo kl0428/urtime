@@ -79,6 +79,8 @@ class AllianceService extends AppApiService
     public function getAlliances($params=array())
     {
         extract($params);
+        print_r($params);
+        exit;
         if(isset($alliance_id) && $alliance_id)
         {
 
