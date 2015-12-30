@@ -102,7 +102,7 @@ class AllianceService extends AppApiService
                         'id'=>$val->id,
                         'name'=>$val->name,
                         'leader'=>$val->leader,
-                        'leader_name'=>$val->user->nickname,
+                        'leader_name'=>$val->user?$val->user->nickname:'-',//$val->user->nickname,
                         'type'=>$val->type,
                         'center_name'=>$val->center_name,
                         'notice'=>$val->notice,
