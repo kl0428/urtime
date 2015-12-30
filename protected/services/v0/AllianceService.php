@@ -100,6 +100,7 @@ class AllianceService extends AppApiService
                 {
                     $alliance[] =array(
                         'id'=>$val->id,
+                        'logo'=>$val->image,
                         'name'=>$val->name,
                         'leader'=>$val->leader,
                         'leader_name'=>$val->user?$val->user->nickname:'-',//$val->user->nickname,
