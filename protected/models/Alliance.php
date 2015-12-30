@@ -133,15 +133,12 @@ class Alliance extends CActiveRecord
 		$criteria->compare('t.id',$alliance_id);
 		$criteria->with='user';
 		$obj = $this->find($criteria);
-		print_r($alliance_id);
-		print_r($obj);
-		exit;
 		if($obj){
 			$alliance = array(
 				'id'=>$obj->id,
 				'name'=>$obj->name,
 				'leader'=>$obj->leader,
-				'leader_name'=>$obj->user->nickname,
+				'leader_name'=>$obj->user?$obj->user->nickname:'-',
 				'type'=>$obj->type,
 				'center_name'=>$obj->center_name,
 				'notice'=>$obj->notice,
