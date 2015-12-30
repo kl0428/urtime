@@ -129,12 +129,13 @@ class Alliance extends CActiveRecord
 
 	public function getAlliance($alliance_id=0)
 	{
-		print_r($alliance_id);
-		exit;
 		$criteria = new CDbCriteria;
 		$criteria->compare('t.id',$alliance_id);
 		$criteria->with='user';
 		$obj = $this->find($criteria);
+		print_r($alliance_id);
+		print_r($obj);
+		exit;
 		if($obj){
 			$alliance = array(
 				'id'=>$obj->id,
