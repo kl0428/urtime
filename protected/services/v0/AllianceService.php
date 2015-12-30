@@ -292,6 +292,7 @@ class AllianceService extends AppApiService
                 }
             }
 
+
             $dynamic = array();
             if($obj){
                 foreach($obj as $key=>$val)
@@ -316,6 +317,14 @@ class AllianceService extends AppApiService
                         'num' =>$val->dy_agree,
                         'time' =>$val->gmt_created,
                     );
+                    if($val->dy_id&&isset($user_id)&&$user_id){
+                        $cache_ext = Yii::app()->cache_ext;
+                        if(isset($user_id)&&$user_id&&$cache_ext->hget('Dynamic.'.$val->dy_id,$user_id)){
+                            $dynamic[$key]['is_agree'] = 1;
+                        }else{
+                            $dynamic[$key]['is_agree'] = 0;
+                        }
+                    }
                     if(!$type){
                         $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'].$val->user->image;
                         $dynamic[$key]['nickname'] = $val->user->nickname;
