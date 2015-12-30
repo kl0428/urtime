@@ -136,6 +136,7 @@ class Alliance extends CActiveRecord
 		if($obj){
 			$alliance = array(
 				'id'=>$obj->id,
+				'logo'=>$obj->image,
 				'name'=>$obj->name,
 				'leader'=>$obj->leader,
 				'leader_name'=>$obj->user?$obj->user->nickname:'-',
