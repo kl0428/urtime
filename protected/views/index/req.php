@@ -131,6 +131,7 @@
         <?php }elseif($data['action']=='getDynamic'){?>
             id:<input type="text" name="params[id]" value=""/> id(传入获取指定联盟动态/空获取所有)<br/>
             type:<input type="text" name="params[type]" value=""/> 动态类型 0-个人 1-联盟 2-店铺 3-其他(必填)<br/>
+            user_id:<input type="text" name="params[user_id]" value=""/>user_id<br/>
         <?php }elseif($data['action']=='deleteDynamic'){?>
             id:<input type="text" name="params[id]" value=""/> 动态id(必填)<br/>
         <?php }elseif($data['action']=='getDetailDynamic'){?>

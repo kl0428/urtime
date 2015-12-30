@@ -324,6 +324,8 @@ class AllianceService extends AppApiService
                         }else{
                             $dynamic[$key]['is_agree'] = 0;
                         }
+                    }else{
+                        $dynamic[$key]['is_agree'] = 0;
                     }
                     if(!$type){
                         $dynamic[$key]['logo'] = Yii::app()->params['qiniu']['host'].$val->user->image;
