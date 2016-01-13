@@ -265,7 +265,7 @@ class UserService extends AppApiService
         if(isset($user_id)&&$user_id)
         {
             $focus_arr = array();
-            $focus_user = Focus::model()->with('user')->findAll('user_id=:user_id and focus_type=:type and is_focus=:focus',array(':user_id'=>$user_id,':type'=>'0',':focus'=>'1'));
+            $focus_user = Focus::model()->with('user')->findAll(array('condition'=>'user_id=:user_id and focus_type < :type and is_focus=:focus','params'=>array(':user_id'=>$user_id,':type'=>'1',':focus'=>'1')));
             if($focus_user){//个人关注
 
                 foreach($focus_user as $key=>$val)
@@ -279,7 +279,7 @@ class UserService extends AppApiService
                 }
 
             }
-            $focus_alliance = Focus::model()->with('alliance')->findAll('user_id=:user_id and focus_type = :type and is_focus = :focus',array(':user_id'=>$user_id,':type'=>'1',':focus'=>'1'));
+            $focus_alliance = Focus::model()->with('alliance')->findAll(array('condition'=>'user_id=:user_id and focus_type = :type and is_focus = :focus','params'=>array(':user_id'=>$user_id,':type'=>'1',':focus'=>'1')));
             if($focus_alliance){//联盟关注
 
                 foreach($focus_alliance as $key=>$val)
@@ -293,7 +293,7 @@ class UserService extends AppApiService
                 }
 
             }
-            $focus_store = Focus::model()->with('store')->findAll('user_id=:user_id and focus_type = :type and is_focus = :focus',array(':user_id'=>$user_id,':type'=>'2',':focus'=>'1'));
+            $focus_store = Focus::model()->with('store')->findAll(array('condition'=>'user_id=:user_id and focus_type = :type and is_focus = :focus','params'=>array(':user_id'=>$user_id,':type'=>'2',':focus'=>'1')));
             if($focus_store){//联盟关注
                 foreach($focus_store as $key=>$val)
                 {

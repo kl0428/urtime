@@ -50,7 +50,7 @@ class Focus extends CActiveRecord
 			'user'=>array(self::BELONGS_TO,'User','focus_user'),
 			'store'=>array(self::BELONGS_TO,'Store','focus_user'),
 			'alliance'=>array(self::BELONGS_TO,'Alliance','focus_user'),
-			'dynamic' => array(self::Has_MANY,'Dynamic','','on'=>'focus_user = dy_user and focus_type = dy_type'),
+			//'dynamic' => array(self::Has_MANY,'Dynamic','','on'=>'focus_user = dy_user and focus_type = dy_type'),
 		);
 	}
 
